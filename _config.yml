@@ -1,0 +1,34 @@
+title: Michał Łępicki
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      author: Michał Łępicki
+  -
+    scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
+  -
+    scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+permalink: /:collection/:title:output_ext
+highlighter: rouge
+sass:
+  style: compressed
+titles_from_headings:
+  enabled: false
+compress_html:
+  clippings: all
+  comments: all
+  endings: []
+  ignore:
+    envs: []
+  blanklines: false
+  profile: false
+  startings: []

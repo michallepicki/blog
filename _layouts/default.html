@@ -1,0 +1,28 @@
+---
+# careful with inline js comments and textarea content
+# compress can break the site when they are present
+layout: compress
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="{{ page.author }}">
+    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+    <style>{%- capture styles -%}{%- include styles.css -%}{%- endcapture -%}{{ styles | scssify }}</style>
+  </head>
+  <body>{%- assign nav_pages = site.pages | where_exp:"p","p.nav_order != nil" | sort: 'nav_order' -%}
+    <header>
+      <a href="{{ site.baseurl }}/"><h1>{{ site.title }}</h1></a>
+      <nav>{%- for p in nav_pages -%}
+        <a href="{{ p.url | relative_url }}">{{ p.title }}</a>{%- endfor -%}
+      </nav>
+    </header>
+    <main>
+      {{ content }}
+    </main>
+    <footer>
+    </footer>
+  </body>
+</html>
