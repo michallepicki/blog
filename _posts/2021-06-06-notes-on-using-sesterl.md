@@ -1,6 +1,6 @@
 ---
 title: Notes on using Sesterl
-hidden: true
+hidden: false
 edit_date: 2021-06-06
 ---
 [Sesterl](https://github.com/gfngfn/Sesterl) is a new statically typed programming language for the BEAM (the Erlang virtual machine).
