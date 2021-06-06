@@ -94,7 +94,7 @@ end
 To compile and run our "Hello World" program, we can:
 
 ```
-$ rebar3 sesterl compile
+$ rebar3 do sesterl compile, compile
 ===> Fetching rebar_sesterl (from {git,"https://github.com/gfngfn/rebar_sesterl_plugin.git",
                          {branch,"master"}})
 ===> Analyzing applications...
@@ -108,11 +108,17 @@ $ rebar3 sesterl compile
 ===> Analyzing applications...
 ===> Compiling trying_sesterl
 _generated/sesterl_internal_prim.erl:8:14: Warning: variable 'Arity' is unused
-$ rebar3 compile
+
 ===> Verifying dependencies...
 ===> Analyzing applications...
 ===> Compiling trying_sesterl
 _generated/sesterl_internal_prim.erl:8:14: Warning: variable 'Arity' is unused
+```
+{: .terminal}
+
+And to execute our function from Erlang shell:
+
+```
 $ rebar3 shell
 ===> Verifying dependencies...
 ===> Analyzing applications...
