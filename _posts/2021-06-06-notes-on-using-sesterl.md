@@ -91,7 +91,7 @@ end
 <figcaption>src/some_file.sest</figcaption>
 </figure>
 
-To compile and run our "Hello World" program, we can:
+To compile our "Hello World" program, we can run:
 
 ```
 $ rebar3 do sesterl compile, compile
