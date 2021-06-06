@@ -1,6 +1,5 @@
 ---
 ---
-# Posts
 
 {% assign listed_posts = site.posts | where_exp: "item", "item.hidden != true" -%}
 {%- for p in listed_posts -%}
@@ -8,5 +7,5 @@
 {%- endfor %}
 {%- assign posts_size = listed_posts | size -%}
 {%- if posts_size == 0 -%}
-No posts yet!
+Nothing here yet!
 {%- endif %}
