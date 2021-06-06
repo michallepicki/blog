@@ -63,7 +63,7 @@ $ sesterl config .
 ```
 {: .terminal}
 
-Our project also needs an `*.app.src` file in the src directory (`mkdir src` first):
+Our project also needs an `*.app.src` file in the src directory (run `mkdir src` first):
 
 <figure markdown="1">
 ```
@@ -84,8 +84,10 @@ And obvoiusly, it also needs our main module code. Sesterl source files have a `
 <figure markdown="1">
 ```sml
 module Hello = struct
+
   val my_hello() =
     print_debug("Hello, world!")
+
 end
 ```
 <figcaption>src/some_file.sest</figcaption>
@@ -167,9 +169,9 @@ Hello.erl  sesterl_internal_prim.erl
 ```
 {: .terminal}
 
-The `Hello.erl` file contains the `'Hello'` erlang module, and `sesterl_internal_prim.erl` ("prim" as in "primitives") contains a module with a few functions to provide some of basic functionality of the language (e.g. Erlang send as a function). This will not be available in our escript program unless we add code to load it.
+The `Hello.erl` file contains the `'Hello'` erlang module, and `sesterl_internal_prim.erl` ("prim" as in "primitives") contains a module with a few functions to provide some of basic functionality of the language (e.g. Erlang's [send](http://erlang.org/doc/reference_manual/expressions.html#send) wrapped in a function). These will not be available in our escript program unless we add code to load it.
 
-To make our Hello World executable we have to add one dummy line to the beginning of the file, and then we can run it with `escript -c` (the `-c` argument tells escript to compile the module first):
+To make our Hello World executable we have to add one dummy line to the beginning of the erlang source file, and then we can run it with `escript -c` (the `-c` argument tells escript to compile the module first):
 
 ```
 $ (echo "% additional line for escript to work" && cat _generated/Hello.erl) > tmpfile && mv tmpfile _generated/Hello.erl
