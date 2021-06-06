@@ -10,10 +10,10 @@ edit_date: false
 To install Sesterl, currently you can download a release artifact for latest Ubuntu or MacOS from [Github Actions on the Sesterl Repository](https://github.com/gfngfn/Sesterl/actions?query=branch%3Amaster).
 
 ```
-$ unzip sesterl-ubuntu-latest.zip 
+$ unzip sesterl-ubuntu-latest.zip
 Archive:  sesterl-ubuntu-latest.zip
-  inflating: sesterl                 
-$ chmod +x sesterl 
+  inflating: sesterl
+$ chmod +x sesterl
 $ mv sesterl ~/.local/bin/
 $ which sesterl
 /home/michal/.local/bin/sesterl
@@ -25,7 +25,7 @@ $ which sesterl
 Sesterl source files have a `.sest` file extension.
 
 <figure markdown="1">
-```sml
+````sml
 module Hello = struct
 
   val print_string : fun(binary) -> unit = external 1 ```
@@ -37,7 +37,7 @@ module Hello = struct
     print_string("Hello, world!")
 
 end
-```
+````
 <figcaption>some_file.sest</figcaption>
 </figure>
 
