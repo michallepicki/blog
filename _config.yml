@@ -2,22 +2,25 @@ title: Michał Łępicki
 defaults:
   -
     scope:
-      path: ""
+      path: "" # an empty string here means all files in the project
     values:
       author: Michał Łępicki
   -
     scope:
-      path: ""
+      path: "" # an empty string here means all files in the project
       type: pages
     values:
       layout: page
   -
     scope:
-      path: ""
+      path: "" # an empty string here means all files in the project
       type: posts
     values:
       layout: post
-permalink: /:collection/:title:output_ext
+
+# title for posts is the slug value, which by default comes from the hyphenated file name
+# (not from title value). This setting only affects collections like posts, not pages.
+permalink: /:title:output_ext # make posts urls behave like pages urls
 highlighter: rouge
 sass:
   style: compressed
