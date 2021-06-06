@@ -2,5 +2,5 @@
 layout: default
 ---
 <h1 class="posttitle">{{ page.title }}</h1>
-<p class="dateandauthor">{% if page.date %}{{ page.date | date_to_string }}{% endif %}{% if page.edit_date %} (last edited on {{ page.edit_date | date_to_string }}){% endif %}</p>
+<p class="dateandauthor">{% if page.date %}{{ page.date | date_to_string | replace: ' ', '&nbsp;' }}{% endif %}{% if page.edit_date %} (last edited on {{ page.edit_date | date_to_string | replace: ' ', '&nbsp;' }}){% endif %}</p>
 {% include anchor_headings.html anchorClass="anchor" anchorTitle="Link to '%heading%'" html=content %}
