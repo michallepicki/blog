@@ -1,7 +1,7 @@
 ---
 title: Notes on using Sesterl
 hidden: true
-edit_date: false
+edit_date: 2021-06-06
 ---
 [Sesterl](https://github.com/gfngfn/Sesterl) is a new statically typed programming language for the BEAM (Erlang virtual machine).
 
@@ -20,9 +20,9 @@ $ which sesterl
 ```
 {: .terminal}
 
-## Sesterl hello world with escript and FFI
+## Sesterl "Hello World" with escript and FFI
 
-Sesterl source files have a `.sest` file extension.
+Sesterl source files have a `.sest` file extension. The syntax is similar to Standard ML or OCaml.
 
 <figure markdown="1">
 ````sml
@@ -41,6 +41,8 @@ end
 <figcaption>some_file.sest</figcaption>
 </figure>
 
+When compiling the above example with `sesterl`, we get two Erlang source files as a result:
+
 ```
 $ sesterl build some_file.sest -o _generated
   parsing '/home/michal/trying_sesterl/some_file.sest' ...
@@ -49,6 +51,13 @@ $ sesterl build some_file.sest -o _generated
   output written on '/home/michal/trying_sesterl/_generated/sesterl_internal_prim.erl'.
 $ ls _generated
 Hello.erl  sesterl_internal_prim.erl
+```
+
+The `Hello.erl` file contains the `'Hello'` erlang module, and `sesterl_internal_prim.erl` ("prim" as in "primitives") contains a module with a few functions to provide some of basic functionality of the language (e.g. Erlang send as a function). This will not be available in our escript program unless we add code to load it.
+
+To make our Hello World executable we have to add one dummy line to the beginning of the file, and then we can run it with `escript -c` (the `-c` argument tells escript to compile the module first):
+
+```
 $ (echo "% additional line for escript to work" && cat _generated/Hello.erl) > tmpfile && mv tmpfile _generated/Hello.erl
 $ escript -c _generated/Hello.erl
 _generated/Hello.erl:7:8: Warning: variable 'S11Args' is unused
@@ -58,3 +67,5 @@ _generated/Hello.erl:7:8: Warning: variable 'S11Args' is unused
 Hello, world!
 ```
 {: .terminal}
+
+Hurray!
