@@ -32,9 +32,8 @@ Sesterl can generate a [rebar3](https://github.com/erlang/rebar3) config file fo
 # e.g. this will cause all modules to be prefixed with "TryingSesterl."
 package: "trying_sesterl"
 
-# Main module is the only interface to a package from outside
-# world. It has to exist and can't be imported by other modules
-# in that package.
+# Main module is the only interface to a package from outside world.
+# It has to exist and can't be imported by modules in that package.
 main_module: "Hello"
 
 source_directories:
