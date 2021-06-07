@@ -1,13 +1,13 @@
 ---
 title: Notes on using Sesterl
 hidden: false
-edit_date: 2021-06-06
+edit_date: 2021-06-07
 ---
 [Sesterl](https://github.com/gfngfn/Sesterl) is a new statically typed programming language for the BEAM (the Erlang virtual machine).
 
 ## Installation
 
-To install Sesterl, currently you can download a release artifact for latest Ubuntu or MacOS from [Github Actions on the Sesterl Repository](https://github.com/gfngfn/Sesterl/actions?query=branch%3Amaster).
+To install Sesterl, you can download a release artifact for latest Ubuntu or MacOS from [Github Actions on the Sesterl Repository](https://github.com/gfngfn/Sesterl/actions?query=branch%3Amaster).
 
 ```
 $ unzip sesterl-ubuntu-latest.zip
@@ -29,8 +29,7 @@ Sesterl can generate a [rebar3](https://github.com/erlang/rebar3) config file fo
 # REQUIRED CONFIG
 
 # Package name is used to derive a prefix for resulting Erlang modules,
-# e.g. this will cause all modules to be prefixed with
-# "TryingSesterl."
+# e.g. this will cause all modules to be prefixed with "TryingSesterl."
 package: "trying_sesterl"
 
 # Main module is the only interface to a package from outside
@@ -79,7 +78,7 @@ Our project also needs an `*.app.src` file in the src directory (run `mkdir src`
 <figcaption>src/trying_sesterl.app.src</figcaption>
 </figure>
 
-And obvoiusly, it also needs our main module code. Sesterl source files have a `.sest` file extension. The syntax is similar to Standard ML or OCaml.
+And obviously, it also needs our main module code. Sesterl source files have a `.sest` file extension. The syntax is similar to Standard ML or OCaml.
 
 <figure markdown="1">
 ```sml
@@ -118,7 +117,7 @@ _generated/sesterl_internal_prim.erl:8:14: Warning: variable 'Arity' is unused
 ```
 {: .terminal}
 
-And to execute our function from Erlang shell:
+And to execute our function from the Erlang shell:
 
 ```
 $ rebar3 shell
@@ -169,7 +168,7 @@ Hello.erl  sesterl_internal_prim.erl
 ```
 {: .terminal}
 
-The `Hello.erl` file contains the `'Hello'` erlang module, and `sesterl_internal_prim.erl` ("prim" as in "primitives") contains a module with a few functions to provide some of basic functionality of the language (e.g. Erlang's [send](http://erlang.org/doc/reference_manual/expressions.html#send) wrapped in a function). These will not be available in our escript program unless we add code to load it.
+The `Hello.erl` file contains the `'Hello'` erlang module, and `sesterl_internal_prim.erl` ("prim" as in "primitives") contains a module with a few functions to provide some of basic functionality of the language (e.g. Erlang's [send](http://erlang.org/doc/reference_manual/expressions.html#send) wrapped in a function). These will not be available in our escript program unless we add code to load this file.
 
 To make our Hello World executable we have to add one dummy line to the beginning of the erlang source file, and then we can run it with `escript -c` (the `-c` argument tells escript to compile the module first):
 
