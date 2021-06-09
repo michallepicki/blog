@@ -1,13 +1,13 @@
 ---
 title: Notes on using Sesterl
 hidden: false
-edit_date: 2021-06-07
+edit_date: 2021-06-09
 ---
 [Sesterl](https://github.com/gfngfn/Sesterl) is a new statically typed programming language for the BEAM (the Erlang virtual machine).
 
 ## Installation
 
-To install Sesterl, you can download a release artifact for latest Ubuntu or MacOS from [Github Actions on the Sesterl Repository](https://github.com/gfngfn/Sesterl/actions?query=branch%3Amaster).
+To install Sesterl, we can download a release artifact for latest Ubuntu or MacOS from [Github Actions on the Sesterl Repository](https://github.com/gfngfn/Sesterl/actions?query=branch%3Amaster).
 
 ```
 $ unzip sesterl-ubuntu-latest.zip
@@ -20,17 +20,19 @@ $ which sesterl
 ```
 {: .terminal}
 
+On other systems sesterl has to be [compiled from source](https://github.com/gfngfn/Sesterl#how-to-install).
+
 ## "Hello World" with rebar3
 
-Sesterl can generate a [rebar3](https://github.com/erlang/rebar3) config file for your project from a simple `package.yaml` file (note: this file might be soon renamed to `sesterl.yaml`).
+Sesterl can generate a [rebar3](https://github.com/erlang/rebar3) config file for a project from a `package.yaml` file (note: this file might be soon renamed to `sesterl.yaml`).
 
 <figure markdown="1">
 ```yaml
 # REQUIRED CONFIG
 
 # Package name is used to derive a prefix for resulting Erlang modules,
-# e.g. this will cause all modules to be prefixed with "TryingSesterl."
-package: "trying_sesterl"
+# e.g. this will cause all modules to be prefixed with "HelloSesterl."
+package: "hello_sesterl"
 
 # Main module is the only interface to a package from outside world.
 # It has to exist and can't be imported by modules in that package.
@@ -54,18 +56,18 @@ source_directories:
 <figcaption>package.yaml</figcaption>
 </figure>
 
-To generate a `rebar3` config from the above file, run:
+To generate a `rebar3` config from the above file, we can run:
 ```
 $ sesterl config .
-  output written on '/home/michal/trying_sesterl/./rebar.config'.
+  output written on '/home/michal/hello_sesterl/./rebar.config'.
 ```
 {: .terminal}
 
-Our project also needs an `*.app.src` file in the src directory (run `mkdir src` first):
+A rebar3 project also needs an `*.app.src` file in the src directory:
 
 <figure markdown="1">
 ```
-{application, trying_sesterl,
+{application, hello_sesterl,
  [{description, "An OTP library"},
   {vsn, "0.1.0"},
   {applications,
@@ -74,10 +76,10 @@ Our project also needs an `*.app.src` file in the src directory (run `mkdir src`
    ]}
  ]}.
 ```
-<figcaption>src/trying_sesterl.app.src</figcaption>
+<figcaption>src/hello_sesterl.app.src</figcaption>
 </figure>
 
-And obviously, it also needs our main module code. Sesterl source files have a `.sest` file extension. The syntax is similar to Standard ML or OCaml.
+Sesterl source files have a `.sest` file extension. The syntax is similar to Standard ML or OCaml.
 
 <figure markdown="1">
 ```sml
@@ -91,7 +93,7 @@ end
 <figcaption>src/some_file.sest</figcaption>
 </figure>
 
-To compile our "Hello World" program, we can run:
+To compile a project, we can run:
 
 ```
 $ rebar3 do sesterl compile, compile
@@ -101,32 +103,32 @@ $ rebar3 do sesterl compile, compile
 ===> Compiling rebar_sesterl
 ===> Verifying dependencies...
 ===> Compiling Sesterl programs (command: "sesterl build ./ -o _generated") ...
-  parsing '/home/michal/trying_sesterl/src/some_file.sest' ...
-  type checking '/home/michal/trying_sesterl/src/some_file.sest' ...
-  output written on '/home/michal/trying_sesterl/./_generated/TryingSesterl.Hello.erl'.
-  output written on '/home/michal/trying_sesterl/./_generated/sesterl_internal_prim.erl'.
+  parsing '/home/michal/hello_sesterl/src/some_file.sest' ...
+  type checking '/home/michal/hello_sesterl/src/some_file.sest' ...
+  output written on '/home/michal/hello_sesterl/./_generated/HelloSesterl.Hello.erl'.
+  output written on '/home/michal/hello_sesterl/./_generated/sesterl_internal_prim.erl'.
 ===> Analyzing applications...
-===> Compiling trying_sesterl
+===> Compiling hello_sesterl
 _generated/sesterl_internal_prim.erl:8:14: Warning: variable 'Arity' is unused
 
 ===> Verifying dependencies...
 ===> Analyzing applications...
-===> Compiling trying_sesterl
+===> Compiling hello_sesterl
 _generated/sesterl_internal_prim.erl:8:14: Warning: variable 'Arity' is unused
 ```
 {: .terminal}
 
-And to execute our function from the Erlang shell:
+And to execute code from the above module from the Erlang shell:
 
 ```
 $ rebar3 shell
 ===> Verifying dependencies...
 ===> Analyzing applications...
-===> Compiling trying_sesterl
+===> Compiling hello_sesterl
 Erlang/OTP 24 [erts-12.0.2] [source] [64-bit] [smp:6:6] [ds:6:6:10] [async-threads:1] [jit]
 
 Eshell V12.0.2  (abort with ^G)
-1> 'TryingSesterl.Hello':'my_hello'().
+1> 'HelloSesterl.Hello':my_hello().
 <<"Hello, world!">>
 ok
 2>
@@ -135,7 +137,54 @@ ok
 
 Yay!
 
-## "Hello World" with escript and FFI
+## Sesterl standard library
+
+Sesterl [standard library](https://github.com/gfngfn/sesterl_stdlib) is just a rebar3 package, that can be added as a git dependency to the configuration yaml file:
+
+```yaml
+dependencies:
+  - name: "sesterl_stdlib"
+    source:
+      type: "git"
+      repository: "https://github.com/gfngfn/sesterl_stdlib"
+      spec:
+        type: "branch"
+        value: "master"
+```
+
+Rebar3 config needs to be regenerated with `sesterl config .`, and on next compilation we'll be able to refer to modules from the stdlib (but only through what is defined in its main Stdlib module):
+
+```sml
+module Hello = struct
+  val my_hello() =
+    let list = Stdlib.Binary.to_list("Hello, world!") in
+    print_debug(list)
+end
+```
+
+```sml
+module Hello = struct
+  module Binary = Stdlib.Binary
+
+  val my_hello() =
+    let list = Binary.to_list("Hello, world!") in
+    print_debug(list)
+
+end
+```
+
+```sml
+module Hello = struct
+  open Stdlib.Binary
+
+  val my_hello() =
+    let list = to_list("Hello, world!") in
+    print_debug(list)
+
+end
+```
+
+## Extra: "Hello World" without rebar3
 
 <figure markdown="1">
 ````sml
@@ -151,25 +200,25 @@ module Hello = struct
 
 end
 ````
-<figcaption>some_file.sest</figcaption>
+<figcaption>without_rebar3.sest</figcaption>
 </figure>
 
 When compiling the above example with `sesterl`, we get two Erlang source files as a result:
 
 ```
-$ sesterl build some_file.sest -o _generated
-  parsing '/home/michal/trying_sesterl/some_file.sest' ...
-  type checking '/home/michal/trying_sesterl/some_file.sest' ...
-  output written on '/home/michal/trying_sesterl/_generated/Hello.erl'.
-  output written on '/home/michal/trying_sesterl/_generated/sesterl_internal_prim.erl'.
+$ sesterl build without_rebar3.sest -o _generated
+  parsing '/home/michal/hello_sesterl/without_rebar3.sest' ...
+  type checking '/home/michal/hello_sesterl/without_rebar3.sest' ...
+  output written on '/home/michal/hello_sesterl/_generated/Hello.erl'.
+  output written on '/home/michal/hello_sesterl/_generated/sesterl_internal_prim.erl'.
 $ ls _generated
 Hello.erl  sesterl_internal_prim.erl
 ```
 {: .terminal}
 
-The `Hello.erl` file contains the `'Hello'` erlang module, and `sesterl_internal_prim.erl` ("prim" as in "primitives") contains a module with a few functions to provide some of basic functionality of the language (e.g. Erlang's [send](http://erlang.org/doc/reference_manual/expressions.html#send) wrapped in a function). These will not be available in our escript program unless we add code to load this file.
+The `Hello.erl` file contains the `'Hello'` erlang module, and `sesterl_internal_prim.erl` ("prim" as in "primitives") contains a module with a few functions to provide some of basic functionality of the language (e.g. Erlang's [send](http://erlang.org/doc/reference_manual/expressions.html#send) wrapped in a function). This modle will not be available in our escript program unless we add code to load it.
 
-To make our Hello World executable we have to add one dummy line to the beginning of the erlang source file, and then we can run it with `escript -c` (the `-c` argument tells escript to compile the module first):
+To make the escript executable we have to add one dummy line to the beginning of the erlang source file, and then we can run it with `escript -c` (the `-c` argument tells escript to compile the module first):
 
 ```
 $ (echo "% additional line for escript to work" && cat _generated/Hello.erl) > tmpfile && mv tmpfile _generated/Hello.erl
