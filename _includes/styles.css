@@ -13,14 +13,9 @@ h1, h2, h3, h4, h5, h6 {
   font-family: sans-serif;
 }
 
-a, a:visited {
-  color: #4e2a8e;
-  text-decoration: underline;
-}
-
-a:hover {
+a {
   color: #000;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 figcaption {
