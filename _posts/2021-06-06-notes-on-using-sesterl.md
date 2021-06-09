@@ -184,7 +184,7 @@ module Hello = struct
 end
 ```
 
-## Extra: "Hello World" without rebar3
+## Bonus: "Hello World" without rebar3
 
 <figure markdown="1">
 ````sml
