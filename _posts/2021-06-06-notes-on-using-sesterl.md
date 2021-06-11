@@ -1,7 +1,7 @@
 ---
 title: Notes on using Sesterl
 hidden: false
-edit_date: 2021-06-10
+edit_date: 2021-06-11
 ---
 [Sesterl](https://github.com/gfngfn/Sesterl) is a new statically typed programming language for the BEAM (the Erlang virtual machine).
 
@@ -142,33 +142,38 @@ Yay!
 Something similar to "newtypes" - types that have the same run-time representation as different types, but are distinct from them - can be achieved with the Sesterl's type system (just like [OCaml's](https://dev.realworldocaml.org/files-modules-and-programs.html#nested-modules)):
 
 ```sml
-module Mod = struct
+module Hello = struct
 
   signature ID = sig
     type t :: o
-    val of_binary : fun(binary) -> t
+    val from_binary : fun(binary) -> t
     val to_binary : fun(t) -> binary
-    val equal : fun(t, t) -> bool
   end
 
   module BinaryId = struct
     type t = binary
-    val of_binary(x) = x
+    val from_binary(x) = x
     val to_binary(x) = x
-    val equal : fun(t, t) -> bool = external 2 ```
-      equal(X, Y) -> X == Y.
-    ```
   end
 
   module Username :> ID = BinaryId
   module Hostname :> ID = BinaryId
 
-  type session_info = { user: Username.t, host: Hostname.t}
+  val do_something_with_username(x : Username.t) = x
 
   /* Intentional mistake! Below code should result in a Type error */
-  /* (even though both user and host have the same run-time representation) */
-  val sessions_have_same_user(s1 : session_info, s2 : session_info) : bool = Username.equal(s1.user, s2.host)
+  /* (even though both username and hostname have the same run-time representation) */
+  val main() =
+    let a = Hostname.from_binary("example.com") in
+    do_something_with_username(a)
 end
+/*
+! [Type error] file 'some_file.sest', line 24, characters 31-32:
+  this expression has type
+    Hello.Hostname.t
+  but is expected of type
+    Hello.Username.t
+*/
 ```
 
 ## Sesterl standard library
