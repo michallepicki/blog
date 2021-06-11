@@ -176,7 +176,7 @@ end
 */
 ```
 
-Or if we want to reuse the interface signature:
+Or if we want to reuse the interface signature and implementation:
 
 ```sml
 module Hello = struct
