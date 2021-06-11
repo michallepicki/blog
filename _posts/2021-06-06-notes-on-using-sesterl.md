@@ -137,9 +137,9 @@ ok
 
 Yay!
 
-## Newtypes (?)
+## "Newtypes"
 
-Something similar to "newtypes" - types that have the same run-time representation as different types, but are distinct from them - can be achieved with the Sesterl's type system (just like [OCaml's](https://dev.realworldocaml.org/files-modules-and-programs.html#nested-modules)):
+Something similar to "newtypes" - separate, incompatible types that have the same run-time representation (without boxing or tagging) - can be achieved with the Sesterl's type system (just like [OCaml's](https://dev.realworldocaml.org/files-modules-and-programs.html#nested-modules)):
 
 ```sml
 module Hello = struct
