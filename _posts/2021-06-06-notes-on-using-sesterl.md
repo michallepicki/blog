@@ -137,9 +137,46 @@ ok
 
 Yay!
 
-## "Newtypes"
+## Separate types without tags
 
-Something similar to "newtypes" - separate, incompatible types that have the same run-time representation (without boxing or tagging) - can be achieved with the Sesterl's type system (just like [OCaml's](https://dev.realworldocaml.org/files-modules-and-programs.html#nested-modules)):
+Something similar to "newtypes" or phantom types (?) - separate, incompatible types that have the same run-time representation (without boxing or tagging) - can be achieved with the Sesterl's type system (just like [OCaml's](https://dev.realworldocaml.org/files-modules-and-programs.html#nested-modules)):
+
+```sml
+module Hello = struct
+
+  module Username :> sig
+    type t :: o
+    val from_binary : fun(binary) -> t
+  end = struct
+    type t = binary
+    val from_binary(x) = x
+  end
+
+  module Hostname :> sig
+    type t :: o
+    val from_binary : fun(binary) -> t
+  end = struct
+    type t = binary
+    val from_binary(x) = x
+  end
+
+  val do_something_with_username(x : Username.t) = x
+
+  val main() =
+    let a = Hostname.from_binary("example.com") in
+    do_something_with_username(a)
+
+end
+/*
+! [Type error] file 'some_file.sest', line 23, characters 31-32:
+  this expression has type
+    Hello.Hostname.t
+  but is expected of type
+    Hello.Username.t
+*/
+```
+
+Or if we want to reuse the interface signature:
 
 ```sml
 module Hello = struct
@@ -147,33 +184,55 @@ module Hello = struct
   signature ID = sig
     type t :: o
     val from_binary : fun(binary) -> t
-    val to_binary : fun(t) -> binary
   end
 
-  module BinaryId = struct
+  module BinaryID = struct
     type t = binary
     val from_binary(x) = x
-    val to_binary(x) = x
   end
 
-  module Username :> ID = BinaryId
-  module Hostname :> ID = BinaryId
+  module Username :> ID = BinaryID
+  module Hostname :> ID = BinaryID
 
   val do_something_with_username(x : Username.t) = x
 
-  /* Intentional mistake! Below code should result in a Type error */
-  /* (even though both username and hostname have the same run-time representation) */
   val main() =
     let a = Hostname.from_binary("example.com") in
     do_something_with_username(a)
+
 end
 /*
-! [Type error] file 'some_file.sest', line 24, characters 31-32:
+! [Type error] file 'some_file.sest', line 22, characters 31-32:
   this expression has type
     Hello.Hostname.t
   but is expected of type
     Hello.Username.t
 */
+```
+
+This doesn't work (doesn't throw an error), because Sesterl deletes the unused parameter from the type and assumes they are the same thing:
+
+```sml
+module Hello = struct
+
+  type id<$a> = binary
+
+  type hostname =
+    | Hostname
+  
+  type username =
+    | Username
+
+  val do_something_with_username_id(x : id<username>) = x
+
+  val hostname_from_binary(x : binary) : id<hostname> = x
+
+  val main() =
+    let a = hostname_from_binary("example.com") in
+    do_something_with_username_id(a)
+
+end
+/* No error even though we'd like to see one here! */
 ```
 
 ## Sesterl standard library
