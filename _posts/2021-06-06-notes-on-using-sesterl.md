@@ -167,13 +167,13 @@ module Hello = struct
     do_something_with_username(a)
 
 end
-/*
+/*(*
 ! [Type error] file 'some_file.sest', line 23, characters 31-32:
   this expression has type
     Hello.Hostname.t
   but is expected of type
     Hello.Username.t
-*/
+*)*/
 ```
 
 Or if we want to reuse the interface signature and implementation:
@@ -201,13 +201,13 @@ module Hello = struct
     do_something_with_username(a)
 
 end
-/*
+/*(*
 ! [Type error] file 'some_file.sest', line 22, characters 31-32:
   this expression has type
     Hello.Hostname.t
   but is expected of type
     Hello.Username.t
-*/
+*)*/
 ```
 
 The below example doesn't work (doesn't throw an error), because Sesterl deletes the unused parameter from the type and assumes they are the same thing:
@@ -232,7 +232,7 @@ module Hello = struct
     do_something_with_username(a)
 
 end
-/* No error even though we'd like to see one here! */
+/*(* No error even though we'd like to see one here! *)*/
 ```
 
 ## Sesterl standard library
