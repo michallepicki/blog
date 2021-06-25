@@ -134,10 +134,14 @@ code {
   border: 1px solid #ccc;
 }
 
-div.highlighter-rouge code {
+figure code, div.highlighter-rouge code {
   display: block;
   overflow-x: auto;
   background-color: #fff;
+}
+
+.lineno {
+  text-align: right;
 }
 
 div.terminal code, code.terminal {
@@ -146,6 +150,7 @@ div.terminal code, code.terminal {
   word-break: break-all;
   background-color: #444;
   color: #fff;
+  border: none;
 }
 
 /* styles stolen from elixir-lang.github.com */

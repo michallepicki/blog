@@ -26,8 +26,7 @@ On other systems sesterl has to be [compiled from source](https://github.com/gfn
 
 Sesterl can generate a [rebar3](https://github.com/erlang/rebar3) config file for a project from a `package.yaml` file (note: this file might be soon renamed to `sesterl.yaml`).
 
-<figure markdown="1">
-```yaml
+{% capture _code %}{% highlight yaml linenos %}
 # REQUIRED CONFIG
 
 # Package name is used to derive a prefix for resulting Erlang modules,
@@ -52,9 +51,7 @@ source_directories:
 # erlang:
 #   output_directory: "_generated"
 #   test_output_directory: "_generated_test"
-```
-<figcaption>package.yaml</figcaption>
-</figure>
+{% endhighlight %}<figcaption>package.yaml</figcaption></figure>{% endcapture %}{% include numberedfigure.html %}{{ _code }}
 
 To generate a `rebar3` config from the above file, we can run:
 ```
