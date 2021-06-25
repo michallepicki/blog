@@ -18,6 +18,11 @@ a {
   text-decoration: underline;
 }
 
+a:visited {
+  color: unset;
+  text-decoration-color: #ccc;
+}
+
 figcaption {
   text-align: center;
   font-style: italic;
