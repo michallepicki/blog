@@ -28,11 +28,6 @@ figcaption {
   font-style: italic;
 }
 
-code {
-  font-size: 14px;
-  font-family: monospace;
-}
-
 .dateandauthor {
   font-size: 16px;
   font-style: italic;
@@ -131,6 +126,8 @@ figure > * {
 /* code quotes and code blocks */
 
 code {
+  font-size: 14px;
+  font-family: monospace;
   display: inline-block;
   padding: 0px 4px;
   border-radius: 2px;
@@ -143,7 +140,10 @@ div.highlighter-rouge code {
   background-color: #fff;
 }
 
-div.terminal.highlighter-rouge code {
+div.terminal code, code.terminal {
+  display: block;
+  white-space: pre-wrap;
+  word-break: break-all;
   background-color: #444;
   color: #fff;
 }

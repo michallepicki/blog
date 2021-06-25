@@ -7,7 +7,7 @@ edit_date: 2021-06-11
 
 ## Installation
 
-To install Sesterl, we can download a release artifact for latest Ubuntu or MacOS from [Github Actions on the Sesterl Repository](https://github.com/gfngfn/Sesterl/actions?query=branch%3Amaster).
+To install Sesterl, we can download a release artifact for latest Ubuntu or MacOS from [Github Actions on the Sesterl Repository](https://github.com/gfngfn/Sesterl/actions?query=branch%3Amaster) (when logged in to GitHub, click the top entry on that list, and then on the artifact name, e.g. `sesterl-ubuntu-latest`).
 
 ```
 $ unzip sesterl-ubuntu-latest.zip
@@ -63,7 +63,7 @@ $ sesterl config .
 ```
 {: .terminal}
 
-A rebar3 project also needs an `*.app.src` file in the src directory:
+A rebar3 project also needs an `*.app.src` file in the `src/` directory:
 
 <figure markdown="1">
 ```
@@ -95,45 +95,44 @@ end
 
 To compile a project, we can run:
 
-```
-$ rebar3 do sesterl compile, compile
-===> Fetching rebar_sesterl (from {git,"https://github.com/gfngfn/rebar_sesterl_plugin.git",
-                         {branch,"master"}})
-===> Analyzing applications...
-===> Compiling rebar_sesterl
-===> Verifying dependencies...
-===> Compiling Sesterl programs (command: "sesterl build ./ -o _generated") ...
-  parsing '/home/michal/hello_sesterl/src/some_file.sest' ...
-  type checking '/home/michal/hello_sesterl/src/some_file.sest' ...
-  output written on '/home/michal/hello_sesterl/./_generated/HelloSesterl.Hello.erl'.
-  output written on '/home/michal/hello_sesterl/./_generated/sesterl_internal_prim.erl'.
-===> Analyzing applications...
-===> Compiling hello_sesterl
-_generated/sesterl_internal_prim.erl:8:14: Warning: variable 'Arity' is unused
+<pre>
+<code class="terminal">$ rebar3 do sesterl compile, compile
+<span style="color:lime;">===&gt; Fetching rebar_sesterl (from {git,&quot;https://github.com/gfngfn/rebar_sesterl_plugin.git&quot;,
+                         {branch,&quot;master&quot;}})
+</span><span style="color:lime;">===&gt; Analyzing applications...
+</span><span style="color:lime;">===&gt; Compiling rebar_sesterl
+</span><span style="color:lime;">===&gt; Verifying dependencies...
+</span><span style="color:lime;">===&gt; Compiling Sesterl programs (command: &quot;sesterl build ./ -o _generated&quot;) ...
+</span>  parsing '/home/michal/projects/huh/src/some_file.sest' ...
+  type checking '/home/michal/projects/huh/src/some_file.sest' ...
+  output written on '/home/michal/projects/huh/./_generated/HelloSesterl.Hello.erl'.
+  output written on '/home/michal/projects/huh/./_generated/sesterl_internal_prim.erl'.
+<span style="color:lime;">===&gt; Analyzing applications...
+</span><span style="color:lime;">===&gt; Compiling hello_sesterl
+</span>_generated/sesterl_internal_prim.erl:8:14: Warning: variable 'Arity' is unused
 
-===> Verifying dependencies...
-===> Analyzing applications...
-===> Compiling hello_sesterl
-_generated/sesterl_internal_prim.erl:8:14: Warning: variable 'Arity' is unused
-```
-{: .terminal}
+<span style="color:lime;">===&gt; Verifying dependencies...
+</span><span style="color:lime;">===&gt; Analyzing applications...
+</span><span style="color:lime;">===&gt; Compiling hello_sesterl
+</span>_generated/sesterl_internal_prim.erl:8:14: Warning: variable 'Arity' is unused
+</code>
+</pre>
 
 And to execute code from the above module from the Erlang shell:
 
-```
-$ rebar3 shell
-===> Verifying dependencies...
-===> Analyzing applications...
-===> Compiling hello_sesterl
-Erlang/OTP 24 [erts-12.0.2] [source] [64-bit] [smp:6:6] [ds:6:6:10] [async-threads:1] [jit]
+<pre>
+<code class="terminal">$ rebar3 shell
+<span style="color:lime;">===&gt; Verifying dependencies...
+</span><span style="color:lime;">===&gt; Analyzing applications...
+</span><span style="color:lime;">===&gt; Compiling hello_sesterl
+</span>Erlang/OTP 24 [erts-12.0.2] [source] [64-bit] [smp:6:6] [ds:6:6:10] [async-threads:1] [jit]
 
 Eshell V12.0.2  (abort with ^G)
-1> 'HelloSesterl.Hello':my_hello().
-<<"Hello, world!">>
+1&gt; 'HelloSesterl.Hello':my_hello().
+&lt;&lt;&quot;Hello, world!&quot;&gt;&gt;
 ok
-2>
-```
-{: .terminal}
+</code>
+</pre>
 
 Yay!
 
