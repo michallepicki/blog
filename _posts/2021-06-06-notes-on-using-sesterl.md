@@ -310,7 +310,7 @@ Hello.erl  sesterl_internal_prim.erl
 ```
 {: .terminal}
 
-The `Hello.erl` file contains the `'Hello'` erlang module, and `sesterl_internal_prim.erl` ("prim" as in "primitives") contains a module with a few functions to provide some of basic functionality of the language (e.g. Erlang's [send](http://erlang.org/doc/reference_manual/expressions.html#send) wrapped in a function). This modle will not be available in our escript program unless we add code to load it.
+The `Hello.erl` file contains the `'Hello'` erlang module, and `sesterl_internal_prim.erl` ("prim" as in "primitives") contains a module with a few functions to provide some of basic functionality of the language (e.g. Erlang's [send](http://erlang.org/doc/reference_manual/expressions.html#send) wrapped in a function). This module will not be available in our escript program unless we add code to load it.
 
 To make the escript executable we have to add one dummy line to the beginning of the erlang source file, and then we can run it with `escript -c` (the `-c` argument tells escript to compile the module first):
 
