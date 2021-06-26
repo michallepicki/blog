@@ -150,21 +150,20 @@ code {
   border: 1px solid #ccc;
 }
 
-figure code, div.highlighter-rouge code {
+figure code, div.highlighter-rouge code, code.numbered {
   line-height: 1.6;
   display: block;
   overflow-x: auto;
   background-color: #fff;
 }
 
-.lineno {
+code .lineno {
   text-align: right;
   color: #aaa;
   padding-right: 8px;
 }
 
 div.terminal code, code.terminal {
-  display: block;
   white-space: pre-wrap;
   word-break: break-all;
   background-color: #444;

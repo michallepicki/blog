@@ -26,7 +26,7 @@ On other systems sesterl has to be [compiled from source](https://github.com/gfn
 
 Sesterl can generate a [rebar3](https://github.com/erlang/rebar3) config file for a project from a `package.yaml` file (note: this file might be soon renamed to `sesterl.yaml`).
 
-{% capture _code %}{% highlight yaml linenos %}
+{% capture _code %}{% highlight yaml linenos %}{% raw %}
 # REQUIRED CONFIG
 
 # Package name is used to derive a prefix for resulting Erlang modules,
@@ -51,7 +51,7 @@ source_directories:
 # erlang:
 #   output_directory: "_generated"
 #   test_output_directory: "_generated_test"
-{% endhighlight %}<figcaption>package.yaml</figcaption></figure>{% endcapture %}{% include numberedfigure.html %}{{ _code }}
+{% endraw %}{% endhighlight %}<figcaption>package.yaml</figcaption></figure>{% endcapture %}{% include numberedfigure.html %}{{ _code }}
 
 To generate a `rebar3` config from the above file, we can run:
 ```
@@ -62,8 +62,7 @@ $ sesterl config .
 
 A rebar3 project also needs an `*.app.src` file in the `src/` directory:
 
-<figure markdown="1">
-```
+{% capture _code %}{% highlight erlang linenos %}{% raw %}
 {application, hello_sesterl,
  [{description, "An OTP library"},
   {vsn, "0.1.0"},
@@ -72,28 +71,24 @@ A rebar3 project also needs an `*.app.src` file in the `src/` directory:
     stdlib
    ]}
  ]}.
-```
-<figcaption>src/hello_sesterl.app.src</figcaption>
-</figure>
+{% endraw %}{% endhighlight %}<figcaption>src/hello_sesterl.app.src</figcaption></figure>{% endcapture %}{% include numberedfigure.html %}{{ _code }}
+
 
 Sesterl source files have a `.sest` file extension. The syntax is similar to Standard ML or OCaml.
 
-<figure markdown="1">
-```sml
+{% capture _code %}{% highlight sml linenos %}{% raw %}
 module Hello = struct
 
   val my_hello() =
     print_debug("Hello, world!")
 
 end
-```
-<figcaption>src/some_file.sest</figcaption>
-</figure>
+{% endraw %}{% endhighlight %}<figcaption>src/some_file.sest</figcaption></figure>{% endcapture %}{% include numberedfigure.html %}{{ _code }}
 
 To compile a project, we can run:
 
-<pre>
-<code class="terminal">$ rebar3 do sesterl compile, compile
+{% raw %}
+<div><pre><code class="terminal">$ rebar3 do sesterl compile, compile
 <span style="color:lime;">===&gt; Fetching rebar_sesterl (from {git,&quot;https://github.com/gfngfn/rebar_sesterl_plugin.git&quot;,
                          {branch,&quot;master&quot;}})
 </span><span style="color:lime;">===&gt; Analyzing applications...
@@ -113,10 +108,12 @@ To compile a project, we can run:
 </span><span style="color:lime;">===&gt; Compiling hello_sesterl
 </span>_generated/sesterl_internal_prim.erl:8:14: Warning: variable 'Arity' is unused
 </code>
-</pre>
+</pre></div>
+{% endraw %}
 
 And to execute code from the above module from the Erlang shell:
 
+{% raw %}
 <pre>
 <code class="terminal">$ rebar3 shell
 <span style="color:lime;">===&gt; Verifying dependencies...
@@ -130,6 +127,7 @@ Eshell V12.0.2  (abort with ^G)
 ok
 </code>
 </pre>
+{% endraw %}
 
 Yay!
 
@@ -137,7 +135,7 @@ Yay!
 
 Something similar to "newtypes" or phantom types (?) - separate, incompatible types that have the same run-time representation (without boxing or tagging) - can be achieved with the Sesterl's type system (just like [OCaml's](https://dev.realworldocaml.org/files-modules-and-programs.html#nested-modules)):
 
-```sml
+{% capture _code %}{% highlight sml linenos %}{% raw %}
 module Hello = struct
 
   module Username :> sig
@@ -170,11 +168,11 @@ end
   but is expected of type
     Hello.Username.t
 *)*/
-```
+{% endraw %}{% endhighlight %}{% endcapture %}{% include numbered.html %}{{ _code }}
 
 Or if we want to reuse the interface signature and implementation:
 
-```sml
+{% capture _code %}{% highlight sml linenos %}{% raw %}
 module Hello = struct
 
   signature ID = sig
@@ -204,11 +202,11 @@ end
   but is expected of type
     Hello.Username.t
 *)*/
-```
+{% endraw %}{% endhighlight %}{% endcapture %}{% include numbered.html %}{{ _code }}
 
 The below example doesn't work (doesn't throw an error), because Sesterl deletes the unused parameter from the type and assumes they are the same thing:
 
-```sml
+{% capture _code %}{% highlight sml linenos %}{% raw %}
 module Hello = struct
 
   type id<$a> = binary
@@ -229,13 +227,13 @@ module Hello = struct
 
 end
 /*(* No error even though we'd like to see one here! *)*/
-```
+{% endraw %}{% endhighlight %}{% endcapture %}{% include numbered.html %}{{ _code }}
 
 ## Sesterl standard library
 
 Sesterl [standard library](https://github.com/gfngfn/sesterl_stdlib) is just a rebar3 package, that can be added as a git dependency to the configuration yaml file:
 
-```yaml
+{% capture _code %}{% highlight yaml linenos %}{% raw %}
 dependencies:
   - name: "sesterl_stdlib"
     source:
@@ -244,19 +242,19 @@ dependencies:
       spec:
         type: "branch"
         value: "master"
-```
+{% endraw %}{% endhighlight %}{% endcapture %}{% include numbered.html %}{{ _code }}
 
 Rebar3 config needs to be regenerated with `sesterl config .`, and on next compilation we'll be able to refer to modules from the stdlib (but only through what is defined in its main Stdlib module):
 
-```sml
+{% capture _code %}{% highlight sml linenos %}{% raw %}
 module Hello = struct
   val my_hello() =
     let list = Stdlib.Binary.to_list("Hello, world!") in
     print_debug(list)
 end
-```
+{% endraw %}{% endhighlight %}{% endcapture %}{% include numbered.html %}{{ _code }}
 
-```sml
+{% capture _code %}{% highlight sml linenos %}{% raw %}
 module Hello = struct
   module Binary = Stdlib.Binary
 
@@ -265,9 +263,9 @@ module Hello = struct
     print_debug(list)
 
 end
-```
+{% endraw %}{% endhighlight %}{% endcapture %}{% include numbered.html %}{{ _code }}
 
-```sml
+{% capture _code %}{% highlight sml linenos %}{% raw %}
 module Hello = struct
   open Stdlib.Binary
 
@@ -276,12 +274,11 @@ module Hello = struct
     print_debug(list)
 
 end
-```
+{% endraw %}{% endhighlight %}{% endcapture %}{% include numbered.html %}{{ _code }}
 
 ## Bonus: "Hello World" without rebar3
 
-<figure markdown="1">
-````sml
+{% capture _code %}{% highlight sml linenos %}{% raw %}
 module Hello = struct
 
   val print_string : fun(binary) -> unit = external 1 ```
@@ -293,9 +290,7 @@ module Hello = struct
     print_string("Hello, world!")
 
 end
-````
-<figcaption>without_rebar3.sest</figcaption>
-</figure>
+{% endraw %}{% endhighlight %}<figcaption>without_rebar.sest</figcaption></figure>{% endcapture %}{% include numberedfigure.html %}{{ _code }}
 
 When compiling the above example with `sesterl`, we get two Erlang source files as a result:
 
