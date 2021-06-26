@@ -45,8 +45,13 @@ figcaption {
 }
 
 /* general spacing */
+
 html, body {
   height: 100%;
+  margin: unset;
+}
+
+pre {
   margin: unset;
 }
 
@@ -154,6 +159,8 @@ figure code, div.highlighter-rouge code {
 
 .lineno {
   text-align: right;
+  color: #aaa;
+  padding-right: 8px;
 }
 
 div.terminal code, code.terminal {
