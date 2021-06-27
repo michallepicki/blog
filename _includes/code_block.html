@@ -1,23 +1,415 @@
 {% assign code = include.code | default: "" %}
+{% assign lang = include.lang | default: "plaintext" %}
+{% assign numbered = include.numbered | default: false %}
 {% assign figure = include.figure | default: false %}
 {% assign figcaption = include.figcaption | default: nil %}
+{% assign class = include.class | default: nil %}
+
+{% capture rendered %}
+  <!-- https://github.com/jekyll/jekyll/issues/8290 -->
+{% if lang == "abap" %} {% if numbered %} {% highlight abap linenos %}{{code}}{% endhighlight %} {% else %} {% highlight abap %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "actionscript" %} {% if numbered %} {% highlight actionscript linenos %}{{code}}{% endhighlight %} {% else %} {% highlight actionscript %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "as" %} {% if numbered %} {% highlight as linenos %}{{code}}{% endhighlight %} {% else %} {% highlight as %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "as3" %} {% if numbered %} {% highlight as3 linenos %}{{code}}{% endhighlight %} {% else %} {% highlight as3 %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "ada" %} {% if numbered %} {% highlight ada linenos %}{{code}}{% endhighlight %} {% else %} {% highlight ada %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "apache" %} {% if numbered %} {% highlight apache linenos %}{{code}}{% endhighlight %} {% else %} {% highlight apache %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "apex" %} {% if numbered %} {% highlight apex linenos %}{{code}}{% endhighlight %} {% else %} {% highlight apex %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "apiblueprint" %} {% if numbered %} {% highlight apiblueprint linenos %}{{code}}{% endhighlight %} {% else %} {% highlight apiblueprint %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "apib" %} {% if numbered %} {% highlight apib linenos %}{{code}}{% endhighlight %} {% else %} {% highlight apib %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "applescript" %} {% if numbered %} {% highlight applescript linenos %}{{code}}{% endhighlight %} {% else %} {% highlight applescript %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "armasm" %} {% if numbered %} {% highlight armasm linenos %}{{code}}{% endhighlight %} {% else %} {% highlight armasm %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "augeas" %} {% if numbered %} {% highlight augeas linenos %}{{code}}{% endhighlight %} {% else %} {% highlight augeas %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "aug" %} {% if numbered %} {% highlight aug linenos %}{{code}}{% endhighlight %} {% else %} {% highlight aug %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "awk" %} {% if numbered %} {% highlight awk linenos %}{{code}}{% endhighlight %} {% else %} {% highlight awk %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "batchfile" %} {% if numbered %} {% highlight batchfile linenos %}{{code}}{% endhighlight %} {% else %} {% highlight batchfile %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "bat" %} {% if numbered %} {% highlight bat linenos %}{{code}}{% endhighlight %} {% else %} {% highlight bat %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "batch" %} {% if numbered %} {% highlight batch linenos %}{{code}}{% endhighlight %} {% else %} {% highlight batch %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "dosbatch" %} {% if numbered %} {% highlight dosbatch linenos %}{{code}}{% endhighlight %} {% else %} {% highlight dosbatch %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "winbatch" %} {% if numbered %} {% highlight winbatch linenos %}{{code}}{% endhighlight %} {% else %} {% highlight winbatch %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "bbcbasic" %} {% if numbered %} {% highlight bbcbasic linenos %}{{code}}{% endhighlight %} {% else %} {% highlight bbcbasic %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "bibtex" %} {% if numbered %} {% highlight bibtex linenos %}{{code}}{% endhighlight %} {% else %} {% highlight bibtex %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "bib" %} {% if numbered %} {% highlight bib linenos %}{{code}}{% endhighlight %} {% else %} {% highlight bib %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "biml" %} {% if numbered %} {% highlight biml linenos %}{{code}}{% endhighlight %} {% else %} {% highlight biml %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "bpf" %} {% if numbered %} {% highlight bpf linenos %}{{code}}{% endhighlight %} {% else %} {% highlight bpf %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "brainfuck" %} {% if numbered %} {% highlight brainfuck linenos %}{{code}}{% endhighlight %} {% else %} {% highlight brainfuck %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "brightscript" %} {% if numbered %} {% highlight brightscript linenos %}{{code}}{% endhighlight %} {% else %} {% highlight brightscript %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "bs" %} {% if numbered %} {% highlight bs linenos %}{{code}}{% endhighlight %} {% else %} {% highlight bs %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "brs" %} {% if numbered %} {% highlight brs linenos %}{{code}}{% endhighlight %} {% else %} {% highlight brs %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "bsl" %} {% if numbered %} {% highlight bsl linenos %}{{code}}{% endhighlight %} {% else %} {% highlight bsl %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "c" %} {% if numbered %} {% highlight c linenos %}{{code}}{% endhighlight %} {% else %} {% highlight c %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "ceylon" %} {% if numbered %} {% highlight ceylon linenos %}{{code}}{% endhighlight %} {% else %} {% highlight ceylon %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "cfscript" %} {% if numbered %} {% highlight cfscript linenos %}{{code}}{% endhighlight %} {% else %} {% highlight cfscript %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "cfc" %} {% if numbered %} {% highlight cfc linenos %}{{code}}{% endhighlight %} {% else %} {% highlight cfc %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "clean" %} {% if numbered %} {% highlight clean linenos %}{{code}}{% endhighlight %} {% else %} {% highlight clean %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "clojure" %} {% if numbered %} {% highlight clojure linenos %}{{code}}{% endhighlight %} {% else %} {% highlight clojure %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "clj" %} {% if numbered %} {% highlight clj linenos %}{{code}}{% endhighlight %} {% else %} {% highlight clj %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "cljs" %} {% if numbered %} {% highlight cljs linenos %}{{code}}{% endhighlight %} {% else %} {% highlight cljs %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "cmake" %} {% if numbered %} {% highlight cmake linenos %}{{code}}{% endhighlight %} {% else %} {% highlight cmake %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "cmhg" %} {% if numbered %} {% highlight cmhg linenos %}{{code}}{% endhighlight %} {% else %} {% highlight cmhg %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "coffeescript" %} {% if numbered %} {% highlight coffeescript linenos %}{{code}}{% endhighlight %} {% else %} {% highlight coffeescript %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "coffee" %} {% if numbered %} {% highlight coffee linenos %}{{code}}{% endhighlight %} {% else %} {% highlight coffee %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "coffee-script" %} {% if numbered %} {% highlight coffee-script linenos %}{{code}}{% endhighlight %} {% else %} {% highlight coffee-script %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "common_lisp" %} {% if numbered %} {% highlight common_lisp linenos %}{{code}}{% endhighlight %} {% else %} {% highlight common_lisp %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "cl" %} {% if numbered %} {% highlight cl linenos %}{{code}}{% endhighlight %} {% else %} {% highlight cl %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "common-lisp" %} {% if numbered %} {% highlight common-lisp linenos %}{{code}}{% endhighlight %} {% else %} {% highlight common-lisp %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "elisp" %} {% if numbered %} {% highlight elisp linenos %}{{code}}{% endhighlight %} {% else %} {% highlight elisp %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "emacs-lisp" %} {% if numbered %} {% highlight emacs-lisp linenos %}{{code}}{% endhighlight %} {% else %} {% highlight emacs-lisp %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "lisp" %} {% if numbered %} {% highlight lisp linenos %}{{code}}{% endhighlight %} {% else %} {% highlight lisp %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "conf" %} {% if numbered %} {% highlight conf linenos %}{{code}}{% endhighlight %} {% else %} {% highlight conf %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "config" %} {% if numbered %} {% highlight config linenos %}{{code}}{% endhighlight %} {% else %} {% highlight config %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "configuration" %} {% if numbered %} {% highlight configuration linenos %}{{code}}{% endhighlight %} {% else %} {% highlight configuration %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "console" %} {% if numbered %} {% highlight console linenos %}{{code}}{% endhighlight %} {% else %} {% highlight console %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "terminal" %} {% if numbered %} {% highlight terminal linenos %}{{code}}{% endhighlight %} {% else %} {% highlight terminal %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "shell_session" %} {% if numbered %} {% highlight shell_session linenos %}{{code}}{% endhighlight %} {% else %} {% highlight shell_session %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "coq" %} {% if numbered %} {% highlight coq linenos %}{{code}}{% endhighlight %} {% else %} {% highlight coq %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "cpp" %} {% if numbered %} {% highlight cpp linenos %}{{code}}{% endhighlight %} {% else %} {% highlight cpp %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "c" %} {% if numbered %} {% highlight c linenos %}{{code}}{% endhighlight %} {% else %} {% highlight c %}{{code}}{% endhighlight %}{% endif %}++
+{% elsif lang == "crystal" %} {% if numbered %} {% highlight crystal linenos %}{{code}}{% endhighlight %} {% else %} {% highlight crystal %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "cr" %} {% if numbered %} {% highlight cr linenos %}{{code}}{% endhighlight %} {% else %} {% highlight cr %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "csharp" %} {% if numbered %} {% highlight csharp linenos %}{{code}}{% endhighlight %} {% else %} {% highlight csharp %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "c" %} {% if numbered %} {% highlight c linenos %}{{code}}{% endhighlight %} {% else %} {% highlight c %}{{code}}{% endhighlight %}{% endif %}#
+{% elsif lang == "cs" %} {% if numbered %} {% highlight cs linenos %}{{code}}{% endhighlight %} {% else %} {% highlight cs %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "css" %} {% if numbered %} {% highlight css linenos %}{{code}}{% endhighlight %} {% else %} {% highlight css %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "csvs" %} {% if numbered %} {% highlight csvs linenos %}{{code}}{% endhighlight %} {% else %} {% highlight csvs %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "cuda" %} {% if numbered %} {% highlight cuda linenos %}{{code}}{% endhighlight %} {% else %} {% highlight cuda %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "cypher" %} {% if numbered %} {% highlight cypher linenos %}{{code}}{% endhighlight %} {% else %} {% highlight cypher %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "cython" %} {% if numbered %} {% highlight cython linenos %}{{code}}{% endhighlight %} {% else %} {% highlight cython %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "pyx" %} {% if numbered %} {% highlight pyx linenos %}{{code}}{% endhighlight %} {% else %} {% highlight pyx %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "pyrex" %} {% if numbered %} {% highlight pyrex linenos %}{{code}}{% endhighlight %} {% else %} {% highlight pyrex %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "d" %} {% if numbered %} {% highlight d linenos %}{{code}}{% endhighlight %} {% else %} {% highlight d %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "dlang" %} {% if numbered %} {% highlight dlang linenos %}{{code}}{% endhighlight %} {% else %} {% highlight dlang %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "dart" %} {% if numbered %} {% highlight dart linenos %}{{code}}{% endhighlight %} {% else %} {% highlight dart %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "datastudio" %} {% if numbered %} {% highlight datastudio linenos %}{{code}}{% endhighlight %} {% else %} {% highlight datastudio %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "diff" %} {% if numbered %} {% highlight diff linenos %}{{code}}{% endhighlight %} {% else %} {% highlight diff %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "patch" %} {% if numbered %} {% highlight patch linenos %}{{code}}{% endhighlight %} {% else %} {% highlight patch %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "udiff" %} {% if numbered %} {% highlight udiff linenos %}{{code}}{% endhighlight %} {% else %} {% highlight udiff %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "digdag" %} {% if numbered %} {% highlight digdag linenos %}{{code}}{% endhighlight %} {% else %} {% highlight digdag %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "docker" %} {% if numbered %} {% highlight docker linenos %}{{code}}{% endhighlight %} {% else %} {% highlight docker %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "dockerfile" %} {% if numbered %} {% highlight dockerfile linenos %}{{code}}{% endhighlight %} {% else %} {% highlight dockerfile %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "Dockerfile" %} {% if numbered %} {% highlight Dockerfile linenos %}{{code}}{% endhighlight %} {% else %} {% highlight Dockerfile %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "dot" %} {% if numbered %} {% highlight dot linenos %}{{code}}{% endhighlight %} {% else %} {% highlight dot %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "ecl" %} {% if numbered %} {% highlight ecl linenos %}{{code}}{% endhighlight %} {% else %} {% highlight ecl %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "eex" %} {% if numbered %} {% highlight eex linenos %}{{code}}{% endhighlight %} {% else %} {% highlight eex %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "leex" %} {% if numbered %} {% highlight leex linenos %}{{code}}{% endhighlight %} {% else %} {% highlight leex %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "eiffel" %} {% if numbered %} {% highlight eiffel linenos %}{{code}}{% endhighlight %} {% else %} {% highlight eiffel %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "elixir" %} {% if numbered %} {% highlight elixir linenos %}{{code}}{% endhighlight %} {% else %} {% highlight elixir %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "elixir" %} {% if numbered %} {% highlight elixir linenos %}{{code}}{% endhighlight %} {% else %} {% highlight elixir %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "exs" %} {% if numbered %} {% highlight exs linenos %}{{code}}{% endhighlight %} {% else %} {% highlight exs %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "elm" %} {% if numbered %} {% highlight elm linenos %}{{code}}{% endhighlight %} {% else %} {% highlight elm %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "email" %} {% if numbered %} {% highlight email linenos %}{{code}}{% endhighlight %} {% else %} {% highlight email %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "eml" %} {% if numbered %} {% highlight eml linenos %}{{code}}{% endhighlight %} {% else %} {% highlight eml %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "e-mail" %} {% if numbered %} {% highlight e-mail linenos %}{{code}}{% endhighlight %} {% else %} {% highlight e-mail %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "epp" %} {% if numbered %} {% highlight epp linenos %}{{code}}{% endhighlight %} {% else %} {% highlight epp %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "erb" %} {% if numbered %} {% highlight erb linenos %}{{code}}{% endhighlight %} {% else %} {% highlight erb %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "eruby" %} {% if numbered %} {% highlight eruby linenos %}{{code}}{% endhighlight %} {% else %} {% highlight eruby %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "rhtml" %} {% if numbered %} {% highlight rhtml linenos %}{{code}}{% endhighlight %} {% else %} {% highlight rhtml %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "erlang" %} {% if numbered %} {% highlight erlang linenos %}{{code}}{% endhighlight %} {% else %} {% highlight erlang %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "erl" %} {% if numbered %} {% highlight erl linenos %}{{code}}{% endhighlight %} {% else %} {% highlight erl %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "escape" %} {% if numbered %} {% highlight escape linenos %}{{code}}{% endhighlight %} {% else %} {% highlight escape %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "esc" %} {% if numbered %} {% highlight esc linenos %}{{code}}{% endhighlight %} {% else %} {% highlight esc %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "factor" %} {% if numbered %} {% highlight factor linenos %}{{code}}{% endhighlight %} {% else %} {% highlight factor %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "fortran" %} {% if numbered %} {% highlight fortran linenos %}{{code}}{% endhighlight %} {% else %} {% highlight fortran %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "freefem" %} {% if numbered %} {% highlight freefem linenos %}{{code}}{% endhighlight %} {% else %} {% highlight freefem %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "ff" %} {% if numbered %} {% highlight ff linenos %}{{code}}{% endhighlight %} {% else %} {% highlight ff %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "fsharp" %} {% if numbered %} {% highlight fsharp linenos %}{{code}}{% endhighlight %} {% else %} {% highlight fsharp %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "gdscript" %} {% if numbered %} {% highlight gdscript linenos %}{{code}}{% endhighlight %} {% else %} {% highlight gdscript %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "gd" %} {% if numbered %} {% highlight gd linenos %}{{code}}{% endhighlight %} {% else %} {% highlight gd %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "gdscript" %} {% if numbered %} {% highlight gdscript linenos %}{{code}}{% endhighlight %} {% else %} {% highlight gdscript %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "ghc-cmm" %} {% if numbered %} {% highlight ghc-cmm linenos %}{{code}}{% endhighlight %} {% else %} {% highlight ghc-cmm %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "cmm" %} {% if numbered %} {% highlight cmm linenos %}{{code}}{% endhighlight %} {% else %} {% highlight cmm %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "ghc-core" %} {% if numbered %} {% highlight ghc-core linenos %}{{code}}{% endhighlight %} {% else %} {% highlight ghc-core %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "gherkin" %} {% if numbered %} {% highlight gherkin linenos %}{{code}}{% endhighlight %} {% else %} {% highlight gherkin %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "cucumber" %} {% if numbered %} {% highlight cucumber linenos %}{{code}}{% endhighlight %} {% else %} {% highlight cucumber %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "behat" %} {% if numbered %} {% highlight behat linenos %}{{code}}{% endhighlight %} {% else %} {% highlight behat %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "glsl" %} {% if numbered %} {% highlight glsl linenos %}{{code}}{% endhighlight %} {% else %} {% highlight glsl %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "go" %} {% if numbered %} {% highlight go linenos %}{{code}}{% endhighlight %} {% else %} {% highlight go %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "go" %} {% if numbered %} {% highlight go linenos %}{{code}}{% endhighlight %} {% else %} {% highlight go %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "golang" %} {% if numbered %} {% highlight golang linenos %}{{code}}{% endhighlight %} {% else %} {% highlight golang %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "gradle" %} {% if numbered %} {% highlight gradle linenos %}{{code}}{% endhighlight %} {% else %} {% highlight gradle %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "graphql" %} {% if numbered %} {% highlight graphql linenos %}{{code}}{% endhighlight %} {% else %} {% highlight graphql %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "groovy" %} {% if numbered %} {% highlight groovy linenos %}{{code}}{% endhighlight %} {% else %} {% highlight groovy %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "hack" %} {% if numbered %} {% highlight hack linenos %}{{code}}{% endhighlight %} {% else %} {% highlight hack %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "hack" %} {% if numbered %} {% highlight hack linenos %}{{code}}{% endhighlight %} {% else %} {% highlight hack %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "hh" %} {% if numbered %} {% highlight hh linenos %}{{code}}{% endhighlight %} {% else %} {% highlight hh %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "haml" %} {% if numbered %} {% highlight haml linenos %}{{code}}{% endhighlight %} {% else %} {% highlight haml %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "HAML" %} {% if numbered %} {% highlight HAML linenos %}{{code}}{% endhighlight %} {% else %} {% highlight HAML %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "handlebars" %} {% if numbered %} {% highlight handlebars linenos %}{{code}}{% endhighlight %} {% else %} {% highlight handlebars %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "hbs" %} {% if numbered %} {% highlight hbs linenos %}{{code}}{% endhighlight %} {% else %} {% highlight hbs %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "mustache" %} {% if numbered %} {% highlight mustache linenos %}{{code}}{% endhighlight %} {% else %} {% highlight mustache %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "haskell" %} {% if numbered %} {% highlight haskell linenos %}{{code}}{% endhighlight %} {% else %} {% highlight haskell %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "hs" %} {% if numbered %} {% highlight hs linenos %}{{code}}{% endhighlight %} {% else %} {% highlight hs %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "haxe" %} {% if numbered %} {% highlight haxe linenos %}{{code}}{% endhighlight %} {% else %} {% highlight haxe %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "hx" %} {% if numbered %} {% highlight hx linenos %}{{code}}{% endhighlight %} {% else %} {% highlight hx %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "haxe" %} {% if numbered %} {% highlight haxe linenos %}{{code}}{% endhighlight %} {% else %} {% highlight haxe %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "hcl" %} {% if numbered %} {% highlight hcl linenos %}{{code}}{% endhighlight %} {% else %} {% highlight hcl %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "hlsl" %} {% if numbered %} {% highlight hlsl linenos %}{{code}}{% endhighlight %} {% else %} {% highlight hlsl %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "hocon" %} {% if numbered %} {% highlight hocon linenos %}{{code}}{% endhighlight %} {% else %} {% highlight hocon %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "hql" %} {% if numbered %} {% highlight hql linenos %}{{code}}{% endhighlight %} {% else %} {% highlight hql %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "html" %} {% if numbered %} {% highlight html linenos %}{{code}}{% endhighlight %} {% else %} {% highlight html %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "http" %} {% if numbered %} {% highlight http linenos %}{{code}}{% endhighlight %} {% else %} {% highlight http %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "hylang" %} {% if numbered %} {% highlight hylang linenos %}{{code}}{% endhighlight %} {% else %} {% highlight hylang %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "hy" %} {% if numbered %} {% highlight hy linenos %}{{code}}{% endhighlight %} {% else %} {% highlight hy %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "idlang" %} {% if numbered %} {% highlight idlang linenos %}{{code}}{% endhighlight %} {% else %} {% highlight idlang %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "igorpro" %} {% if numbered %} {% highlight igorpro linenos %}{{code}}{% endhighlight %} {% else %} {% highlight igorpro %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "ini" %} {% if numbered %} {% highlight ini linenos %}{{code}}{% endhighlight %} {% else %} {% highlight ini %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "io" %} {% if numbered %} {% highlight io linenos %}{{code}}{% endhighlight %} {% else %} {% highlight io %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "irb" %} {% if numbered %} {% highlight irb linenos %}{{code}}{% endhighlight %} {% else %} {% highlight irb %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "pry" %} {% if numbered %} {% highlight pry linenos %}{{code}}{% endhighlight %} {% else %} {% highlight pry %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "irb_output" %} {% if numbered %} {% highlight irb_output linenos %}{{code}}{% endhighlight %} {% else %} {% highlight irb_output %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "isbl" %} {% if numbered %} {% highlight isbl linenos %}{{code}}{% endhighlight %} {% else %} {% highlight isbl %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "j" %} {% if numbered %} {% highlight j linenos %}{{code}}{% endhighlight %} {% else %} {% highlight j %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "janet" %} {% if numbered %} {% highlight janet linenos %}{{code}}{% endhighlight %} {% else %} {% highlight janet %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "jdn" %} {% if numbered %} {% highlight jdn linenos %}{{code}}{% endhighlight %} {% else %} {% highlight jdn %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "java" %} {% if numbered %} {% highlight java linenos %}{{code}}{% endhighlight %} {% else %} {% highlight java %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "javascript" %} {% if numbered %} {% highlight javascript linenos %}{{code}}{% endhighlight %} {% else %} {% highlight javascript %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "js" %} {% if numbered %} {% highlight js linenos %}{{code}}{% endhighlight %} {% else %} {% highlight js %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "jinja" %} {% if numbered %} {% highlight jinja linenos %}{{code}}{% endhighlight %} {% else %} {% highlight jinja %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "django" %} {% if numbered %} {% highlight django linenos %}{{code}}{% endhighlight %} {% else %} {% highlight django %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "jsl" %} {% if numbered %} {% highlight jsl linenos %}{{code}}{% endhighlight %} {% else %} {% highlight jsl %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "json" %} {% if numbered %} {% highlight json linenos %}{{code}}{% endhighlight %} {% else %} {% highlight json %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "json-doc" %} {% if numbered %} {% highlight json-doc linenos %}{{code}}{% endhighlight %} {% else %} {% highlight json-doc %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "jsonc" %} {% if numbered %} {% highlight jsonc linenos %}{{code}}{% endhighlight %} {% else %} {% highlight jsonc %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "jsonnet" %} {% if numbered %} {% highlight jsonnet linenos %}{{code}}{% endhighlight %} {% else %} {% highlight jsonnet %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "jsp" %} {% if numbered %} {% highlight jsp linenos %}{{code}}{% endhighlight %} {% else %} {% highlight jsp %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "jsx" %} {% if numbered %} {% highlight jsx linenos %}{{code}}{% endhighlight %} {% else %} {% highlight jsx %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "react" %} {% if numbered %} {% highlight react linenos %}{{code}}{% endhighlight %} {% else %} {% highlight react %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "julia" %} {% if numbered %} {% highlight julia linenos %}{{code}}{% endhighlight %} {% else %} {% highlight julia %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "jl" %} {% if numbered %} {% highlight jl linenos %}{{code}}{% endhighlight %} {% else %} {% highlight jl %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "kotlin" %} {% if numbered %} {% highlight kotlin linenos %}{{code}}{% endhighlight %} {% else %} {% highlight kotlin %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "lasso" %} {% if numbered %} {% highlight lasso linenos %}{{code}}{% endhighlight %} {% else %} {% highlight lasso %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "lassoscript" %} {% if numbered %} {% highlight lassoscript linenos %}{{code}}{% endhighlight %} {% else %} {% highlight lassoscript %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "liquid" %} {% if numbered %} {% highlight liquid linenos %}{{code}}{% endhighlight %} {% else %} {% highlight liquid %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "literate_coffeescript" %} {% if numbered %} {% highlight literate_coffeescript linenos %}{{code}}{% endhighlight %} {% else %} {% highlight literate_coffeescript %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "litcoffee" %} {% if numbered %} {% highlight litcoffee linenos %}{{code}}{% endhighlight %} {% else %} {% highlight litcoffee %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "literate_haskell" %} {% if numbered %} {% highlight literate_haskell linenos %}{{code}}{% endhighlight %} {% else %} {% highlight literate_haskell %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "lithaskell" %} {% if numbered %} {% highlight lithaskell linenos %}{{code}}{% endhighlight %} {% else %} {% highlight lithaskell %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "lhaskell" %} {% if numbered %} {% highlight lhaskell linenos %}{{code}}{% endhighlight %} {% else %} {% highlight lhaskell %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "lhs" %} {% if numbered %} {% highlight lhs linenos %}{{code}}{% endhighlight %} {% else %} {% highlight lhs %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "livescript" %} {% if numbered %} {% highlight livescript linenos %}{{code}}{% endhighlight %} {% else %} {% highlight livescript %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "ls" %} {% if numbered %} {% highlight ls linenos %}{{code}}{% endhighlight %} {% else %} {% highlight ls %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "llvm" %} {% if numbered %} {% highlight llvm linenos %}{{code}}{% endhighlight %} {% else %} {% highlight llvm %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "lua" %} {% if numbered %} {% highlight lua linenos %}{{code}}{% endhighlight %} {% else %} {% highlight lua %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "lustre" %} {% if numbered %} {% highlight lustre linenos %}{{code}}{% endhighlight %} {% else %} {% highlight lustre %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "lutin" %} {% if numbered %} {% highlight lutin linenos %}{{code}}{% endhighlight %} {% else %} {% highlight lutin %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "m68k" %} {% if numbered %} {% highlight m68k linenos %}{{code}}{% endhighlight %} {% else %} {% highlight m68k %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "magik" %} {% if numbered %} {% highlight magik linenos %}{{code}}{% endhighlight %} {% else %} {% highlight magik %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "make" %} {% if numbered %} {% highlight make linenos %}{{code}}{% endhighlight %} {% else %} {% highlight make %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "makefile" %} {% if numbered %} {% highlight makefile linenos %}{{code}}{% endhighlight %} {% else %} {% highlight makefile %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "mf" %} {% if numbered %} {% highlight mf linenos %}{{code}}{% endhighlight %} {% else %} {% highlight mf %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "gnumake" %} {% if numbered %} {% highlight gnumake linenos %}{{code}}{% endhighlight %} {% else %} {% highlight gnumake %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "bsdmake" %} {% if numbered %} {% highlight bsdmake linenos %}{{code}}{% endhighlight %} {% else %} {% highlight bsdmake %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "markdown" %} {% if numbered %} {% highlight markdown linenos %}{{code}}{% endhighlight %} {% else %} {% highlight markdown %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "md" %} {% if numbered %} {% highlight md linenos %}{{code}}{% endhighlight %} {% else %} {% highlight md %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "mkd" %} {% if numbered %} {% highlight mkd linenos %}{{code}}{% endhighlight %} {% else %} {% highlight mkd %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "mason" %} {% if numbered %} {% highlight mason linenos %}{{code}}{% endhighlight %} {% else %} {% highlight mason %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "mathematica" %} {% if numbered %} {% highlight mathematica linenos %}{{code}}{% endhighlight %} {% else %} {% highlight mathematica %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "wl" %} {% if numbered %} {% highlight wl linenos %}{{code}}{% endhighlight %} {% else %} {% highlight wl %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "matlab" %} {% if numbered %} {% highlight matlab linenos %}{{code}}{% endhighlight %} {% else %} {% highlight matlab %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "m" %} {% if numbered %} {% highlight m linenos %}{{code}}{% endhighlight %} {% else %} {% highlight m %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "minizinc" %} {% if numbered %} {% highlight minizinc linenos %}{{code}}{% endhighlight %} {% else %} {% highlight minizinc %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "moonscript" %} {% if numbered %} {% highlight moonscript linenos %}{{code}}{% endhighlight %} {% else %} {% highlight moonscript %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "moon" %} {% if numbered %} {% highlight moon linenos %}{{code}}{% endhighlight %} {% else %} {% highlight moon %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "mosel" %} {% if numbered %} {% highlight mosel linenos %}{{code}}{% endhighlight %} {% else %} {% highlight mosel %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "msgtrans" %} {% if numbered %} {% highlight msgtrans linenos %}{{code}}{% endhighlight %} {% else %} {% highlight msgtrans %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "mxml" %} {% if numbered %} {% highlight mxml linenos %}{{code}}{% endhighlight %} {% else %} {% highlight mxml %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "nasm" %} {% if numbered %} {% highlight nasm linenos %}{{code}}{% endhighlight %} {% else %} {% highlight nasm %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "nesasm" %} {% if numbered %} {% highlight nesasm linenos %}{{code}}{% endhighlight %} {% else %} {% highlight nesasm %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "nes" %} {% if numbered %} {% highlight nes linenos %}{{code}}{% endhighlight %} {% else %} {% highlight nes %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "nginx" %} {% if numbered %} {% highlight nginx linenos %}{{code}}{% endhighlight %} {% else %} {% highlight nginx %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "nim" %} {% if numbered %} {% highlight nim linenos %}{{code}}{% endhighlight %} {% else %} {% highlight nim %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "nimrod" %} {% if numbered %} {% highlight nimrod linenos %}{{code}}{% endhighlight %} {% else %} {% highlight nimrod %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "nix" %} {% if numbered %} {% highlight nix linenos %}{{code}}{% endhighlight %} {% else %} {% highlight nix %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "nixos" %} {% if numbered %} {% highlight nixos linenos %}{{code}}{% endhighlight %} {% else %} {% highlight nixos %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "objective_c" %} {% if numbered %} {% highlight objective_c linenos %}{{code}}{% endhighlight %} {% else %} {% highlight objective_c %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "objc" %} {% if numbered %} {% highlight objc linenos %}{{code}}{% endhighlight %} {% else %} {% highlight objc %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "obj-c" %} {% if numbered %} {% highlight obj-c linenos %}{{code}}{% endhighlight %} {% else %} {% highlight obj-c %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "obj_c" %} {% if numbered %} {% highlight obj_c linenos %}{{code}}{% endhighlight %} {% else %} {% highlight obj_c %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "objectivec" %} {% if numbered %} {% highlight objectivec linenos %}{{code}}{% endhighlight %} {% else %} {% highlight objectivec %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "objective_cpp" %} {% if numbered %} {% highlight objective_cpp linenos %}{{code}}{% endhighlight %} {% else %} {% highlight objective_cpp %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "objcpp" %} {% if numbered %} {% highlight objcpp linenos %}{{code}}{% endhighlight %} {% else %} {% highlight objcpp %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "obj-cpp" %} {% if numbered %} {% highlight obj-cpp linenos %}{{code}}{% endhighlight %} {% else %} {% highlight obj-cpp %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "obj_cpp" %} {% if numbered %} {% highlight obj_cpp linenos %}{{code}}{% endhighlight %} {% else %} {% highlight obj_cpp %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "objectivecpp" %} {% if numbered %} {% highlight objectivecpp linenos %}{{code}}{% endhighlight %} {% else %} {% highlight objectivecpp %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "objc" %} {% if numbered %} {% highlight objc linenos %}{{code}}{% endhighlight %} {% else %} {% highlight objc %}{{code}}{% endhighlight %}{% endif %}++
+{% elsif lang == "obj-c" %} {% if numbered %} {% highlight obj-c linenos %}{{code}}{% endhighlight %} {% else %} {% highlight obj-c %}{{code}}{% endhighlight %}{% endif %}++
+{% elsif lang == "obj_c" %} {% if numbered %} {% highlight obj_c linenos %}{{code}}{% endhighlight %} {% else %} {% highlight obj_c %}{{code}}{% endhighlight %}{% endif %}++
+{% elsif lang == "objectivec" %} {% if numbered %} {% highlight objectivec linenos %}{{code}}{% endhighlight %} {% else %} {% highlight objectivec %}{{code}}{% endhighlight %}{% endif %}++
+{% elsif lang == "ocaml" %} {% if numbered %} {% highlight ocaml linenos %}{{code}}{% endhighlight %} {% else %} {% highlight ocaml %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "ocl" %} {% if numbered %} {% highlight ocl linenos %}{{code}}{% endhighlight %} {% else %} {% highlight ocl %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "OCL" %} {% if numbered %} {% highlight OCL linenos %}{{code}}{% endhighlight %} {% else %} {% highlight OCL %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "openedge" %} {% if numbered %} {% highlight openedge linenos %}{{code}}{% endhighlight %} {% else %} {% highlight openedge %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "opentype_feature_file" %} {% if numbered %} {% highlight opentype_feature_file linenos %}{{code}}{% endhighlight %} {% else %} {% highlight opentype_feature_file %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "fea" %} {% if numbered %} {% highlight fea linenos %}{{code}}{% endhighlight %} {% else %} {% highlight fea %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "opentype" %} {% if numbered %} {% highlight opentype linenos %}{{code}}{% endhighlight %} {% else %} {% highlight opentype %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "opentypefeature" %} {% if numbered %} {% highlight opentypefeature linenos %}{{code}}{% endhighlight %} {% else %} {% highlight opentypefeature %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "pascal" %} {% if numbered %} {% highlight pascal linenos %}{{code}}{% endhighlight %} {% else %} {% highlight pascal %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "perl" %} {% if numbered %} {% highlight perl linenos %}{{code}}{% endhighlight %} {% else %} {% highlight perl %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "pl" %} {% if numbered %} {% highlight pl linenos %}{{code}}{% endhighlight %} {% else %} {% highlight pl %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "php" %} {% if numbered %} {% highlight php linenos %}{{code}}{% endhighlight %} {% else %} {% highlight php %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "php" %} {% if numbered %} {% highlight php linenos %}{{code}}{% endhighlight %} {% else %} {% highlight php %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "php3" %} {% if numbered %} {% highlight php3 linenos %}{{code}}{% endhighlight %} {% else %} {% highlight php3 %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "php4" %} {% if numbered %} {% highlight php4 linenos %}{{code}}{% endhighlight %} {% else %} {% highlight php4 %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "php5" %} {% if numbered %} {% highlight php5 linenos %}{{code}}{% endhighlight %} {% else %} {% highlight php5 %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "plaintext" %} {% if numbered %} {% highlight plaintext linenos %}{{code}}{% endhighlight %} {% else %} {% highlight plaintext %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "text" %} {% if numbered %} {% highlight text linenos %}{{code}}{% endhighlight %} {% else %} {% highlight text %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "plist" %} {% if numbered %} {% highlight plist linenos %}{{code}}{% endhighlight %} {% else %} {% highlight plist %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "plist" %} {% if numbered %} {% highlight plist linenos %}{{code}}{% endhighlight %} {% else %} {% highlight plist %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "pony" %} {% if numbered %} {% highlight pony linenos %}{{code}}{% endhighlight %} {% else %} {% highlight pony %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "postscript" %} {% if numbered %} {% highlight postscript linenos %}{{code}}{% endhighlight %} {% else %} {% highlight postscript %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "postscr" %} {% if numbered %} {% highlight postscr linenos %}{{code}}{% endhighlight %} {% else %} {% highlight postscr %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "postscript" %} {% if numbered %} {% highlight postscript linenos %}{{code}}{% endhighlight %} {% else %} {% highlight postscript %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "ps" %} {% if numbered %} {% highlight ps linenos %}{{code}}{% endhighlight %} {% else %} {% highlight ps %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "eps" %} {% if numbered %} {% highlight eps linenos %}{{code}}{% endhighlight %} {% else %} {% highlight eps %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "powershell" %} {% if numbered %} {% highlight powershell linenos %}{{code}}{% endhighlight %} {% else %} {% highlight powershell %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "posh" %} {% if numbered %} {% highlight posh linenos %}{{code}}{% endhighlight %} {% else %} {% highlight posh %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "microsoftshell" %} {% if numbered %} {% highlight microsoftshell linenos %}{{code}}{% endhighlight %} {% else %} {% highlight microsoftshell %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "msshell" %} {% if numbered %} {% highlight msshell linenos %}{{code}}{% endhighlight %} {% else %} {% highlight msshell %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "praat" %} {% if numbered %} {% highlight praat linenos %}{{code}}{% endhighlight %} {% else %} {% highlight praat %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "prolog" %} {% if numbered %} {% highlight prolog linenos %}{{code}}{% endhighlight %} {% else %} {% highlight prolog %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "prolog" %} {% if numbered %} {% highlight prolog linenos %}{{code}}{% endhighlight %} {% else %} {% highlight prolog %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "prometheus" %} {% if numbered %} {% highlight prometheus linenos %}{{code}}{% endhighlight %} {% else %} {% highlight prometheus %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "prometheus" %} {% if numbered %} {% highlight prometheus linenos %}{{code}}{% endhighlight %} {% else %} {% highlight prometheus %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "properties" %} {% if numbered %} {% highlight properties linenos %}{{code}}{% endhighlight %} {% else %} {% highlight properties %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "protobuf" %} {% if numbered %} {% highlight protobuf linenos %}{{code}}{% endhighlight %} {% else %} {% highlight protobuf %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "proto" %} {% if numbered %} {% highlight proto linenos %}{{code}}{% endhighlight %} {% else %} {% highlight proto %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "puppet" %} {% if numbered %} {% highlight puppet linenos %}{{code}}{% endhighlight %} {% else %} {% highlight puppet %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "pp" %} {% if numbered %} {% highlight pp linenos %}{{code}}{% endhighlight %} {% else %} {% highlight pp %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "python" %} {% if numbered %} {% highlight python linenos %}{{code}}{% endhighlight %} {% else %} {% highlight python %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "py" %} {% if numbered %} {% highlight py linenos %}{{code}}{% endhighlight %} {% else %} {% highlight py %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "q" %} {% if numbered %} {% highlight q linenos %}{{code}}{% endhighlight %} {% else %} {% highlight q %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "kdb" %} {% if numbered %} {% highlight kdb linenos %}{{code}}{% endhighlight %} {% else %} {% highlight kdb %}{{code}}{% endhighlight %}{% endif %}+
+{% elsif lang == "qml" %} {% if numbered %} {% highlight qml linenos %}{{code}}{% endhighlight %} {% else %} {% highlight qml %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "qml" %} {% if numbered %} {% highlight qml linenos %}{{code}}{% endhighlight %} {% else %} {% highlight qml %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "r" %} {% if numbered %} {% highlight r linenos %}{{code}}{% endhighlight %} {% else %} {% highlight r %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "r" %} {% if numbered %} {% highlight r linenos %}{{code}}{% endhighlight %} {% else %} {% highlight r %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "R" %} {% if numbered %} {% highlight R linenos %}{{code}}{% endhighlight %} {% else %} {% highlight R %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "s" %} {% if numbered %} {% highlight s linenos %}{{code}}{% endhighlight %} {% else %} {% highlight s %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "S" %} {% if numbered %} {% highlight S linenos %}{{code}}{% endhighlight %} {% else %} {% highlight S %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "racket" %} {% if numbered %} {% highlight racket linenos %}{{code}}{% endhighlight %} {% else %} {% highlight racket %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "reasonml" %} {% if numbered %} {% highlight reasonml linenos %}{{code}}{% endhighlight %} {% else %} {% highlight reasonml %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "rego" %} {% if numbered %} {% highlight rego linenos %}{{code}}{% endhighlight %} {% else %} {% highlight rego %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "rescript" %} {% if numbered %} {% highlight rescript linenos %}{{code}}{% endhighlight %} {% else %} {% highlight rescript %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "robot_framework" %} {% if numbered %} {% highlight robot_framework linenos %}{{code}}{% endhighlight %} {% else %} {% highlight robot_framework %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "robot" %} {% if numbered %} {% highlight robot linenos %}{{code}}{% endhighlight %} {% else %} {% highlight robot %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "robot-framework" %} {% if numbered %} {% highlight robot-framework linenos %}{{code}}{% endhighlight %} {% else %} {% highlight robot-framework %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "ruby" %} {% if numbered %} {% highlight ruby linenos %}{{code}}{% endhighlight %} {% else %} {% highlight ruby %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "rb" %} {% if numbered %} {% highlight rb linenos %}{{code}}{% endhighlight %} {% else %} {% highlight rb %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "rust" %} {% if numbered %} {% highlight rust linenos %}{{code}}{% endhighlight %} {% else %} {% highlight rust %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "rs" %} {% if numbered %} {% highlight rs linenos %}{{code}}{% endhighlight %} {% else %} {% highlight rs %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "rust" %} {% if numbered %} {% highlight rust linenos %}{{code}}{% endhighlight %} {% else %} {% highlight rust %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "no_run" %} {% if numbered %} {% highlight no_run linenos %}{{code}}{% endhighlight %} {% else %} {% highlight no_run %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "rs" %} {% if numbered %} {% highlight rs linenos %}{{code}}{% endhighlight %} {% else %} {% highlight rs %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "no_run" %} {% if numbered %} {% highlight no_run linenos %}{{code}}{% endhighlight %} {% else %} {% highlight no_run %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "rust" %} {% if numbered %} {% highlight rust linenos %}{{code}}{% endhighlight %} {% else %} {% highlight rust %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "ignore" %} {% if numbered %} {% highlight ignore linenos %}{{code}}{% endhighlight %} {% else %} {% highlight ignore %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "rs" %} {% if numbered %} {% highlight rs linenos %}{{code}}{% endhighlight %} {% else %} {% highlight rs %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "ignore" %} {% if numbered %} {% highlight ignore linenos %}{{code}}{% endhighlight %} {% else %} {% highlight ignore %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "rust" %} {% if numbered %} {% highlight rust linenos %}{{code}}{% endhighlight %} {% else %} {% highlight rust %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "should_panic" %} {% if numbered %} {% highlight should_panic linenos %}{{code}}{% endhighlight %} {% else %} {% highlight should_panic %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "rs" %} {% if numbered %} {% highlight rs linenos %}{{code}}{% endhighlight %} {% else %} {% highlight rs %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "should_panic" %} {% if numbered %} {% highlight should_panic linenos %}{{code}}{% endhighlight %} {% else %} {% highlight should_panic %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "sas" %} {% if numbered %} {% highlight sas linenos %}{{code}}{% endhighlight %} {% else %} {% highlight sas %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "sass" %} {% if numbered %} {% highlight sass linenos %}{{code}}{% endhighlight %} {% else %} {% highlight sass %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "scala" %} {% if numbered %} {% highlight scala linenos %}{{code}}{% endhighlight %} {% else %} {% highlight scala %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "scala" %} {% if numbered %} {% highlight scala linenos %}{{code}}{% endhighlight %} {% else %} {% highlight scala %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "scheme" %} {% if numbered %} {% highlight scheme linenos %}{{code}}{% endhighlight %} {% else %} {% highlight scheme %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "scss" %} {% if numbered %} {% highlight scss linenos %}{{code}}{% endhighlight %} {% else %} {% highlight scss %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "sed" %} {% if numbered %} {% highlight sed linenos %}{{code}}{% endhighlight %} {% else %} {% highlight sed %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "shell" %} {% if numbered %} {% highlight shell linenos %}{{code}}{% endhighlight %} {% else %} {% highlight shell %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "bash" %} {% if numbered %} {% highlight bash linenos %}{{code}}{% endhighlight %} {% else %} {% highlight bash %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "zsh" %} {% if numbered %} {% highlight zsh linenos %}{{code}}{% endhighlight %} {% else %} {% highlight zsh %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "ksh" %} {% if numbered %} {% highlight ksh linenos %}{{code}}{% endhighlight %} {% else %} {% highlight ksh %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "sh" %} {% if numbered %} {% highlight sh linenos %}{{code}}{% endhighlight %} {% else %} {% highlight sh %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "sieve" %} {% if numbered %} {% highlight sieve linenos %}{{code}}{% endhighlight %} {% else %} {% highlight sieve %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "slice" %} {% if numbered %} {% highlight slice linenos %}{{code}}{% endhighlight %} {% else %} {% highlight slice %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "slim" %} {% if numbered %} {% highlight slim linenos %}{{code}}{% endhighlight %} {% else %} {% highlight slim %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "smalltalk" %} {% if numbered %} {% highlight smalltalk linenos %}{{code}}{% endhighlight %} {% else %} {% highlight smalltalk %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "st" %} {% if numbered %} {% highlight st linenos %}{{code}}{% endhighlight %} {% else %} {% highlight st %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "squeak" %} {% if numbered %} {% highlight squeak linenos %}{{code}}{% endhighlight %} {% else %} {% highlight squeak %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "smarty" %} {% if numbered %} {% highlight smarty linenos %}{{code}}{% endhighlight %} {% else %} {% highlight smarty %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "smarty" %} {% if numbered %} {% highlight smarty linenos %}{{code}}{% endhighlight %} {% else %} {% highlight smarty %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "sml" %} {% if numbered %} {% highlight sml linenos %}{{code}}{% endhighlight %} {% else %} {% highlight sml %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "ml" %} {% if numbered %} {% highlight ml linenos %}{{code}}{% endhighlight %} {% else %} {% highlight ml %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "solidity" %} {% if numbered %} {% highlight solidity linenos %}{{code}}{% endhighlight %} {% else %} {% highlight solidity %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "sparql" %} {% if numbered %} {% highlight sparql linenos %}{{code}}{% endhighlight %} {% else %} {% highlight sparql %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "sqf" %} {% if numbered %} {% highlight sqf linenos %}{{code}}{% endhighlight %} {% else %} {% highlight sqf %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "sql" %} {% if numbered %} {% highlight sql linenos %}{{code}}{% endhighlight %} {% else %} {% highlight sql %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "ssh" %} {% if numbered %} {% highlight ssh linenos %}{{code}}{% endhighlight %} {% else %} {% highlight ssh %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "supercollider" %} {% if numbered %} {% highlight supercollider linenos %}{{code}}{% endhighlight %} {% else %} {% highlight supercollider %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "swift" %} {% if numbered %} {% highlight swift linenos %}{{code}}{% endhighlight %} {% else %} {% highlight swift %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "systemd" %} {% if numbered %} {% highlight systemd linenos %}{{code}}{% endhighlight %} {% else %} {% highlight systemd %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "unit-file" %} {% if numbered %} {% highlight unit-file linenos %}{{code}}{% endhighlight %} {% else %} {% highlight unit-file %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "tap" %} {% if numbered %} {% highlight tap linenos %}{{code}}{% endhighlight %} {% else %} {% highlight tap %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "tap" %} {% if numbered %} {% highlight tap linenos %}{{code}}{% endhighlight %} {% else %} {% highlight tap %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "tcl" %} {% if numbered %} {% highlight tcl linenos %}{{code}}{% endhighlight %} {% else %} {% highlight tcl %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "terraform" %} {% if numbered %} {% highlight terraform linenos %}{{code}}{% endhighlight %} {% else %} {% highlight terraform %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "tf" %} {% if numbered %} {% highlight tf linenos %}{{code}}{% endhighlight %} {% else %} {% highlight tf %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "tex" %} {% if numbered %} {% highlight tex linenos %}{{code}}{% endhighlight %} {% else %} {% highlight tex %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "TeX" %} {% if numbered %} {% highlight TeX linenos %}{{code}}{% endhighlight %} {% else %} {% highlight TeX %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "LaTeX" %} {% if numbered %} {% highlight LaTeX linenos %}{{code}}{% endhighlight %} {% else %} {% highlight LaTeX %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "latex" %} {% if numbered %} {% highlight latex linenos %}{{code}}{% endhighlight %} {% else %} {% highlight latex %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "toml" %} {% if numbered %} {% highlight toml linenos %}{{code}}{% endhighlight %} {% else %} {% highlight toml %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "tsx" %} {% if numbered %} {% highlight tsx linenos %}{{code}}{% endhighlight %} {% else %} {% highlight tsx %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "ttcn3" %} {% if numbered %} {% highlight ttcn3 linenos %}{{code}}{% endhighlight %} {% else %} {% highlight ttcn3 %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "tulip" %} {% if numbered %} {% highlight tulip linenos %}{{code}}{% endhighlight %} {% else %} {% highlight tulip %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "tulip" %} {% if numbered %} {% highlight tulip linenos %}{{code}}{% endhighlight %} {% else %} {% highlight tulip %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "turtle" %} {% if numbered %} {% highlight turtle linenos %}{{code}}{% endhighlight %} {% else %} {% highlight turtle %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "twig" %} {% if numbered %} {% highlight twig linenos %}{{code}}{% endhighlight %} {% else %} {% highlight twig %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "typescript" %} {% if numbered %} {% highlight typescript linenos %}{{code}}{% endhighlight %} {% else %} {% highlight typescript %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "ts" %} {% if numbered %} {% highlight ts linenos %}{{code}}{% endhighlight %} {% else %} {% highlight ts %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "vala" %} {% if numbered %} {% highlight vala linenos %}{{code}}{% endhighlight %} {% else %} {% highlight vala %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "vb" %} {% if numbered %} {% highlight vb linenos %}{{code}}{% endhighlight %} {% else %} {% highlight vb %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "visualbasic" %} {% if numbered %} {% highlight visualbasic linenos %}{{code}}{% endhighlight %} {% else %} {% highlight visualbasic %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "vcl" %} {% if numbered %} {% highlight vcl linenos %}{{code}}{% endhighlight %} {% else %} {% highlight vcl %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "varnishconf" %} {% if numbered %} {% highlight varnishconf linenos %}{{code}}{% endhighlight %} {% else %} {% highlight varnishconf %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "varnish" %} {% if numbered %} {% highlight varnish linenos %}{{code}}{% endhighlight %} {% else %} {% highlight varnish %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "velocity" %} {% if numbered %} {% highlight velocity linenos %}{{code}}{% endhighlight %} {% else %} {% highlight velocity %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "verilog" %} {% if numbered %} {% highlight verilog linenos %}{{code}}{% endhighlight %} {% else %} {% highlight verilog %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "vhdl" %} {% if numbered %} {% highlight vhdl linenos %}{{code}}{% endhighlight %} {% else %} {% highlight vhdl %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "viml" %} {% if numbered %} {% highlight viml linenos %}{{code}}{% endhighlight %} {% else %} {% highlight viml %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "vim" %} {% if numbered %} {% highlight vim linenos %}{{code}}{% endhighlight %} {% else %} {% highlight vim %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "vimscript" %} {% if numbered %} {% highlight vimscript linenos %}{{code}}{% endhighlight %} {% else %} {% highlight vimscript %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "ex" %} {% if numbered %} {% highlight ex linenos %}{{code}}{% endhighlight %} {% else %} {% highlight ex %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "vue" %} {% if numbered %} {% highlight vue linenos %}{{code}}{% endhighlight %} {% else %} {% highlight vue %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "vuejs" %} {% if numbered %} {% highlight vuejs linenos %}{{code}}{% endhighlight %} {% else %} {% highlight vuejs %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "wollok" %} {% if numbered %} {% highlight wollok linenos %}{{code}}{% endhighlight %} {% else %} {% highlight wollok %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "xml" %} {% if numbered %} {% highlight xml linenos %}{{code}}{% endhighlight %} {% else %} {% highlight xml %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "xojo" %} {% if numbered %} {% highlight xojo linenos %}{{code}}{% endhighlight %} {% else %} {% highlight xojo %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "realbasic" %} {% if numbered %} {% highlight realbasic linenos %}{{code}}{% endhighlight %} {% else %} {% highlight realbasic %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "xpath" %} {% if numbered %} {% highlight xpath linenos %}{{code}}{% endhighlight %} {% else %} {% highlight xpath %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "xquery" %} {% if numbered %} {% highlight xquery linenos %}{{code}}{% endhighlight %} {% else %} {% highlight xquery %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "yaml" %} {% if numbered %} {% highlight yaml linenos %}{{code}}{% endhighlight %} {% else %} {% highlight yaml %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "yml" %} {% if numbered %} {% highlight yml linenos %}{{code}}{% endhighlight %} {% else %} {% highlight yml %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "yang" %} {% if numbered %} {% highlight yang linenos %}{{code}}{% endhighlight %} {% else %} {% highlight yang %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "zig" %} {% if numbered %} {% highlight zig linenos %}{{code}}{% endhighlight %} {% else %} {% highlight zig %}{{code}}{% endhighlight %}{% endif %}
+{% elsif lang == "zir" %} {% if numbered %} {% highlight zir linenos %}{{code}}{% endhighlight %} {% else %} {% highlight zir %}{{code}}{% endhighlight %}{% endif %}
+{% endif %}
+{% endcapture %}
 
 {% if figure %}
-  {% assign code = code | replace_first: "</figure>", "" %}
+  {% assign rendered = rendered | replace_first: "</figure>", "" %}
   {% if figcaption %}
-    {% assign code = code | append: "<figcaption>" | append: figcaption | append: "</figcaption>" %}
+    {% assign rendered = rendered | append: "<figcaption>" | append: figcaption | append: "</figcaption>" %}
   {% endif %}
-  {% assign code = code | append: "</figure>" %}
+  {% assign rendered = rendered | append: "</figure>" %}
 {% else %}
-  {% assign code = code | replace_first: '<figure class="highlight">', '<div class="highlight">' %}
-  {% assign code = code | replace_first: "</figure>", "</div>" %}
+  {% assign rendered = rendered | replace_first: '<figure class="highlight">', '<div class="highlight">' %}
+  {% assign rendered = rendered | replace_first: "</figure>", "</div>" %}
 {% endif %}
 
-{% assign code = code | replace_first: '<code class="', '<code class="numbered ' %}
+{% if class %}
+  {% assign code_class = '<code class="' | append: class | append: " " %}
+  {% assign rendered = rendered | replace_first: '<code class="', code_class %}
+{% endif %}
 
-{% assign code = code | replace_first: '<table class="rouge-table"><tbody><tr><td class="gutter gl"><pre', "<div" %}
-{% assign code = code | replace_first: '</pre></td>', "</div>" %}
-{% assign code = code | replace_first: '</pre></td>', "</div>" %}
-{% assign code = code | replace_first: '<td class="code"><pre', '<div class="code"' %}
-{% assign code = code | replace_first: '</tr></tbody></table>', '' %}
-{{ code }}
+{% if numbered %}
+  {% assign rendered = rendered | replace_first: '<code class="', '<code class="numbered ' %}
+  {% assign rendered = rendered | replace_first: '<table class="rouge-table"><tbody><tr><td class="gutter gl"><pre', "<div" %}
+  {% assign rendered = rendered | replace_first: '</pre></td>', "</div>" %}
+  {% assign rendered = rendered | replace_first: '</pre></td>', "</div>" %}
+  {% assign rendered = rendered | replace_first: '<td class="code"><pre', '<div class="code"' %}
+  {% assign rendered = rendered | replace_first: '</tr></tbody></table>', '' %}
+{% else %}
+
+{% endif %}
+{{ rendered }}

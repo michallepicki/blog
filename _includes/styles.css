@@ -178,7 +178,7 @@ code {
   overflow-x: auto;
 }
 
-.terminal code {
+code.terminal  {
   overflow-x: unset;
   background-color: #444;
   color: #fff;
