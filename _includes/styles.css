@@ -40,16 +40,6 @@ a:visited {
   text-decoration-color: #ccc;
 }
 
-figcaption {
-  text-align: center;
-  font-style: italic;
-}
-
-.dateandauthor {
-  font-size: 16px;
-  font-style: italic;
-}
-
 /* general spacing */
 
 html, body {
@@ -82,7 +72,7 @@ main ul > li {
   margin-left: 25px;
 }
 
-/* navigation */
+/* navigation and main elements */
 header > a > h1,
 header > nav {
   display: inline;
@@ -101,12 +91,14 @@ header > nav > a {
   margin-left: 10px;
 }
 
-#page_title {
+#pagetitle {
   margin-bottom: 4px;
 }
 
-.dateandauthor {
+#pagedate {
   margin-top: 4px;
+  font-size: 16px;
+  font-style: italic;
 }
 
 .anchor {
@@ -142,7 +134,8 @@ blockquote > * {
 figure {
   max-width: 100%;
   margin: 0px auto;
-  padding: 10px 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   background-color: #fafafa;
 }
 
@@ -150,6 +143,12 @@ figure > * {
   max-width: var(--content-width);
   margin-right: auto;
   margin-left: auto;
+}
+
+figcaption {
+  text-align: center;
+  font-style: italic;
+  padding-top: 5px;
 }
 
 /* code quotes and code blocks */

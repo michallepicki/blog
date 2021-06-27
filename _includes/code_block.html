@@ -1,8 +1,12 @@
 {% assign code = include.code | default: "" %}
-
 {% assign figure = include.figure | default: false %}
+{% assign figcaption = include.figcaption | default: nil %}
+
 {% if figure %}
   {% assign code = code | replace_first: "</figure>", "" %}
+  {% if figcaption %}
+    {% assign code = code | append: "<figcaption>" | append: figcaption | append: "</figcaption>" %}
+  {% endif %}
   {% assign code = code | append: "</figure>" %}
 {% else %}
   {% assign code = code | replace_first: '<figure class="highlight">', '<div class="highlight">' %}

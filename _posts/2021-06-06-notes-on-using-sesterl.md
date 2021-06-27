@@ -51,7 +51,7 @@ source_directories:
 # erlang:
 #   output_directory: "_generated"
 #   test_output_directory: "_generated_test"
-{% endraw %}{% endhighlight %}<figcaption>package.yaml</figcaption>{% endcapture %}{% include code_block.html code=_code figure=true %}
+{% endraw %}{% endhighlight %}{% endcapture %}{% include code_block.html code=_code figure=true figcaption="package.yaml" %}
 
 To generate a `rebar3` config from the above file, we can run:
 ```
@@ -71,7 +71,7 @@ A rebar3 project also needs an `*.app.src` file in the `src/` directory:
     stdlib
    ]}
  ]}.
-{% endraw %}{% endhighlight %}<figcaption>src/hello_sesterl.app.src</figcaption>{% endcapture %}{% include code_block.html code=_code figure=true %}
+{% endraw %}{% endhighlight %}{% endcapture %}{% include code_block.html code=_code figure=true figcaption="src/hello_sesterl.app.src" %}
 
 
 Sesterl source files have a `.sest` file extension. The syntax is similar to Standard ML or OCaml.
@@ -83,7 +83,7 @@ module Hello = struct
     print_debug("Hello, world!")
 
 end
-{% endraw %}{% endhighlight %}<figcaption>src/some_file.sest</figcaption>{% endcapture %}{% include code_block.html code=_code figure=true %}
+{% endraw %}{% endhighlight %}{% endcapture %}{% include code_block.html code=_code figure=true figcaption="src/some_file.sest"%}
 
 To compile a project, we can run:
 
@@ -287,7 +287,7 @@ module Hello = struct
     print_string("Hello, world!")
 
 end
-{% endraw %}{% endhighlight %}<figcaption>without_rebar.sest</figcaption>{% endcapture %}{% include code_block.html code=_code figure=true %}
+{% endraw %}{% endhighlight %}{% endcapture %}{% include code_block.html code=_code figure=true figcaption="without_rebar.sest" %}
 
 When compiling the above example with `sesterl`, we get two Erlang source files as a result:
 
