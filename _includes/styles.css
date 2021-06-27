@@ -186,10 +186,6 @@ code.terminal  {
   word-break: break-all;
 }
 
-code.numbered {
-  display: flex;
-}
-
 /* line numbers from highlight */
 
 code .lineno {

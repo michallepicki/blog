@@ -403,7 +403,7 @@
 {% endif %}
 
 {% if numbered %}
-  {% assign rendered = rendered | replace_first: '<code class="', '<code class="numbered ' %}
+  {% assign rendered = rendered | replace_first: '<code class="', '<code style="display:flex" class="numbered ' %}
   {% assign rendered = rendered | replace_first: '<table class="rouge-table"><tbody><tr><td class="gutter gl"><pre', "<div" %}
   {% assign rendered = rendered | replace_first: '</pre></td>', "</div>" %}
   {% assign rendered = rendered | replace_first: '</pre></td>', "</div>" %}
