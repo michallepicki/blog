@@ -169,14 +169,14 @@ code {
 .highlight code, .terminal code {
   line-height: 1.6;
   display: block;
+  background-color: #fff;
   border-radius: unset;/*wip*/
   border: none;/*wip*/
   padding: 4px;/*wip*/
 }
 
-.highlight code {
+.highlight code, .highlight code .code {
   overflow-x: auto;
-  background-color: #fff;
 }
 
 .terminal code {
@@ -187,7 +187,12 @@ code {
   word-break: break-all;
 }
 
+code.numbered {
+  display: flex;
+}
+
 /* line numbers from highlight */
+
 code .lineno {
   text-align: right;
   color: #aaa;
