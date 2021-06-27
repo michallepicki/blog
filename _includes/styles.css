@@ -1,3 +1,9 @@
+:root {
+  --content-width: 650px;
+  --sans-font: sans-serif;
+  --serif-font: 'Lora', serif;
+}
+
 /* general typography */
 
 @font-face {
@@ -12,7 +18,7 @@
 }
 
 body {
-  font-family: 'Lora', serif;
+  font-family: var(--serif-font);
   line-height: 1.5;
   font-size: 18px;
   color: #444;
@@ -21,7 +27,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
-  font-family: sans-serif;
+  font-family: var(--sans-font);
 }
 
 a {
@@ -51,13 +57,20 @@ html, body {
   margin: unset;
 }
 
-pre {
-  margin: unset;
+pre, table, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
 header, main > * {
   margin: 20px auto;
-  max-width: 650px;
+  max-width: var(--content-width);
   padding: 0px 10px;
 }
 
@@ -82,7 +95,7 @@ header > a:visited:not(:hover) {
 }
 
 header > nav > a {
-  font-family: sans-serif;
+  font-family: var(--sans-font);
   text-decoration: none;
   text-transform: uppercase;
   margin-left: 10px;
@@ -117,7 +130,7 @@ h6:hover .anchor {
   display: initial;
 }
 
-/* blockquote */
+/* quote generated with > */
 
 blockquote > * {
   padding-left: 20px;
@@ -134,13 +147,14 @@ figure {
 }
 
 figure > * {
-  max-width: 650px;
+  max-width: var(--content-width);
   margin-right: auto;
   margin-left: auto;
 }
 
 /* code quotes and code blocks */
 
+/* code element is used for both inline ` and code/terminal blocks */
 code {
   font-size: 14px;
   font-family: monospace;
@@ -150,30 +164,40 @@ code {
   border: 1px solid #ccc;
 }
 
-figure code, div.highlighter-rouge code, code.numbered {
+/* highlight class gets added when ``` or highlight is used */
+/* terminal is added manually */
+.highlight code, .terminal code {
   line-height: 1.6;
   display: block;
+  border-radius: unset;/*wip*/
+  border: none;/*wip*/
+  padding: 4px;/*wip*/
+}
+
+.highlight code {
   overflow-x: auto;
   background-color: #fff;
 }
 
+.terminal code {
+  overflow-x: unset;
+  background-color: #444;
+  color: #fff;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* line numbers from highlight */
 code .lineno {
   text-align: right;
   color: #aaa;
-  padding-right: 8px;
-}
-
-div.terminal code, code.terminal {
-  white-space: pre-wrap;
-  word-break: break-all;
-  background-color: #444;
-  color: #fff;
-  border: none;
+  padding: 0 6px;/*wip*/
 }
 
 /* styles stolen from elixir-lang.github.com */
 .highlight .c { color: #998; font-style: italic } /* Comment */
-.highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+/* remove for now since it looks bad for some exprs when sesterl gets highlighted using sml */
+/* .highlight .err { color: #a61717; background-color: #e3d2d2 } Error */
 .highlight .k { font-weight: bold } /* Keyword */
 .highlight .o { font-weight: bold } /* Operator */
 .highlight .cm { color: #998; font-style: italic } /* Comment.Multiline */

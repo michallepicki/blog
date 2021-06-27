@@ -10,6 +10,7 @@ layout: compress
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="{{ page.author }}">
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+    <link rel="icon" href="data:,">
     <link rel="preload" href="/assets/Lora-VF.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/Lora-Italic-VF.woff2" as="font" type="font/woff2" crossorigin>
     <style>{%- capture styles -%}{%- include styles.css -%}{%- endcapture -%}{{ styles | scssify }}</style>

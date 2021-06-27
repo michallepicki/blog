@@ -88,7 +88,7 @@ end
 To compile a project, we can run:
 
 {% raw %}
-<div><pre><code class="terminal">$ rebar3 do sesterl compile, compile
+<div class="terminal"><pre><code>$ rebar3 do sesterl compile, compile
 <span style="color:lime;">===&gt; Fetching rebar_sesterl (from {git,&quot;https://github.com/gfngfn/rebar_sesterl_plugin.git&quot;,
                          {branch,&quot;master&quot;}})
 </span><span style="color:lime;">===&gt; Analyzing applications...
@@ -107,15 +107,13 @@ To compile a project, we can run:
 </span><span style="color:lime;">===&gt; Analyzing applications...
 </span><span style="color:lime;">===&gt; Compiling hello_sesterl
 </span>_generated/sesterl_internal_prim.erl:8:14: Warning: variable 'Arity' is unused
-</code>
-</pre></div>
+</code></pre></div>
 {% endraw %}
 
 And to execute code from the above module from the Erlang shell:
 
 {% raw %}
-<pre>
-<code class="terminal">$ rebar3 shell
+<div class="terminal"><pre><code>$ rebar3 shell
 <span style="color:lime;">===&gt; Verifying dependencies...
 </span><span style="color:lime;">===&gt; Analyzing applications...
 </span><span style="color:lime;">===&gt; Compiling hello_sesterl
@@ -125,8 +123,7 @@ Eshell V12.0.2  (abort with ^G)
 1&gt; 'HelloSesterl.Hello':my_hello().
 &lt;&lt;&quot;Hello, world!&quot;&gt;&gt;
 ok
-</code>
-</pre>
+</code></pre></div>
 {% endraw %}
 
 Yay!
@@ -204,7 +201,7 @@ end
 *)*/
 {% endraw %}{% endhighlight %}{% endcapture %}{% include numbered.html %}{{ _code }}
 
-The below example doesn't work (doesn't throw an error), because Sesterl deletes the unused parameter from the type and assumes they are the same thing:
+The below example doesn't work (doesn't throw an error), because Sesterl ignores the unused parameter from the type and assumes they are the same thing:
 
 {% capture _code %}{% highlight sml linenos %}{% raw %}
 module Hello = struct
