@@ -51,7 +51,7 @@ source_directories:
 # erlang:
 #   output_directory: "_generated"
 #   test_output_directory: "_generated_test"
-{% endraw %}{% endhighlight %}<figcaption>package.yaml</figcaption>{% endcapture %}{% include code_block.html code=_code use_figure=true %}
+{% endraw %}{% endhighlight %}<figcaption>package.yaml</figcaption>{% endcapture %}{% include code_block.html code=_code figure=true %}
 
 To generate a `rebar3` config from the above file, we can run:
 ```
@@ -71,7 +71,7 @@ A rebar3 project also needs an `*.app.src` file in the `src/` directory:
     stdlib
    ]}
  ]}.
-{% endraw %}{% endhighlight %}<figcaption>src/hello_sesterl.app.src</figcaption>{% endcapture %}{% include code_block.html code=_code %} use_figure=true %}
+{% endraw %}{% endhighlight %}<figcaption>src/hello_sesterl.app.src</figcaption>{% endcapture %}{% include code_block.html code=_code figure=true %}
 
 
 Sesterl source files have a `.sest` file extension. The syntax is similar to Standard ML or OCaml.
@@ -83,7 +83,7 @@ module Hello = struct
     print_debug("Hello, world!")
 
 end
-{% endraw %}{% endhighlight %}<figcaption>src/some_file.sest</figcaption>{% endcapture %}{% include code_block.html code=_code %} use_figure=true %}
+{% endraw %}{% endhighlight %}<figcaption>src/some_file.sest</figcaption>{% endcapture %}{% include code_block.html code=_code figure=true %}
 
 To compile a project, we can run:
 
@@ -165,7 +165,7 @@ end
   but is expected of type
     Hello.Username.t
 *)*/
-{% endraw %}{% endhighlight %}{% endcapture %}{% include code_block.html code=_code %}
+{% endraw %}{% endhighlight %}{% endcapture %}{% include code_block.html code=_code figure=false %}
 
 Or if we want to reuse the interface signature and implementation:
 
@@ -199,7 +199,7 @@ end
   but is expected of type
     Hello.Username.t
 *)*/
-{% endraw %}{% endhighlight %}{% endcapture %}{% include code_block.html code=_code %}
+{% endraw %}{% endhighlight %}{% endcapture %}{% include code_block.html code=_code figure=false %}
 
 The below example doesn't work (doesn't throw an error), because Sesterl ignores the unused parameter from the type and assumes they are the same thing:
 
@@ -224,7 +224,7 @@ module Hello = struct
 
 end
 /*(* No error even though we'd like to see one here! *)*/
-{% endraw %}{% endhighlight %}{% endcapture %}{% include code_block.html code=_code %}
+{% endraw %}{% endhighlight %}{% endcapture %}{% include code_block.html code=_code figure=false %}
 
 ## Sesterl standard library
 
@@ -239,7 +239,7 @@ dependencies:
       spec:
         type: "branch"
         value: "master"
-{% endraw %}{% endhighlight %}{% endcapture %}{% include code_block.html code=_code %}
+{% endraw %}{% endhighlight %}{% endcapture %}{% include code_block.html code=_code figure=false %}
 
 Rebar3 config needs to be regenerated with `sesterl config .`, and on next compilation we'll be able to refer to modules from the stdlib (but only through what is defined in its main Stdlib module):
 
@@ -249,7 +249,7 @@ module Hello = struct
     let list = Stdlib.Binary.to_list("Hello, world!") in
     print_debug(list)
 end
-{% endraw %}{% endhighlight %}{% endcapture %}{% include code_block.html code=_code %}
+{% endraw %}{% endhighlight %}{% endcapture %}{% include code_block.html code=_code figure=false %}
 
 {% capture _code %}{% highlight sml linenos %}{% raw %}
 module Hello = struct
@@ -260,7 +260,7 @@ module Hello = struct
     print_debug(list)
 
 end
-{% endraw %}{% endhighlight %}{% endcapture %}{% include code_block.html code=_code %}
+{% endraw %}{% endhighlight %}{% endcapture %}{% include code_block.html code=_code figure=false %}
 
 {% capture _code %}{% highlight sml linenos %}{% raw %}
 module Hello = struct
@@ -271,7 +271,7 @@ module Hello = struct
     print_debug(list)
 
 end
-{% endraw %}{% endhighlight %}{% endcapture %}{% include code_block.html code=_code %}
+{% endraw %}{% endhighlight %}{% endcapture %}{% include code_block.html code=_code figure=false %}
 
 ## Bonus: "Hello World" without rebar3
 
@@ -287,7 +287,7 @@ module Hello = struct
     print_string("Hello, world!")
 
 end
-{% endraw %}{% endhighlight %}<figcaption>without_rebar.sest</figcaption>{% endcapture %}{% include code_block.html code=_code use_figure=true %}
+{% endraw %}{% endhighlight %}<figcaption>without_rebar.sest</figcaption>{% endcapture %}{% include code_block.html code=_code figure=true %}
 
 When compiling the above example with `sesterl`, we get two Erlang source files as a result:
 

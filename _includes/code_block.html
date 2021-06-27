@@ -1,7 +1,7 @@
 {% assign code = include.code | default: "" %}
 
-{% assign use_figure = include.use_figure | default: false %}
-{% if use_figure %}
+{% assign figure = include.figure | default: false %}
+{% if figure %}
   {% assign code = code | replace_first: "</figure>", "" %}
   {% assign code = code | append: "</figure>" %}
 {% else %}
