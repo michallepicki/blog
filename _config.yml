@@ -1,4 +1,9 @@
+plugins:
+  - jekyll-feed
 title: Michał Łępicki
+description: a weblog
+url: https://blog.michallepicki.com
+author: Michał Łępicki
 defaults:
   -
     scope:
