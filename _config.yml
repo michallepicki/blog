@@ -5,18 +5,17 @@ defaults:
       path: "" # an empty string here means all files in the project
     values:
       author: Michał Łępicki
-  -
-    scope:
-      path: "" # an empty string here means all files in the project
-      type: pages
-    values:
       layout: page
-  -
-    scope:
-      path: "" # an empty string here means all files in the project
-      type: posts
-    values:
-      layout: post
+  # -
+  #   scope:
+  #     path: "" # an empty string here means all files in the project
+  #     type: pages
+  #   values:
+  # -
+  #   scope:
+  #     path: "" # an empty string here means all files in the project
+  #     type: posts
+  #   values:
 
 # title for posts is the slug value, which by default comes from the hyphenated file name
 # (not from title value). This setting only affects collections like posts, not pages.

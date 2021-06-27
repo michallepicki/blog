@@ -1,5 +1,20 @@
 ---
 layout: default
 ---
-{% if page.title %}<h1>{{ page.title }}</h1>{% endif %}
+
+{% if page.date %}
+  {% assign _page_date = page.date | date_to_string | replace: ' ', '&nbsp;' %}
+  {% if page.edit_date %}
+    {% assign _edit_date = page.edit_date | date_to_string | replace: ' ', '&nbsp;' | prepend: ' (last edited on ' | append: ')' %}
+    {% assign _page_date = _page_date | append: _edit_date %}
+  {% endif %}
+  {% assign _page_date = _page_date | prepend: '<p class="dateandauthor">' | append: '</p>' %}
+  {% assign content = content | prepend: _page_date %}
+{% endif %}
+
+{% if page.title %}
+  {% assign _page_title = '<h1 id="page_title">' | append: page.title | append: "</h1>" %}
+  {% assign content = content | prepend: _page_title %}
+{% endif %}
+
 {% include anchor_headings.html anchorClass="anchor" anchorTitle="Link to '%heading%'" html=content %}

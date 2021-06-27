@@ -1,0 +1,19 @@
+{% assign code = include.code | default: "" %}
+
+{% assign use_figure = include.use_figure | default: false %}
+{% if use_figure %}
+  {% assign code = code | replace_first: "</figure>", "" %}
+  {% assign code = code | append: "</figure>" %}
+{% else %}
+  {% assign code = code | replace_first: '<figure class="highlight">', '<div class="highlight">' %}
+  {% assign code = code | replace_first: "</figure>", "</div>" %}
+{% endif %}
+
+{% assign code = code | replace_first: '<code class="', '<code class="numbered ' %}
+
+{% assign code = code | replace_first: '<table class="rouge-table"><tbody><tr><td class="gutter gl"><pre', "<div" %}
+{% assign code = code | replace_first: '</pre></td>', "</div>" %}
+{% assign code = code | replace_first: '</pre></td>', "</div>" %}
+{% assign code = code | replace_first: '<td class="code"><pre', '<div class="code"' %}
+{% assign code = code | replace_first: '</tr></tbody></table>', '' %}
+{{ code }}
