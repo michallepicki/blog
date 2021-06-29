@@ -78,15 +78,14 @@ header > nav {
   display: inline;
 }
 
-header > a:not(:hover),
-header > a:visited:not(:hover) {
+header a:not(:hover),
+header a:visited:not(:hover) {
   color: #444;
   text-decoration: none;
 }
 
-header > nav > a {
+header nav a {
   font-family: var(--sans-font);
-  text-decoration: none;
   text-transform: uppercase;
   margin-left: 10px;
 }
