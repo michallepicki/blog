@@ -1,6 +1,6 @@
 :root {
   --content-width: 650px;
-  --sans-font: sans-serif;
+  --sans-font: 'Encode Sans', sans-serif;
   --serif-font: 'Lora', serif;
 }
 
@@ -17,6 +17,11 @@
   font-style: italic;
 }
 
+@font-face {
+  font-family: 'Encode Sans';
+  src: url("/assets/EncodeSans.ttf") format('truetype');
+}
+
 body {
   font-family: var(--serif-font);
   line-height: 1.5;
@@ -28,6 +33,8 @@ body {
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   font-family: var(--sans-font);
+  font-weight: unset;
+  font-variation-settings: 'wdth' 110, 'wght' 700;
 }
 
 a {
@@ -76,6 +83,7 @@ main ul > li {
 header > a > h1,
 header > nav {
   display: inline;
+  font-variation-settings: 'wdth' 125, 'wght' 200;
 }
 
 header a:not(:hover),
@@ -87,6 +95,7 @@ header a:visited:not(:hover) {
 header nav a {
   font-family: var(--sans-font);
   text-transform: uppercase;
+  font-variation-settings: 'wdth' 100, 'wght' 200;
   margin-left: 10px;
 }
 
@@ -102,8 +111,8 @@ header nav a {
 
 .anchor {
   display: none;
-  font-weight: normal;
   font-size: 18px;
+  font-variation-settings: 'wdth' 100, 'wght' 200;
   position: relative;
   top: -2px;
 }
@@ -155,7 +164,7 @@ figcaption {
 /* code element is used for both inline ` and code/terminal blocks */
 code {
   font-size: 14px;
-  font-family: monospace;
+  font-family: Liberation Mono, Monaco, Courier New, monospace;
   display: inline-block;
   padding: 0px 4px;
   border-radius: 2px;
