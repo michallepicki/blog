@@ -2,6 +2,7 @@
   --content-width: 650px;
   --sans-font: 'Encode Sans', sans-serif;
   --serif-font: 'Lora', serif;
+  --text-color: #444;
 }
 
 /* general typography */
@@ -26,7 +27,7 @@ body {
   font-family: var(--serif-font);
   line-height: 1.5;
   font-size: 18px;
-  color: #444;
+  color: var(--text-color);
   text-size-adjust: none;
 }
 
@@ -38,12 +39,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-  color: #000;
+  color: var(--text-color);
   text-decoration: underline;
+  text-decoration-thickness: 1px;
 }
 
 a:visited {
-  color: unset;
+  color: var(--text-color);
   text-decoration-color: #ccc;
 }
 
@@ -83,12 +85,19 @@ main ul > li {
 header > a > h1,
 header > nav {
   display: inline;
-  font-variation-settings: 'wdth' 125, 'wght' 200;
+  font-variation-settings: 'wdth' 115, 'wght' 200;
 }
 
-header a:not(:hover),
-header a:visited:not(:hover) {
-  color: #444;
+header a:hover, header a:visited:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
+header a:visited:hover {
+  text-decoration-color: #ccc;
+}
+
+header a:not(:hover), header a:visited:not(:hover) {
   text-decoration: none;
 }
 
@@ -107,6 +116,10 @@ header nav a {
   margin-top: 4px;
   font-size: 16px;
   font-style: italic;
+}
+
+#indexdate div {
+  display: inline-block;
 }
 
 .anchor {
