@@ -204,7 +204,7 @@ code {
 
 /* highlight class gets added when ``` or highlight is used */
 /* terminal is added manually */
-.highlight code, .terminal code {
+.highlight code, code.terminal {
   line-height: 1.6;
   display: block;
   background-color: #fff;
