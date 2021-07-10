@@ -24,14 +24,8 @@
 }
 
 @font-face {
-  font-family: 'Source Code Pro';
-  src: url("/assets/SourceCodeVariable-Roman.ttf") format('truetype');
-}
-
-@font-face {
-  font-family: 'Source Code Pro';
-  src: url("/assets/SourceCodeVariable-Italic.ttf") format('truetype');
-  font-style: italic;
+  font-family: 'Fira Code';
+  src: url("/assets/FiraCode-VF.woff2") format('woff2');
 }
 
 body {
@@ -194,8 +188,9 @@ figcaption {
 /* code element is used for both inline ` and code/terminal blocks */
 code {
   font-size: 14px;
-  font-family: 'Source Code Pro', monospace;
+  font-family: 'Fira Code', monospace;
   font-variation-settings: 'wght' 400;
+  font-variant-ligatures: none;
   display: inline-block;
   padding: 0px 4px;
   border-radius: 2px;
