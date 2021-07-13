@@ -23,6 +23,8 @@ layout: compress
       <nav>{%- for p in nav_pages -%}
         <a href="{{ p.url | relative_url }}">{{ p.title }}</a>{%- endfor -%}
         <a href="/feed.xml">RSS</a>
+        <a href="#" onClick='(function(){document.documentElement.style.setProperty("--content-width", Math.max(400, (parseInt(getComputedStyle(document.documentElement).getPropertyValue("--content-width").replace(/px/,""))-50))+"px");})();return false;'>&lt;</a>
+        <a href="#" onClick='(function(){document.documentElement.style.setProperty("--content-width", (parseInt(getComputedStyle(document.documentElement).getPropertyValue("--content-width").replace(/px/,""))+50)+"px");})();return false;'>&gt;</a>
       </nav>
     </header>
     <main>

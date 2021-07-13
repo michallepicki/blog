@@ -1,5 +1,6 @@
 :root {
-  --content-width: 650px;
+  --content-width: 700px;
+  --header-width: 700px;
   --sans-font: 'Encode Sans', sans-serif;
   --serif-font: 'Lora', serif;
   --text-color: #444;
@@ -80,8 +81,15 @@ table {
 
 header, main > * {
   margin: 20px auto;
-  max-width: var(--content-width);
   padding: 0px 10px;
+}
+
+header {
+  max-width: var(--header-width);
+}
+
+main > * {
+  max-width: var(--content-width);
 }
 
 main > h1, h2 {
