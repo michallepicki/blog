@@ -1,7 +1,7 @@
 ---
 title: Notes on using Sesterl
 hidden: false
-edit_date: 2021-06-11
+edit_date: 2021-06-14
 ---
 [Sesterl](https://github.com/gfngfn/Sesterl) is a new statically typed programming language for the BEAM (the Erlang virtual machine).
 
@@ -23,7 +23,7 @@ On other systems sesterl has to be [compiled from source](https://github.com/gfn
 
 ## "Hello World" with rebar3
 
-Sesterl can generate a [rebar3](https://github.com/erlang/rebar3) config file for a project from a `package.yaml` file (note: this file might be soon renamed to `sesterl.yaml`).
+Sesterl can generate a [rebar3](https://github.com/erlang/rebar3) config file for a project from a `sesterl.yaml` file.
 
 {% capture c %}{% raw %}
 # REQUIRED CONFIG
@@ -50,7 +50,7 @@ source_directories:
 # erlang:
 #   output_directory: "_generated"
 #   test_output_directory: "_generated_test"
-{% endraw %}{% endcapture %}{% include code_block.html code=c lang="yaml" numbered=true figure=true figcaption="package.yaml" %}
+{% endraw %}{% endcapture %}{% include code_block.html code=c lang="yaml" numbered=true figure=true figcaption="sesterl.yaml" %}
 
 To generate a `rebar3` config from the above file, we can run:
 {% capture c %}{% raw %}
