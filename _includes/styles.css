@@ -1,8 +1,10 @@
 :root {
-  --content-width: 700px;
   --header-width: 700px;
+  --content-width: 700px;
   --sans-font: 'Encode Sans', sans-serif;
   --serif-font: 'Lora', serif;
+  --heading-font: var(--sans-font);
+  --content-font: var(--serif-font);
   --text-color: #444;
 }
 
@@ -30,7 +32,7 @@
 }
 
 body {
-  font-family: var(--serif-font);
+  font-family: var(--content-font);
   font-variation-settings: 'wght' 400;
   line-height: 1.5;
   font-size: 18px;
@@ -45,7 +47,7 @@ b, strong {
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
-  font-family: var(--sans-font);
+  font-family: var(--heading-font);
   font-weight: unset;
   font-variation-settings: 'wdth' 110, 'wght' 700;
 }
@@ -104,7 +106,18 @@ main ul > li {
 header > a > h1,
 header > nav {
   display: inline;
+}
+
+header > a > h1 {
+  font-family: var(--sans-font);
   font-variation-settings: 'wdth' 115, 'wght' 200;
+}
+
+header > nav > a {
+  font-family: var(--sans-font);
+  text-transform: uppercase;
+  font-variation-settings: 'wdth' 100, 'wght' 200;
+  margin-left: 10px;
 }
 
 header a:hover, header a:visited:hover {
@@ -118,13 +131,6 @@ header a:visited:hover {
 
 header a:not(:hover), header a:visited:not(:hover) {
   text-decoration: none;
-}
-
-header nav a {
-  font-family: var(--sans-font);
-  text-transform: uppercase;
-  font-variation-settings: 'wdth' 100, 'wght' 200;
-  margin-left: 10px;
 }
 
 #pagetitle {

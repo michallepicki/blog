@@ -23,8 +23,56 @@ layout: compress
       <nav>{%- for p in nav_pages -%}
         <a href="{{ p.url | relative_url }}">{{ p.title }}</a>{%- endfor -%}
         <a href="/feed.xml">RSS</a>
-        <a href="#" onClick='(function(){document.documentElement.style.setProperty("--content-width", Math.max(400, (parseInt(getComputedStyle(document.documentElement).getPropertyValue("--content-width").replace(/px/,""))-50))+"px");})();return false;'>&lt;</a>
-        <a href="#" onClick='(function(){document.documentElement.style.setProperty("--content-width", (parseInt(getComputedStyle(document.documentElement).getPropertyValue("--content-width").replace(/px/,""))+50)+"px");})();return false;'>&gt;</a>
+        <script>
+          "use strict";
+          const getDocumentProperty = (property) => getComputedStyle(document.documentElement).getPropertyValue(property);
+          const setDocumentProperty = (property, value) => document.documentElement.style.setProperty(property, value);
+          const storageName = (property) => `michallepicki${property}`;
+          const setProperty = (property, value) => {
+            try {
+              localStorage.setItem(storageName(property), JSON.stringify(value));
+            }
+            catch (_error) {}
+            setDocumentProperty(property, value);
+          };
+          const getProperty = (property) => {
+            let value;
+            try {
+              value = localStorage.getItem(storageName(property));
+              if(!value) throw value;
+              value = JSON.parse(value);
+            }
+            catch (_error) {
+              value = getDocumentProperty(property);
+            }
+            return value;
+          };
+          const initProperty = (property) => {
+            let value;
+            try {
+              value = JSON.parse(localStorage.getItem(storageName(property)));
+            }
+            catch (_error) {}
+            if (value) setDocumentProperty(property, value);
+          };
+          const pxToInt = (px) => parseInt(px.replace(/px/,""));
+          const narrow = () => setProperty("--content-width", Math.max(400, (pxToInt(getProperty("--content-width"))-50))+"px");
+          const widen = () => setProperty("--content-width", (pxToInt(getProperty("--content-width"))+50)+"px");
+          const swapFonts = () => {
+            let tmp = getProperty("--heading-font");
+            setProperty("--heading-font", getProperty("--content-font"));
+            setProperty("--content-font", tmp);
+          };
+          const init = () => {
+            initProperty("--content-width");
+            initProperty("--heading-font");
+            initProperty("--content-font");
+          };
+          init();
+        </script>
+        <a href="#" onClick='narrow();return false;'>&lt;</a>
+        <a href="#" onClick='widen();return false;'>&gt;</a>
+        <a href="#" onClick='swapFonts();return false;'>F</a>
       </nav>
     </header>
     <main>
