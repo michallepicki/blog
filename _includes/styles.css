@@ -8,6 +8,10 @@
   --text-color: #444;
 }
 
+.content-hidden * {
+  display: none;
+}
+
 /* general typography */
 
 @font-face {
@@ -82,7 +86,7 @@ table {
 }
 
 header, main > * {
-  margin: 20px auto;
+  margin: 20px auto 0px auto;
   padding: 0px 10px;
 }
 
@@ -103,21 +107,38 @@ main ul > li {
 }
 
 /* navigation and main elements */
-header > a > h1,
-header > nav {
-  display: inline;
+header {
+  font-family: var(--sans-font);
+  font-variation-settings: 'wdth' 100, 'wght' 200;
 }
 
-header > a > h1 {
+header > * {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+header > nav > a > h1 {
+  margin: 0;
+  font-size: 2em;
   font-family: var(--sans-font);
   font-variation-settings: 'wdth' 115, 'wght' 200;
 }
 
-header > nav > a {
-  font-family: var(--sans-font);
+header > nav > a:not(:first-child) {
   text-transform: uppercase;
-  font-variation-settings: 'wdth' 100, 'wght' 200;
-  margin-left: 10px;
+}
+
+header > nav > a:last-child {
+  margin-left: auto;
+}
+
+#styling-menu {
+  height: 20px;
+}
+
+#styling-menu > a:first-child {
+  margin-left: auto;
 }
 
 header a:hover, header a:visited:hover {
@@ -135,6 +156,7 @@ header a:not(:hover), header a:visited:not(:hover) {
 
 #pagetitle {
   margin-bottom: 4px;
+  margin-top: 20px;
 }
 
 #pagedate {
