@@ -1,11 +1,27 @@
 :root {
   --header-width: 700px;
   --content-width: 700px;
+  --line-height: 1.5;
   --sans-font: 'Encode Sans', sans-serif;
   --serif-font: 'Lora', serif;
   --heading-font: var(--sans-font);
   --content-font: var(--serif-font);
   --text-color: #444;
+  --background-color: #FFF;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --text-color: #444;
+    --background-color: #FFF;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-color: #FFF;
+    --background-color: #444;
+  }
 }
 
 .content-hidden * {
@@ -36,11 +52,12 @@
 }
 
 body {
+  line-height: var(--line-height);
   font-family: var(--content-font);
   font-variation-settings: 'wght' 400;
-  line-height: 1.5;
   font-size: 18px;
   color: var(--text-color);
+  background-color: var(--background-color);
   text-size-adjust: none;
   -webkit-text-size-adjust: none;
 }
@@ -53,6 +70,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   font-family: var(--heading-font);
   font-weight: unset;
+  margin: unset;
   font-variation-settings: 'wdth' 110, 'wght' 700;
 }
 

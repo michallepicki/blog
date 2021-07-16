@@ -19,13 +19,13 @@ layout: compress
   </head>
   <body>{%- assign nav_pages = site.pages | where_exp:"p","p.nav_order != nil" | sort: 'nav_order' -%}
     <header>
-      <nav>{%- for p in nav_pages -%}
-        <a href="{{ site.baseurl }}/"><h1>{{ site.title }}</h1></a>
+      <nav>
+        <a href="{{ site.baseurl }}/"><h1>{{ site.title }}</h1></a>{%- for p in nav_pages -%}
         <a href="{{ p.url | relative_url }}">{{ p.title }}</a>{%- endfor -%}
         <a href="/feed.xml">RSS</a>
         <script>
           "use strict";
-          const properties = ["--content-width", "--heading-font", "--content-font"];
+          const properties = ["--content-width", "--line-height", "--heading-font", "--content-font", "--text-color", "--background-color"];
           const getCssProperty = (property) => getComputedStyle(document.documentElement).getPropertyValue(property);
           const defaults = properties.map((property) => [property, getCssProperty(property)]);
           const setCssProperty = (property, value) => document.documentElement.style.setProperty(property, value);
@@ -63,12 +63,18 @@ layout: compress
           const pxToInt = (px) => parseInt(px.replace(/px/,""));
           const narrow = () => setProperty("--content-width", Math.max(400, (pxToInt(getProperty("--content-width"))-50))+"px");
           const widen = () => setProperty("--content-width", (pxToInt(getProperty("--content-width"))+50)+"px");
+          const crowdify = () => setProperty("--line-height", Math.max(1.0, (getProperty("--line-height")-0.1)));
+          const spacify = () => setProperty("--line-height", getProperty("--line-height")+0.1);
           const swapFonts = () => {
             let tmp = getProperty("--heading-font");
             setProperty("--heading-font", getProperty("--content-font"));
             setProperty("--content-font", tmp);
           };
-
+          const swapDarkLight = () => {
+            let tmp = getProperty("--text-color");
+            setProperty("--text-color", getProperty("--background-color"));
+            setProperty("--background-color", tmp);
+          };
           const resetProperties = () => {
             properties.forEach((property) => {
               try {
@@ -81,7 +87,6 @@ layout: compress
               setCssProperty(property, value);
             })
           };
-
           var menuOpen = false;
           const toggleMenu = () => {
             if (menuOpen) {
@@ -91,15 +96,16 @@ layout: compress
             }
             menuOpen = !menuOpen;
           };
-
-
         </script>
         <a href="#" onClick='toggleMenu();return false;'>&#x1F3A8;</a>
       </nav>
       <div id="styling-menu" class="content-hidden">
         <a href="#" onClick='narrow();return false;'>&lt;</a>
         <a href="#" onClick='widen();return false;'>&gt;</a>
+        <a href="#" onClick='crowdify();return false;'>\/</a>
+        <a href="#" onClick='spacify();return false;'>/\</a>
         <a href="#" onClick='swapFonts();return false;'>Aa</a>
+        <a href="#" onClick='swapDarkLight();return false;'>T</a>
         <a href="#" onClick='resetProperties();return false;'>x</a>
       </div>
     </header>
