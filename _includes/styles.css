@@ -144,6 +144,7 @@ header > nav > a > h1 {
 }
 
 header > nav > a:not(:first-child) {
+  line-height: 1.5;
   text-transform: uppercase;
 }
 
@@ -152,6 +153,7 @@ header > nav > a:last-child {
 }
 
 #styling-menu {
+  line-height: 1.5;
   height: 20px;
 }
 
