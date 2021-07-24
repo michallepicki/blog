@@ -25,7 +25,8 @@ layout: compress
         <a href="/feed.xml">RSS</a>
         <script>
           "use strict";
-          const properties = ["--content-width", "--line-height", "--heading-font", "--content-font", "--text-color", "--background-color"];
+          const themedProperties = ["--text-color", "--background-color", "--figure-background-color"];
+          const properties = themedProperties.concat(["--content-width", "--line-height", "--heading-font", "--content-font"]);
           const getCssProperty = (property) => getComputedStyle(document.documentElement).getPropertyValue(property);
           const defaults = properties.map((property) => [property, getCssProperty(property)]);
           const setCssProperty = (property, value) => document.documentElement.style.setProperty(property, value);
@@ -70,10 +71,24 @@ layout: compress
             setProperty("--heading-font", getProperty("--content-font"));
             setProperty("--content-font", tmp);
           };
+          var currentScheme;
+          var otherScheme;
+          if (getCssProperty("--text-color") == getCssProperty("--text-color--dark")) {
+            console.log("dark");
+            currentScheme = "dark";
+            otherScheme = "light";
+          } else {
+            console.log("light");
+            currentScheme = "light";
+            otherScheme = "dark";
+          };
           const swapDarkLight = () => {
-            let tmp = getProperty("--text-color");
-            setProperty("--text-color", getProperty("--background-color"));
-            setProperty("--background-color", tmp);
+            themedProperties.forEach((property) => {
+              setProperty(property, getCssProperty(property + "--" + otherScheme));
+            });
+            let tmp = currentScheme;
+            currentScheme = otherScheme;
+            otherScheme = tmp;
           };
           const resetProperties = () => {
             properties.forEach((property) => {

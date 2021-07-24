@@ -6,21 +6,30 @@
   --serif-font: 'Lora', serif;
   --heading-font: var(--sans-font);
   --content-font: var(--serif-font);
+  --text-color--light: #444;
+  --background-color--light: #FFF;
+  --figure-background-color--light: #fafafa;
+  --text-color--dark: #FFF;
+  --background-color--dark: #333;
+  --figure-background-color--dark: #444;
   --text-color: #444;
   --background-color: #FFF;
+  --figure-background-color: #fafafa;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     --text-color: #444;
     --background-color: #FFF;
+    --figure-background-color: #fafafa;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --text-color: #FFF;
-    --background-color: #444;
+    --background-color: #333;
+    --figure-background-color: #444;
   }
 }
 
@@ -224,7 +233,7 @@ figure {
   margin: 0px auto;
   padding-top: 15px;
   padding-bottom: 15px;
-  background-color: #fafafa;
+  background-color: var(--figure-background-color);
 }
 
 figure > * {
@@ -259,6 +268,7 @@ code {
   line-height: 1.6;
   display: block;
   background-color: #fff;
+  color: #444;/*wip*/
   border-radius: unset;/*wip*/
   border: none;/*wip*/
   padding: 4px;/*wip*/
