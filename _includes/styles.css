@@ -231,7 +231,7 @@ blockquote > * {
 figure {
   max-width: 100%;
   margin: 0px auto;
-  padding-top: 15px;
+  padding-top: 35px;
   padding-bottom: 15px;
   background-color: var(--figure-background-color);
 }
@@ -245,7 +245,7 @@ figure > * {
 figcaption {
   text-align: center;
   font-style: italic;
-  padding-top: 5px;
+  padding-top: 15px;
 }
 
 /* code quotes and code blocks */
