@@ -130,6 +130,10 @@ main > * {
 }
 
 main > h1, h2 {
+  margin-top: 60px;
+}
+
+main > h3, h4 {
   margin-top: 40px;
 }
 
