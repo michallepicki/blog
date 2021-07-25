@@ -3,15 +3,15 @@
   --content-width: 700px;
   --line-height: 1.5;
   --sans-font: 'Encode Sans', sans-serif;
-  --serif-font: 'Lora', serif;
-  --heading-font: var(--sans-font);
-  --content-font: var(--serif-font);
+  --serif-font: 'Source Serif VF', serif;
+  --heading-font: 'Encode Sans', sans-serif;
+  --content-font: 'Source Serif VF', serif;
   --text-color--light: #444;
   --background-color--light: #FFF;
   --figure-background-color--light: #fafafa;
-  --text-color--dark: #FFF;
-  --background-color--dark: #333;
-  --figure-background-color--dark: #444;
+  --text-color--dark: #eee;
+  --background-color--dark: #262626;
+  --figure-background-color--dark: #333;
   --text-color: #444;
   --background-color: #FFF;
   --figure-background-color: #fafafa;
@@ -27,9 +27,9 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --text-color: #FFF;
-    --background-color: #333;
-    --figure-background-color: #444;
+    --text-color: #eee;
+    --background-color: #262626;
+    --figure-background-color: #333;
   }
 }
 
@@ -40,13 +40,13 @@
 /* general typography */
 
 @font-face {
-  font-family: 'Lora';
-  src: url("/assets/Lora-VF.woff2") format("woff2");
+  font-family: 'Source Serif VF';
+  src: url("/assets/SourceSerif4Variable-Roman.ttf.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Lora';
-  src: url("/assets/Lora-Italic-VF.woff2") format("woff2");
+  font-family: 'Source Serif VF';
+  src: url("/assets/SourceSerif4Variable-Italic.ttf.woff2") format("woff2");
   font-style: italic;
 }
 

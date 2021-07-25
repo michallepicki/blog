@@ -11,8 +11,8 @@ layout: compress
     <meta name="author" content="{{ page.author }}">
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
     <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="/feed.xml">
-    <link rel="preload" href="/assets/Lora-VF.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/assets/Lora-Italic-VF.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/SourceSerif4Variable-Roman.ttf.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/SourceSerif4Variable-Italic.ttf.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/EncodeSans.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="preload" href="/assets/FiraCode-VF.woff2" as="font" type="font/woff2" crossorigin>
     <style>{%- capture styles -%}{%- include styles.css -%}{%- endcapture -%}{{ styles | scssify }}</style>
@@ -38,6 +38,7 @@ layout: compress
             catch (_error) {}
             setCssProperty(property, value);
           };
+          const setPxProperty = (property, value) => setProperty(property, value + "px");
           const getProperty = (property) => {
             let value;
             try {
@@ -50,6 +51,9 @@ layout: compress
             }
             return value;
           };
+          const pxToInt = (px) => parseInt(px.replace(/px/,""));
+          const getPxProperty = (property) => pxToInt(getProperty(property));
+          const getFloatProperty = (property) => parseFloat(getProperty(property));
           const initProperty = (property) => {
             let value;
             try {
@@ -61,24 +65,22 @@ layout: compress
           const init = () => properties.forEach((property) => initProperty(property));
           init();
 
-          const pxToInt = (px) => parseInt(px.replace(/px/,""));
-          const narrow = () => setProperty("--content-width", Math.max(400, (pxToInt(getProperty("--content-width"))-50))+"px");
-          const widen = () => setProperty("--content-width", (pxToInt(getProperty("--content-width"))+50)+"px");
-          const crowdify = () => setProperty("--line-height", Math.max(1.0, (getProperty("--line-height")-0.1)));
-          const spacify = () => setProperty("--line-height", getProperty("--line-height")+0.1);
-          const swapFonts = () => {
-            let tmp = getProperty("--heading-font");
-            setProperty("--heading-font", getProperty("--content-font"));
-            setProperty("--content-font", tmp);
+          const narrow = () => setPxProperty("--content-width", Math.max(400, (getPxProperty("--content-width")-50)));
+          const widen = () => setPxProperty("--content-width", (getPxProperty("--content-width")+50));
+          const crowdify = () => setProperty("--line-height", Math.max(1.0, (getFloatProperty("--line-height")-0.1)));
+          const spacify = () => setProperty("--line-height", (getFloatProperty("--line-height")+0.1));
+          const swapProperties = (property1, property2) => {
+            let tmp = getProperty(property1);
+            setProperty(property1, getProperty(property2));
+            setProperty(property2, tmp);
           };
+          const swapFonts = () => swapProperties("--heading-font", "--content-font");
           var currentScheme;
           var otherScheme;
           if (getCssProperty("--text-color") == getCssProperty("--text-color--dark")) {
-            console.log("dark");
             currentScheme = "dark";
             otherScheme = "light";
           } else {
-            console.log("light");
             currentScheme = "light";
             otherScheme = "dark";
           };
@@ -120,8 +122,9 @@ layout: compress
         <a href="#" onClick='crowdify();return false;'>\/</a>
         <a href="#" onClick='spacify();return false;'>/\</a>
         <a href="#" onClick='swapFonts();return false;'>Aa</a>
-        <a href="#" onClick='swapDarkLight();return false;'>T</a>
-        <a href="#" onClick='resetProperties();return false;'>x</a>
+        <a href="#" onClick='swapDarkLight();return false;'>&#9632;</a>
+        <a href="#" onClick='resetProperties();return false;'>⟲</a>
+        <a href="#" onClick='toggleMenu();return false;'>x</a>
       </div>
     </header>
     <main>
