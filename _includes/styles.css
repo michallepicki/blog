@@ -207,24 +207,15 @@ header a:not(:hover), header a:visited:not(:hover) {
 }
 
 .anchor {
-  display: none;
-  font-size: 18px;
-  font-variation-settings: 'wdth' 100, 'wght' 200;
-  position: relative;
-  top: -2px;
+  text-decoration: none;
 }
 
-.anchor:before {
+.anchor:hover:after {
   content: "#";
-}
-
-h1:hover .anchor,
-h2:hover .anchor,
-h3:hover .anchor,
-h4:hover .anchor,
-h5:hover .anchor,
-h6:hover .anchor {
-  display: initial;
+  margin-left: 4px;
+  text-decoration: underline;
+  font-size: 24px;
+  font-variation-settings: 'wdth' 100, 'wght' 200;
 }
 
 /* quote generated with > */
