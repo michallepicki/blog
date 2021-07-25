@@ -5,132 +5,147 @@ layout: compress
 ---
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="{{ page.author }}">
-    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
-    <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="/feed.xml">
-    <link rel="preload" href="/assets/SourceSerif4Variable-Roman.ttf.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/assets/SourceSerif4Variable-Italic.ttf.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/assets/EncodeSans.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="preload" href="/assets/FiraCode-VF.woff2" as="font" type="font/woff2" crossorigin>
-    <style>{%- capture styles -%}{%- include styles.css -%}{%- endcapture -%}{{ styles | scssify }}</style>
-  </head>
-  <body>{%- assign nav_pages = site.pages | where_exp:"p","p.nav_order != nil" | sort: 'nav_order' -%}
-    <header>
-      <nav>
-        <a href="{{ site.baseurl }}/"><h1>{{ site.title }}</h1></a>{%- for p in nav_pages -%}
-        <a href="{{ p.url | relative_url }}">{{ p.title }}</a>{%- endfor -%}
-        <a href="/feed.xml">RSS</a>
-        <script>
-          "use strict";
-          const themedProperties = ["--text-color", "--background-color", "--figure-background-color"];
-          const properties = themedProperties.concat(["--content-width", "--line-height", "--heading-font", "--content-font"]);
-          const getCssProperty = (property) => getComputedStyle(document.documentElement).getPropertyValue(property);
-          const defaults = properties.map((property) => [property, getCssProperty(property)]);
-          const setCssProperty = (property, value) => document.documentElement.style.setProperty(property, value);
-          const storageName = (property) => `michallepicki${property}`;
-          const setProperty = (property, value) => {
-            try {
-              localStorage.setItem(storageName(property), JSON.stringify(value));
-            }
-            catch (_error) {}
-            setCssProperty(property, value);
-          };
-          const setPxProperty = (property, value) => setProperty(property, value + "px");
-          const getProperty = (property) => {
-            let value;
-            try {
-              value = localStorage.getItem(storageName(property));
-              if(!value) throw value;
-              value = JSON.parse(value);
-            }
-            catch (_error) {
-              value = getCssProperty(property);
-            }
-            return value;
-          };
-          const pxToInt = (px) => parseInt(px.replace(/px/,""));
-          const getPxProperty = (property) => pxToInt(getProperty(property));
-          const getFloatProperty = (property) => parseFloat(getProperty(property));
-          const initProperty = (property) => {
-            let value;
-            try {
-              value = JSON.parse(localStorage.getItem(storageName(property)));
-            }
-            catch (_error) {}
-            if (value) setCssProperty(property, value);
-          };
-          const init = () => properties.forEach((property) => initProperty(property));
-          init();
 
-          const narrow = () => setPxProperty("--content-width", Math.max(400, (getPxProperty("--content-width")-50)));
-          const widen = () => setPxProperty("--content-width", (getPxProperty("--content-width")+50));
-          const crowdify = () => setProperty("--line-height", Math.max(1.0, (getFloatProperty("--line-height")-0.1)));
-          const spacify = () => setProperty("--line-height", (getFloatProperty("--line-height")+0.1));
-          const swapProperties = (property1, property2) => {
-            let tmp = getProperty(property1);
-            setProperty(property1, getProperty(property2));
-            setProperty(property2, tmp);
-          };
-          const swapFonts = () => swapProperties("--heading-font", "--content-font");
-          var currentScheme;
-          var otherScheme;
-          if (getCssProperty("--text-color") == getCssProperty("--text-color--dark")) {
-            currentScheme = "dark";
-            otherScheme = "light";
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="{{ page.author }}">
+  <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+  <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="/feed.xml">
+  <link rel="preload" href="/assets/SourceSerif4Variable-Roman.ttf.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/SourceSerif4Variable-Italic.ttf.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/EncodeSans.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/assets/FiraCode-VF.woff2" as="font" type="font/woff2" crossorigin>
+  <style>{%- capture styles -%}{%- include styles.css -%}{%- endcapture -%}{{ styles | scssify }}</style>
+</head>
+
+<body>{%- assign nav_pages = site.pages | where_exp:"p","p.nav_order != nil" | sort: 'nav_order' -%}
+  <header>
+    <nav>
+      <a href="{{ site.baseurl }}/">
+        <h1>{{ site.title }}</h1>
+      </a>{%- for p in nav_pages -%}
+      <a href="{{ p.url | relative_url }}">{{ p.title }}</a>{%- endfor -%}
+      <a href="/feed.xml">RSS</a>
+      <script>
+        "use strict";
+        const storageName = (item) => `michallepicki${item}`;
+        const setLocalStorageItem = (item, value) => {
+          try {
+            localStorage.setItem(storageName(item), JSON.stringify(value));
+          } catch (_error) { }
+        };
+        const getLocalStorageItem = (item, onSuccess = () => { }, onError = () => { }) => {
+          let value;
+          try {
+            value = localStorage.getItem(storageName(item));
+            if (!value) throw value;
+            value = JSON.parse(value);
+            onSuccess(value);
+          } catch (_error) {
+            value = onError();
+          }
+          return value;
+        };
+        const themedProperties = ["--text-color", "--background-color", "--figure-background-color"];
+        const properties = ["--content-width", "--line-height", "--heading-font", "--content-font"];
+        const getCssProperty = (property) => getComputedStyle(document.documentElement).getPropertyValue(property);
+        const setCssProperty = (property, value) => document.documentElement.style.setProperty(property, value);
+        const setProperty = (property, value) => {
+          setLocalStorageItem(property, value);
+          setCssProperty(property, value);
+        };
+        const getProperty = (property) => getLocalStorageItem(property, () => { }, () => getCssProperty(property));
+        const setPxProperty = (property, value) => setProperty(property, value + "px");
+        const pxToInt = (px) => parseInt(px.replace(/px/, ""));
+        const getPxProperty = (property) => pxToInt(getProperty(property));
+        const getFloatProperty = (property) => parseFloat(getProperty(property));
+        var currentColorScheme;
+        var otherColorScheme;
+        const inferColorScheme = () => {
+          if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            currentColorScheme = "dark";
+            otherColorScheme = "light";
           } else {
-            currentScheme = "light";
-            otherScheme = "dark";
-          };
-          const swapDarkLight = () => {
-            themedProperties.forEach((property) => {
-              setProperty(property, getCssProperty(property + "--" + otherScheme));
-            });
-            let tmp = currentScheme;
-            currentScheme = otherScheme;
-            otherScheme = tmp;
-          };
-          const resetProperties = () => {
-            properties.forEach((property) => {
-              try {
-                localStorage.removeItem(storageName(property));
+            currentColorScheme = "light";
+            otherColorScheme = "dark";
+          }
+        };
+        const init = () => {
+          properties.forEach((property) => {
+            let value = getLocalStorageItem(property);
+            if (value) setCssProperty(property, value);
+          });
+          getLocalStorageItem(
+            "_color-scheme",
+            (colorSchemeValue) => {
+              currentColorScheme = colorSchemeValue;
+              if (currentColorScheme == "light") {
+                otherColorScheme = "dark";
+              } else {
+                otherColorScheme = "light";
               }
-              catch (_error) {}
-            });
-            defaults.forEach((p) => {
-              let [property, value] = p;
-              setCssProperty(property, value);
-            })
-          };
-          var menuOpen = false;
-          const toggleMenu = () => {
-            if (menuOpen) {
-              document.getElementById("styling-menu").setAttribute("class", "content-hidden");
-            } else {
-              document.getElementById("styling-menu").removeAttribute("class");
-            }
-            menuOpen = !menuOpen;
-          };
-        </script>
-        <a href="#" onClick='toggleMenu();return false;'>&#x1F3A8;</a>
-      </nav>
-      <div id="styling-menu" class="content-hidden">
-        <a href="#" onClick='narrow();return false;'>&lt;</a>
-        <a href="#" onClick='widen();return false;'>&gt;</a>
-        <a href="#" onClick='crowdify();return false;'>\/</a>
-        <a href="#" onClick='spacify();return false;'>/\</a>
-        <a href="#" onClick='swapFonts();return false;'>Aa</a>
-        <a href="#" onClick='swapDarkLight();return false;'>&#9632;</a>
-        <a href="#" onClick='resetProperties();return false;'>⟲</a>
-        <a href="#" onClick='toggleMenu();return false;'>x</a>
-      </div>
-    </header>
-    <main>
-      {{ content }}
-    </main>
-    <footer>
-    </footer>
-  </body>
+              themedProperties.forEach((property) => setCssProperty(property, getCssProperty(property + "--" + currentColorScheme)));
+            },
+            () => inferColorScheme()
+          );
+        };
+        init();
+
+        const narrow = () => setPxProperty("--content-width", Math.max(400, (getPxProperty("--content-width") - 50)));
+        const widen = () => setPxProperty("--content-width", (getPxProperty("--content-width") + 50));
+        const crowdify = () => setProperty("--line-height", Math.max(1.0, (getFloatProperty("--line-height") - 0.1)));
+        const spacify = () => setProperty("--line-height", (getFloatProperty("--line-height") + 0.1));
+        const swapProperties = (property1, property2) => {
+          let tmp = getProperty(property1);
+          setProperty(property1, getProperty(property2));
+          setProperty(property2, tmp);
+        };
+        const swapFonts = () => swapProperties("--heading-font", "--content-font");
+        const toggleColorScheme = () => {
+          let tmp = currentColorScheme;
+          currentColorScheme = otherColorScheme;
+          otherColorScheme = tmp;
+          setLocalStorageItem("_color-scheme", currentColorScheme);
+          themedProperties.forEach((property) => setCssProperty(property, getCssProperty(property + "--" + currentColorScheme)));
+        };
+        const resetProperties = () => {
+          properties.concat(["_color-scheme"]).forEach((property) => {
+            try {
+              localStorage.removeItem(storageName(property));
+            } catch (_error) { }
+          });
+          inferColorScheme();
+          document.documentElement.removeAttribute("style");
+        };
+        var menuOpen = false;
+        const toggleMenu = () => {
+          if (menuOpen) {
+            document.getElementById("styling-menu").setAttribute("class", "content-hidden");
+          } else {
+            document.getElementById("styling-menu").removeAttribute("class");
+          }
+          menuOpen = !menuOpen;
+        };
+      </script>
+      <a href="#" onClick='toggleMenu();return false;'>&#x1F3A8;</a>
+    </nav>
+    <div id="styling-menu" class="content-hidden">
+      <a href="#" onClick='narrow();return false;' title="More narrow content">&lt;</a>
+      <a href="#" onClick='widen();return false;' title="Wider content">&gt;</a>
+      <a href="#" onClick='crowdify();return false;' title="Smaller line height">\/</a>
+      <a href="#" onClick='spacify();return false;' title="Bigger line height">/\</a>
+      <a href="#" onClick='swapFonts();return false;' title="Swap fonts">Aa</a>
+      <a href="#" onClick='toggleColorScheme();return false;' title="Toggle color scheme">&#9632;</a>
+      <a href="#" onClick='resetProperties();return false;' title="Restore defaults">⟲</a>
+      <a href="#" onClick='toggleMenu();return false;' title="Close menu">x</a>
+    </div>
+  </header>
+  <main>
+    {{ content }}
+  </main>
+  <footer>
+  </footer>
+</body>
+
 </html>
