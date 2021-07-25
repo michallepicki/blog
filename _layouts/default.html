@@ -40,9 +40,9 @@ layout: compress
         localStorage.setItem(storageName(item), JSON.stringify(value));
       } catch (_error) { }
     };
-    const colorSchemeProperties = ["--text-color", "--background-color", "--figure-background-color"];
+    const colorSchemeProperties = ["--text-color", "--background-color", "--figure-background-color", "--code-background-color", "--terminal-background-color"];
     const fontProperties = ["--heading-font", "--content-font"];
-    const properties = ["--content-width", "--line-height"];
+    const properties = ["--content-width", "--line-height", "--content-wght", "--content-wdth"];
     const getCssProperty = (property) => getComputedStyle(document.documentElement).getPropertyValue(property);
     const setCssProperty = (property, value) => document.documentElement.style.setProperty(property, value);
     const getProperty = (property) => getLocalStorageItem(property, () => { }, () => getCssProperty(property));
@@ -52,6 +52,7 @@ layout: compress
     };
     const getPxProperty = (property) => parseInt(getProperty(property).replace(/px/, ""));
     const setPxProperty = (property, value) => setProperty(property, value + "px");
+    const getIntProperty = (property) => parseInt(getProperty(property));
     const getFloatProperty = (property) => parseFloat(getProperty(property));
     var colorScheme;
     var fontStyle;
@@ -88,6 +89,22 @@ layout: compress
     const increaseContentWidth = () => setPxProperty("--content-width", (getPxProperty("--content-width") + 50));
     const lowerLineHeight = () => setProperty("--line-height", Math.max(1.0, (getFloatProperty("--line-height") - 0.1)));
     const increaseLineHeight = () => setProperty("--line-height", (getFloatProperty("--line-height") + 0.1));
+    const lowerFontWeight = () => setProperty("--content-wght", Math.max(100, (getIntProperty("--content-wght") - 10)));
+    const increaseFontWeight = () => setProperty("--content-wght", Math.min(600, (getIntProperty("--content-wght") + 10)));
+    const lowerFontWidth = () => {
+      if (fontStyle == "content-serif") {
+        setProperty("--content-wdth", Math.min(60.0, (getFloatProperty("--content-wdth") + 2.0)));
+      } else {
+        setProperty("--content-wdth", Math.max(75.0, (getFloatProperty("--content-wdth") - 2.5)));
+      }
+    };
+    const increaseFontWidth = () => {
+      if (fontStyle == "content-serif") {
+        setProperty("--content-wdth", Math.max(8.0, (getFloatProperty("--content-wdth") - 2.0)));
+      } else {
+        setProperty("--content-wdth", Math.min(125.0, (getFloatProperty("--content-wdth") + 2.5)));
+      }
+    };
     const swapFonts = () => {
       if (fontStyle == "content-serif") {
         fontStyle = "content-sans";
@@ -96,6 +113,8 @@ layout: compress
       }
       setLocalStorageItem("_font-style", fontStyle);
       fontProperties.forEach((property) => setCssProperty(property, getCssProperty(property + "--" + fontStyle)));
+      setProperty("--content-wght", parseInt(getCssProperty("--content-wght" + "--" + fontStyle)));
+      setProperty("--content-wdth", parseFloat(getCssProperty("--content-wdth" + "--" + fontStyle)));
     };
     const toggleColorScheme = () => {
       if (colorScheme == "light") {
@@ -137,10 +156,14 @@ layout: compress
       <a href="#" id="styling-menu-toggle" onClick='toggleMenu();return false;'>&#x1F3A8;</a>
     </nav>
     <div id="styling-menu" class="content-hidden">
-      <a href="#" onClick='lowerContentWidth();return false;' title="Lower content width">&lt;</a>
-      <a href="#" onClick='increaseContentWidth();return false;' title="Increase content width">&gt;</a>
-      <a href="#" onClick='lowerLineHeight();return false;' title="Lower line height">/\</a>
-      <a href="#" onClick='increaseLineHeight();return false;' title="Increase line height">\/</a>
+      <a href="#" onClick='lowerContentWidth();return false;' title="Lower content width">-</a>
+      <a href="#" onClick='increaseContentWidth();return false;' title="Increase content width">+</a>
+      <a href="#" onClick='lowerLineHeight();return false;' title="Lower line height">-</a>
+      <a href="#" onClick='increaseLineHeight();return false;' title="Increase line height">+</a>
+      <a href="#" onClick='lowerFontWeight();return false;' title="Lower font weight">-</a>
+      <a href="#" onClick='increaseFontWeight();return false;' title="Increase font weight">+</a>
+      <a href="#" onClick='lowerFontWidth();return false;' title="Lower font width">-</a>
+      <a href="#" onClick='increaseFontWidth();return false;' title="Increase font width">+</a>
       <a href="#" onClick='swapFonts();return false;' title="Swap fonts">Aa</a>
       <a href="#" onClick='toggleColorScheme();return false;' title="Toggle color scheme">&#9632;</a>
       <a href="#" onClick='restoreDefaults();return false;' title="Restore defaults">⟲</a>

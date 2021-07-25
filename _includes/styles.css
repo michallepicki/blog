@@ -1,39 +1,68 @@
 :root {
+  --dark-0: #000;
+  --dark-1: #111;
+  --dark-2: #181818;
+  --dark-3: #222;
+  --dark-4: #282828;
+  --dark-5: #333;
+  --dark-6: #444;
+
+  --light-0: #FFF;
+  --light-1: #FAFAFA;
+  --light-2: #EEE;
+  --light-3: #CCC;
+
   --header-width: 700px;
   --content-width: 700px;
   --line-height: 1.5;
+
+  --wght: 400;
+  --wdth: 105;
+  --opsz: 20;
   --sans-font: 'Encode Sans', sans-serif;
   --serif-font: 'Source Serif VF', serif;
-  --heading-font--content-serif: 'Encode Sans', sans-serif;
-  --content-font--content-serif: 'Source Serif VF', serif;
-  --heading-font--content-sans: 'Source Serif VF', serif;
-  --content-font--content-sans: 'Encode Sans', sans-serif;
-  --heading-font: 'Encode Sans', sans-serif;
-  --content-font: 'Source Serif VF', serif;
-  --text-color--light: #444;
-  --background-color--light: #FFF;
-  --figure-background-color--light: #fafafa;
-  --text-color--dark: #eee;
-  --background-color--dark: #262626;
-  --figure-background-color--dark: #333;
-  --text-color: #444;
-  --background-color: #FFF;
-  --figure-background-color: #fafafa;
-}
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --text-color: #444;
-    --background-color: #FFF;
-    --figure-background-color: #fafafa;
-  }
+  --heading-font--content-serif: var(--sans-font);
+  --content-font--content-serif: var(--serif-font);
+  --content-wght--content-serif: var(--wght);
+  --content-wdth--content-serif: var(--opsz);
+
+  --heading-font--content-sans: var(--serif-font);
+  --content-font--content-sans: var(--sans-font);
+  --content-wght--content-sans: var(--wght);
+  --content-wdth--content-sans: var(--wdth);
+
+  --heading-font: var(--heading-font--content-serif);
+  --content-font: var(--content-font--content-serif);
+  --content-wght: var(--content-wght--content-serif);
+  --content-wdth: var(--content-wdth--content-serif);
+
+  --text-color--light: var(--dark-6);
+  --background-color--light: var(--light-0);
+  --figure-background-color--light: var(--light-2);
+  --code-background-color--light: var(--light-1);
+  --terminal-background-color--light: var(--dark-6);
+
+  --text-color--dark: var(--light-2);
+  --background-color--dark: var(--dark-3);
+  --figure-background-color--dark: var(--dark-2);
+  --code-background-color--dark: var(--light-2);
+  --terminal-background-color--dark: var(--dark-2);
+
+  --text-color: var(--text-color--light);
+  --background-color: var(--background-color--light);
+  --figure-background-color: var(--figure-background-color--light);
+  --code-background-color: var(--code-background-color--light);
+  --terminal-background-color: var(--terminal-background-color--light);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --text-color: #eee;
-    --background-color: #262626;
-    --figure-background-color: #333;
+    --text-color: var(--text-color--dark);
+    --background-color: var(--background-color--dark);
+    --figure-background-color: var(--figure-background-color--dark);
+    --code-background-color: var(--code-background-color--dark);
+    --terminal-background-color: var(--terminal-background-color--dark);
   }
 }
 
@@ -67,7 +96,7 @@
 body {
   line-height: var(--line-height);
   font-family: var(--content-font);
-  font-variation-settings: 'wght' 400;
+  font-variation-settings: 'wght' var(--content-wght), 'wdth' var(--content-wdth), 'opsz' var(--content-wdth);
   font-size: 18px;
   color: var(--text-color);
   background-color: var(--background-color);
@@ -84,7 +113,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--heading-font);
   font-weight: unset;
   margin: unset;
-  font-variation-settings: 'wdth' 110, 'wght' 700;
+  font-variation-settings: 'wght' 700, 'wdth' 110;
 }
 
 a {
@@ -95,7 +124,7 @@ a {
 
 a:visited {
   color: var(--text-color);
-  text-decoration-color: #ccc;
+  text-decoration-color: var(--light-3);
 }
 
 /* general spacing */
@@ -144,7 +173,7 @@ main ul > li {
 /* navigation and main elements */
 header {
   font-family: var(--sans-font);
-  font-variation-settings: 'wdth' 100, 'wght' 200;
+  font-variation-settings: 'wght' 200, 'wdth' 100, 'opsz' 20;
 }
 
 header > * {
@@ -157,7 +186,7 @@ header > nav > a > h1 {
   margin: 0;
   font-size: 2em;
   font-family: var(--sans-font);
-  font-variation-settings: 'wdth' 115, 'wght' 200;
+  font-variation-settings: 'wght' 200, 'wdth' 115;
 }
 
 header > nav > a:not(:first-child) {
@@ -175,13 +204,10 @@ header a:hover, header a:visited:hover {
 }
 
 header a:visited:hover {
-  text-decoration-color: #ccc;
+  text-decoration-color: var(--light-3);
 }
 
-header a:not(:hover), header a:visited:not(:hover) {
-  text-decoration: none;
-}
-
+header a:not(:hover), header a:visited:not(:hover),
 #styling-menu-toggle:hover, #styling-menu-toggle:visited:hover {
   text-decoration: none;
 }
@@ -204,6 +230,7 @@ header a:not(:hover), header a:visited:not(:hover) {
   margin-top: 4px;
   font-size: 16px;
   font-style: italic;
+  font-variation-settings: normal;
 }
 
 #indexdate div {
@@ -219,7 +246,7 @@ header a:not(:hover), header a:visited:not(:hover) {
   margin-left: 4px;
   text-decoration: underline;
   font-size: 24px;
-  font-variation-settings: 'wdth' 100, 'wght' 200;
+  font-variation-settings: 'wght' 200, 'wdth' 100, 'opsz' 20;
 }
 
 /* quote generated with > */
@@ -262,7 +289,7 @@ code {
   display: inline-block;
   padding: 0px 4px;
   border-radius: 2px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--light-3);
 }
 
 /* highlight class gets added when ``` or highlight is used */
@@ -270,8 +297,8 @@ code {
 .highlight code, code.terminal {
   line-height: 1.6;
   display: block;
-  background-color: #fff;
-  color: #444;/*wip*/
+  background-color: var(--code-background-color);
+  color: var(--dark-6);/*wip*/
   border-radius: unset;/*wip*/
   border: none;/*wip*/
   padding: 4px;/*wip*/
@@ -283,8 +310,8 @@ code {
 
 code.terminal  {
   overflow-x: unset;
-  background-color: #444;
-  color: #fff;
+  background-color: var(--terminal-background-color);
+  color: var(--light-0);
   white-space: pre-wrap;
   word-break: break-all;
 }
