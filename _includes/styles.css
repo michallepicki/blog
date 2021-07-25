@@ -4,6 +4,10 @@
   --line-height: 1.5;
   --sans-font: 'Encode Sans', sans-serif;
   --serif-font: 'Source Serif VF', serif;
+  --heading-font--content-serif: 'Encode Sans', sans-serif;
+  --content-font--content-serif: 'Source Serif VF', serif;
+  --heading-font--content-sans: 'Source Serif VF', serif;
+  --content-font--content-sans: 'Encode Sans', sans-serif;
   --heading-font: 'Encode Sans', sans-serif;
   --content-font: 'Source Serif VF', serif;
   --text-color--light: #444;
