@@ -165,15 +165,6 @@ header > nav > a:last-child {
   margin-left: auto;
 }
 
-#styling-menu {
-  line-height: 1.5;
-  height: 20px;
-}
-
-#styling-menu > a:first-child {
-  margin-left: auto;
-}
-
 header a:hover, header a:visited:hover {
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -185,6 +176,19 @@ header a:visited:hover {
 
 header a:not(:hover), header a:visited:not(:hover) {
   text-decoration: none;
+}
+
+#styling-menu-toggle:hover, #styling-menu-toggle:visited:hover {
+  text-decoration: none;
+}
+
+#styling-menu {
+  line-height: 1.5;
+  height: 20px;
+}
+
+#styling-menu > a:first-child {
+  margin-left: auto;
 }
 
 #pagetitle {

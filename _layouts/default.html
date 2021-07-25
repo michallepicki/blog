@@ -134,7 +134,7 @@ layout: compress
       </a>{%- for p in nav_pages -%}
       <a href="{{ p.url | relative_url }}">{{ p.title }}</a>{%- endfor -%}
       <a href="/feed.xml">RSS</a>
-      <a href="#" onClick='toggleMenu();return false;'>&#x1F3A8;</a>
+      <a href="#" id="styling-menu-toggle" onClick='toggleMenu();return false;'>&#x1F3A8;</a>
     </nav>
     <div id="styling-menu" class="content-hidden">
       <a href="#" onClick='lowerContentWidth();return false;' title="Lower content width">&lt;</a>
