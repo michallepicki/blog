@@ -108,8 +108,10 @@ layout: compress
     const swapFonts = () => {
       if (fontStyle == "content-serif") {
         fontStyle = "content-sans";
+        document.getElementById("swap-fonts").setAttribute("style", "font-family: var(--serif-font);font-variation-settings:'wght' 400;");
       } else {
         fontStyle = "content-serif";
+        document.getElementById("swap-fonts").removeAttribute("style");
       }
       setLocalStorageItem("_font-style", fontStyle);
       fontProperties.forEach((property) => setCssProperty(property, getCssProperty(property + "--" + fontStyle)));
@@ -164,7 +166,7 @@ layout: compress
       <a href="#" onClick='increaseFontWeight();return false;' title="Increase font weight">+</a>
       <a href="#" onClick='lowerFontWidth();return false;' title="Lower font width">-</a>
       <a href="#" onClick='increaseFontWidth();return false;' title="Increase font width">+</a>
-      <a href="#" onClick='swapFonts();return false;' title="Swap fonts">Aa</a>
+      <a href="#" onClick='swapFonts();return false;' title="Swap fonts" id="swap-fonts">A</a>
       <a href="#" onClick='toggleColorScheme();return false;' title="Toggle color scheme">&#9632;</a>
       <a href="#" onClick='restoreDefaults();return false;' title="Restore defaults">⟲</a>
       <a href="#" onClick='toggleMenu();return false;' title="Close menu">x</a>
