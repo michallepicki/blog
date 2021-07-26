@@ -221,6 +221,10 @@ header a:not(:hover), header a:visited:not(:hover),
   margin-left: auto;
 }
 
+#swap-fonts {
+  width: 12px;
+}
+
 #pagetitle {
   margin-bottom: 4px;
   margin-top: 20px;
