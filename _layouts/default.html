@@ -20,6 +20,30 @@ layout: compress
 </head>
 
 <body>{%- assign nav_pages = site.pages | where_exp:"p","p.nav_order != nil" | sort: 'nav_order' -%}
+  <header>
+    <nav>
+      <a href="{{ site.baseurl }}/">
+        <h1>{{ site.title }}</h1>
+      </a>{%- for p in nav_pages -%}
+      <a href="{{ p.url | relative_url }}">{{ p.title }}</a>{%- endfor -%}
+      <a href="/feed.xml">RSS</a>
+      <a href="#" id="styling-menu-toggle" onClick='toggleMenu();return false;'>&#x1F3A8;</a>
+    </nav>
+    <div id="styling-menu" class="content-hidden">
+      <a href="#" onClick='lowerContentWidth();return false;' title="Lower content width">-</a>
+      <a href="#" onClick='increaseContentWidth();return false;' title="Increase content width">+</a>
+      <a href="#" onClick='lowerLineHeight();return false;' title="Lower line height">-</a>
+      <a href="#" onClick='increaseLineHeight();return false;' title="Increase line height">+</a>
+      <a href="#" onClick='lowerFontWeight();return false;' title="Lower font weight">-</a>
+      <a href="#" onClick='increaseFontWeight();return false;' title="Increase font weight">+</a>
+      <a href="#" onClick='lowerFontWidth();return false;' title="Lower font width">-</a>
+      <a href="#" onClick='increaseFontWidth();return false;' title="Increase font width">+</a>
+      <a href="#" onClick='swapFonts();return false;' title="Swap fonts" id="swap-fonts">A</a>
+      <a href="#" onClick='toggleColorScheme();return false;' title="Toggle color scheme">&#9632;</a>
+      <a href="#" onClick='restoreDefaults();return false;' title="Restore defaults">⟲</a>
+      <a href="#" onClick='toggleMenu();return false;' title="Close menu">x</a>
+    </div>
+  </header>
   <script>
     "use strict";
     const storageName = (item) => `michallepicki${item}`;
@@ -81,6 +105,9 @@ layout: compress
         (fontStyleValue) => {
           fontStyle = fontStyleValue;
           fontProperties.forEach((property) => setCssProperty(property, getCssProperty(property + "--" + fontStyle)));
+          if (fontStyle == "content-sans") {
+            document.getElementById("swap-fonts").setAttribute("style", "font-family: var(--serif-font);font-variation-settings:'wght' 400;");
+          }
         },
         () => { fontStyle = "content-serif"; }
       );
@@ -135,6 +162,7 @@ layout: compress
       });
       inferColorScheme();
       document.documentElement.removeAttribute("style");
+      document.getElementById("swap-fonts").removeAttribute("style");
     };
     var menuOpen = false;
     const toggleMenu = () => {
@@ -148,30 +176,6 @@ layout: compress
 
     init();
   </script>
-  <header>
-    <nav>
-      <a href="{{ site.baseurl }}/">
-        <h1>{{ site.title }}</h1>
-      </a>{%- for p in nav_pages -%}
-      <a href="{{ p.url | relative_url }}">{{ p.title }}</a>{%- endfor -%}
-      <a href="/feed.xml">RSS</a>
-      <a href="#" id="styling-menu-toggle" onClick='toggleMenu();return false;'>&#x1F3A8;</a>
-    </nav>
-    <div id="styling-menu" class="content-hidden">
-      <a href="#" onClick='lowerContentWidth();return false;' title="Lower content width">-</a>
-      <a href="#" onClick='increaseContentWidth();return false;' title="Increase content width">+</a>
-      <a href="#" onClick='lowerLineHeight();return false;' title="Lower line height">-</a>
-      <a href="#" onClick='increaseLineHeight();return false;' title="Increase line height">+</a>
-      <a href="#" onClick='lowerFontWeight();return false;' title="Lower font weight">-</a>
-      <a href="#" onClick='increaseFontWeight();return false;' title="Increase font weight">+</a>
-      <a href="#" onClick='lowerFontWidth();return false;' title="Lower font width">-</a>
-      <a href="#" onClick='increaseFontWidth();return false;' title="Increase font width">+</a>
-      <a href="#" onClick='swapFonts();return false;' title="Swap fonts" id="swap-fonts">A</a>
-      <a href="#" onClick='toggleColorScheme();return false;' title="Toggle color scheme">&#9632;</a>
-      <a href="#" onClick='restoreDefaults();return false;' title="Restore defaults">⟲</a>
-      <a href="#" onClick='toggleMenu();return false;' title="Close menu">x</a>
-    </div>
-  </header>
   <main>
     {{ content }}
   </main>

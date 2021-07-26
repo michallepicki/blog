@@ -245,6 +245,7 @@ header a:not(:hover), header a:visited:not(:hover),
   content: "#";
   margin-left: 4px;
   text-decoration: underline;
+  text-decoration-thickness: 1px;
   font-size: 24px;
   font-variation-settings: 'wght' 200, 'wdth' 100, 'opsz' 20;
 }
