@@ -45,6 +45,7 @@
   --code-background-color--light: var(--light-1);
   --code-text-color-n--light: var(--dark-6);
   --terminal-background-color--light: var(--dark-7);
+  --terminal-text-color--light: var(--light-2);
 
   --text-color--dark: var(--light-2);
   --background-color--dark: var(--dark-2);
@@ -52,6 +53,7 @@
   --code-background-color--dark: var(--dark-4);
   --code-text-color-n--dark: var(--light-4);
   --terminal-background-color--dark: var(--dark-4);
+  --terminal-text-color--dark: var(--light-4);
 
   --text-color: var(--text-color--light);
   --background-color: var(--background-color--light);
@@ -59,6 +61,7 @@
   --code-background-color: var(--code-background-color--light);
   --code-text-color-n: var(--code-text-color-n--light);
   --terminal-background-color: var(--terminal-background-color--light);
+  --terminal-text-color: var(--code-text-color--light);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -69,6 +72,7 @@
     --code-background-color: var(--code-background-color--dark);
     --code-text-color-n: var(--code-text-color-n--dark);
     --terminal-background-color: var(--terminal-background-color--dark);
+    --terminal-text-color: var(--terminal-text-color--dark);
   }
 }
 
@@ -322,7 +326,7 @@ code {
 code.terminal  {
   overflow-x: unset;
   background-color: var(--terminal-background-color);
-  color: var(--code-text-color-n);
+  color: var(--terminal-text-color);
   white-space: pre-wrap;
   word-break: break-all;
 }
