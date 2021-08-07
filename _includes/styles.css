@@ -61,7 +61,7 @@
   --code-background-color: var(--code-background-color--light);
   --code-text-color-n: var(--code-text-color-n--light);
   --terminal-background-color: var(--terminal-background-color--light);
-  --terminal-text-color: var(--code-text-color--light);
+  --terminal-text-color: var(--terminal-text-color--light);
 }
 
 @media (prefers-color-scheme: dark) {
