@@ -2,15 +2,17 @@
   --dark-0: #000;
   --dark-1: #111;
   --dark-2: #181818;
-  --dark-3: #222;
-  --dark-4: #282828;
-  --dark-5: #333;
-  --dark-6: #444;
+  --dark-3: #1B1B1B;
+  --dark-4: #222;
+  --dark-5: #282828;
+  --dark-6: #333;
+  --dark-7: #444;
 
   --light-0: #FFF;
   --light-1: #FAFAFA;
   --light-2: #EEE;
   --light-3: #CCC;
+  --light-4: #DDD;
 
   --header-width: 700px;
   --content-width: 700px;
@@ -37,22 +39,25 @@
   --content-wght: var(--content-wght--content-serif);
   --content-wdth: var(--content-wdth--content-serif);
 
-  --text-color--light: var(--dark-6);
+  --text-color--light: var(--dark-7);
   --background-color--light: var(--light-0);
   --figure-background-color--light: var(--light-2);
   --code-background-color--light: var(--light-1);
-  --terminal-background-color--light: var(--dark-6);
+  --code-text-color-n--light: var(--dark-6);
+  --terminal-background-color--light: var(--dark-7);
 
   --text-color--dark: var(--light-2);
-  --background-color--dark: var(--dark-3);
-  --figure-background-color--dark: var(--dark-2);
-  --code-background-color--dark: var(--light-2);
-  --terminal-background-color--dark: var(--dark-2);
+  --background-color--dark: var(--dark-2);
+  --figure-background-color--dark: var(--dark-3);
+  --code-background-color--dark: var(--dark-4);
+  --code-text-color-n--dark: var(--light-4);
+  --terminal-background-color--dark: var(--dark-4);
 
   --text-color: var(--text-color--light);
   --background-color: var(--background-color--light);
   --figure-background-color: var(--figure-background-color--light);
   --code-background-color: var(--code-background-color--light);
+  --code-text-color-n: var(--code-text-color-n--light);
   --terminal-background-color: var(--terminal-background-color--light);
 }
 
@@ -62,6 +67,7 @@
     --background-color: var(--background-color--dark);
     --figure-background-color: var(--figure-background-color--dark);
     --code-background-color: var(--code-background-color--dark);
+    --code-text-color-n: var(--code-text-color-n--dark);
     --terminal-background-color: var(--terminal-background-color--dark);
   }
 }
@@ -303,7 +309,7 @@ code {
   line-height: 1.6;
   display: block;
   background-color: var(--code-background-color);
-  color: var(--dark-6);/*wip*/
+  color: var(--code-text-color-n);
   border-radius: unset;/*wip*/
   border: none;/*wip*/
   padding: 4px;/*wip*/
@@ -316,7 +322,7 @@ code {
 code.terminal  {
   overflow-x: unset;
   background-color: var(--terminal-background-color);
-  color: var(--light-0);
+  color: var(--code-text-color-n);
   white-space: pre-wrap;
   word-break: break-all;
 }

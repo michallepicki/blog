@@ -64,7 +64,7 @@ layout: compress
         localStorage.setItem(storageName(item), JSON.stringify(value));
       } catch (_error) { }
     };
-    const colorSchemeProperties = ["--text-color", "--background-color", "--figure-background-color", "--code-background-color", "--terminal-background-color"];
+    const colorSchemeProperties = ["--text-color", "--background-color", "--figure-background-color", "--code-background-color", "--code-text-color-n", "--terminal-background-color"];
     const fontProperties = ["--heading-font", "--content-font"];
     const properties = ["--content-width", "--line-height", "--content-wght", "--content-wdth"];
     const getCssProperty = (property) => getComputedStyle(document.documentElement).getPropertyValue(property);
