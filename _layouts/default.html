@@ -27,7 +27,7 @@ layout: compress
       </a>{%- for p in nav_pages -%}
       <a href="{{ p.url | relative_url }}">{{ p.title }}</a>{%- endfor -%}
       <a href="/feed.xml">RSS</a>
-      <a href="#" id="styling-menu-toggle" onClick='toggleMenu();return false;'>&#x1F3A8;</a>
+      <a href="#" id="styling-menu-toggle" onClick='toggleMenu();return false;' title="Toggle styling menu">&#x1F3A8;</a>
     </nav>
     <div id="styling-menu" class="content-hidden">
       <a href="#" onClick='lowerContentWidth();return false;' title="Lower content width">-</a>
@@ -41,7 +41,7 @@ layout: compress
       <a href="#" onClick='swapFonts();return false;' title="Swap fonts" id="swap-fonts">A</a>
       <a href="#" onClick='toggleColorScheme();return false;' title="Toggle color scheme">&#9632;</a>
       <a href="#" onClick='restoreDefaults();return false;' title="Restore defaults">⟲</a>
-      <a href="#" onClick='toggleMenu();return false;' title="Close menu">x</a>
+      <a href="#" onClick='toggleMenu();return false;' title="Close styling menu">x</a>
     </div>
   </header>
   <script>
