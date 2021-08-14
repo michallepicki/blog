@@ -14,6 +14,57 @@
   --light-3: #CCC;
   --light-4: #DDD;
 
+  --base00--light: #F5F5F5;
+  --base01--light: #E0E0E0;
+  --base02--light: #D0D0D0;
+  --base03--light: #B0B0B0;
+  --base04--light: #505050;
+  --base05--light: #303030;
+  --base06--light: #202020;
+  --base07--light: #151515;
+  --base08--light: #AC4142;
+  --base09--light: #D28445;
+  --base0A--light: #F4BF75;
+  --base0B--light: #90A959;
+  --base0C--light: #75B5AA;
+  --base0D--light: #6A9FB5;
+  --base0E--light: #AA759F;
+  --base0F--light: #8F5536;
+
+  --base00--dark: #151515;
+  --base01--dark: #202020;
+  --base02--dark: #303030;
+  --base03--dark: #505050;
+  --base04--dark: #B0B0B0;
+  --base05--dark: #D0D0D0;
+  --base06--dark: #E0E0E0;
+  --base07--dark: #F5F5F5;
+  --base08--dark: #AC4142;
+  --base09--dark: #D28445;
+  --base0A--dark: #F4BF75;
+  --base0B--dark: #90A959;
+  --base0C--dark: #75B5AA;
+  --base0D--dark: #6A9FB5;
+  --base0E--dark: #AA759F;
+  --base0F--dark: #8F5536;
+
+  --base00: var(--base00--light);
+  --base01: var(--base01--light);
+  --base02: var(--base02--light);
+  --base03: var(--base03--light);
+  --base04: var(--base04--light);
+  --base05: var(--base05--light);
+  --base06: var(--base06--light);
+  --base07: var(--base07--light);
+  --base08: var(--base08--light);
+  --base09: var(--base09--light);
+  --base0A: var(--base0A--light);
+  --base0B: var(--base0B--light);
+  --base0C: var(--base0C--light);
+  --base0D: var(--base0D--light);
+  --base0E: var(--base0E--light);
+  --base0F: var(--base0F--light);
+
   --header-width: 700px;
   --content-width: 700px;
   --line-height: 1.5;
@@ -42,35 +93,48 @@
   --text-color--light: var(--dark-7);
   --background-color--light: var(--light-0);
   --figure-background-color--light: var(--light-2);
-  --code-background-color--light: var(--light-1);
-  --code-text-color-n--light: var(--dark-6);
   --terminal-background-color--light: var(--dark-7);
   --terminal-text-color--light: var(--light-2);
 
   --text-color--dark: var(--light-2);
   --background-color--dark: var(--dark-2);
   --figure-background-color--dark: var(--dark-3);
-  --code-background-color--dark: var(--dark-4);
-  --code-text-color-n--dark: var(--light-4);
-  --terminal-background-color--dark: var(--dark-4);
+  --terminal-background-color--dark: var(--dark-1);
   --terminal-text-color--dark: var(--light-4);
 
   --text-color: var(--text-color--light);
   --background-color: var(--background-color--light);
   --figure-background-color: var(--figure-background-color--light);
-  --code-background-color: var(--code-background-color--light);
-  --code-text-color-n: var(--code-text-color-n--light);
+  --code-background-color: var(--base00);
+  --code-text-color-n: var(--base04);
   --terminal-background-color: var(--terminal-background-color--light);
   --terminal-text-color: var(--terminal-text-color--light);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
+    --base00: var(--base00--dark);
+    --base01: var(--base01--dark);
+    --base02: var(--base02--dark);
+    --base03: var(--base03--dark);
+    --base04: var(--base04--dark);
+    --base05: var(--base05--dark);
+    --base06: var(--base06--dark);
+    --base07: var(--base07--dark);
+    --base08: var(--base08--dark);
+    --base09: var(--base09--dark);
+    --base0A: var(--base0A--dark);
+    --base0B: var(--base0B--dark);
+    --base0C: var(--base0C--dark);
+    --base0D: var(--base0D--dark);
+    --base0E: var(--base0E--dark);
+    --base0F: var(--base0F--dark);
+
     --text-color: var(--text-color--dark);
     --background-color: var(--background-color--dark);
     --figure-background-color: var(--figure-background-color--dark);
-    --code-background-color: var(--code-background-color--dark);
-    --code-text-color-n: var(--code-text-color-n--dark);
+    --code-background-color: var(--base00);
+    --code-text-color-n: var(--base05);
     --terminal-background-color: var(--terminal-background-color--dark);
     --terminal-text-color: var(--terminal-text-color--dark);
   }
@@ -339,64 +403,60 @@ code .lineno {
   padding: 0 6px;/*wip*/
 }
 
-/* styles stolen from elixir-lang.github.com */
-.highlight .c { color: #998; font-style: italic; } /* Comment */
-/* remove for now since it looks bad for some exprs when sesterl gets highlighted using sml */
-/* .highlight .err { color: #a61717; background-color: #e3d2d2; } Error */
-.highlight .k { font-variation-settings: 'wght' 600; } /* Keyword */
-.highlight .o { font-variation-settings: 'wght' 600; } /* Operator */
-.highlight .cm { color: #998; font-style: italic; } /* Comment.Multiline */
-.highlight .cp { color: #999; font-variation-settings: 'wght' 600; } /* Comment.Preproc */
-.highlight .c1 { color: #998; font-style: italic; } /* Comment.Single */
-.highlight .cs { color: #999; font-variation-settings: 'wght' 600; font-style: italic; } /* Comment.Special */
-.highlight .gd { color: #000; background-color: #fdd; } /* Generic.Deleted */
-.highlight .gd .x { color: #000; background-color: #faa; } /* Generic.Deleted.Specific */
-.highlight .ge { font-style: italic; } /* Generic.Emph */
-.highlight .gr { color: #a00; } /* Generic.Error */
-.highlight .gh { color: #999; } /* Generic.Heading */
-.highlight .gi { color: #000; background-color: #dfd } /* Generic.Inserted */
-.highlight .gi .x { color: #000; background-color: #afa } /* Generic.Inserted.Specific */
-.highlight .go { color: #888; } /* Generic.Output */
-.highlight .gp { color: #555; } /* Generic.Prompt */
-.highlight .gs { font-variation-settings: 'wght' 600; } /* Generic.Strong */
-.highlight .gu { color: #aaa; } /* Generic.Subheading */
-.highlight .gt { color: #a00; } /* Generic.Traceback */
-.highlight .kc { font-variation-settings: 'wght' 600; } /* Keyword.Constant */
-.highlight .kd { font-variation-settings: 'wght' 600; } /* Keyword.Declaration */
-.highlight .kp { font-variation-settings: 'wght' 600; } /* Keyword.Pseudo */
-.highlight .kr { font-variation-settings: 'wght' 600; } /* Keyword.Reserved */
-.highlight .kt { color: #458; font-variation-settings: 'wght' 600; } /* Keyword.Type */
-.highlight .m { color: #099; } /* Literal.Number */
-.highlight .s { color: #d14; } /* Literal.String */
-.highlight .na { color: #008080; } /* Name.Attribute */
-.highlight .nb { color: #0086B3; } /* Name.Builtin */
-.highlight .nc { color: #458; font-variation-settings: 'wght' 600; } /* Name.Class */
-.highlight .no { color: #008080; } /* Name.Constant */
-.highlight .ni { color: #800080; } /* Name.Entity */
-.highlight .ne { color: #900; font-variation-settings: 'wght' 600; } /* Name.Exception */
-.highlight .nf { color: #900; font-variation-settings: 'wght' 600; } /* Name.Function */
-.highlight .nn { color: #555; } /* Name.Namespace */
-.highlight .nt { color: #000080; } /* Name.Tag */
-.highlight .nv { color: #008080; } /* Name.Variable */
-.highlight .ow { font-variation-settings: 'wght' 600; } /* Operator.Word */
-.highlight .w { color: #bbb; } /* Text.Whitespace */
-.highlight .mf { color: #099; } /* Literal.Number.Float */
-.highlight .mh { color: #099; } /* Literal.Number.Hex */
-.highlight .mi { color: #099; } /* Literal.Number.Integer */
-.highlight .mo { color: #099; } /* Literal.Number.Oct */
-.highlight .sb { color: #d14; } /* Literal.String.Backtick */
-.highlight .sc { color: #d14; } /* Literal.String.Char */
-.highlight .sd { color: #d14; } /* Literal.String.Doc */
-.highlight .s2 { color: #d14; } /* Literal.String.Double */
-.highlight .se { color: #d14; } /* Literal.String.Escape */
-.highlight .sh { color: #d14; } /* Literal.String.Heredoc */
-.highlight .si { color: #d14; } /* Literal.String.Interpol */
-.highlight .sx { color: #d14; } /* Literal.String.Other */
-.highlight .sr { color: #009926; } /* Literal.String.Regex */
-.highlight .s1 { color: #d14; } /* Literal.String.Single */
-.highlight .ss { color: #990073; } /* Literal.String.Symbol */
-.highlight .bp { color: #999; } /* Name.Builtin.Pseudo */
-.highlight .vc { color: #008080; } /* Name.Variable.Class */
-.highlight .vg { color: #008080; } /* Name.Variable.Global */
-.highlight .vi { color: #008080; } /* Name.Variable.Instance */
-.highlight .il { color: #099; } /* Literal.Number.Integer.Long */
+.highlight .c { color:var(--base03) }
+.highlight .err { color:var(--base08) }
+.highlight .k { color:var(--base0E) }
+.highlight .l { color:var(--base0B) }
+.highlight .o { color:var(--base0C) }
+.highlight .ch { color:var(--base03) }
+.highlight .cm { color:var(--base03) }
+.highlight .cp { color:var(--base0F) }
+.highlight .cpf { color:var(--base0B) }
+.highlight .c1 { color:var(--base03) }
+.highlight .cs { color:var(--base03) }
+.highlight .kc { color:var(--base0E) }
+.highlight .kd { color:var(--base0E) }
+.highlight .kn { color:var(--base0E) }
+.highlight .kp { color:var(--base0E) }
+.highlight .kr { color:var(--base0E) }
+.highlight .kt { color:var(--base08) }
+.highlight .ld { color:var(--base0B) }
+.highlight .m { color:var(--base09) }
+.highlight .s { color:var(--base0B) }
+.highlight .na { color:var(--base0D) }
+.highlight .nb { color:var(--base0D) }
+.highlight .nc { color:var(--base0A) }
+.highlight .no { color:var(--base09) }
+.highlight .nd { color:var(--base09) }
+.highlight .nf { color:var(--base0D) }
+.highlight .nn { color:var(--base0D) }
+.highlight .nt { color:var(--base0E) }
+.highlight .nv { color:var(--base0D) }
+.highlight .ow { color:var(--base0E) }
+.highlight .w { color:var(--base05) }
+.highlight .mb { color:var(--base09) }
+.highlight .mf { color:var(--base09) }
+.highlight .mh { color:var(--base09) }
+.highlight .mi { color:var(--base09) }
+.highlight .mo { color:var(--base09) }
+.highlight .sa { color:var(--base0B) }
+.highlight .sb { color:var(--base0B) }
+.highlight .sc { color:var(--base0B) }
+.highlight .dl { color:var(--base0B) }
+.highlight .sd { color:var(--base0B) }
+.highlight .s2 { color:var(--base0B) }
+.highlight .se { color:var(--base0B) }
+.highlight .sh { color:var(--base0B) }
+.highlight .si { color:var(--base0F) }
+.highlight .sx { color:var(--base0B) }
+.highlight .sr { color:var(--base0C) }
+.highlight .s1 { color:var(--base0B) }
+.highlight .ss { color:var(--base09) }
+.highlight .bp { color:var(--base08) }
+.highlight .fm { color:var(--base0D) }
+.highlight .vc { color:var(--base0D) }
+.highlight .vg { color:var(--base0D) }
+.highlight .vi { color:var(--base08) }
+.highlight .vm {  color:var(--base0D) }
+.highlight .il {  color:var(--base09) }
+ 
