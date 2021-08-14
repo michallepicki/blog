@@ -126,6 +126,97 @@ ok
 
 Yay!
 
+## Sesterl standard library
+
+Sesterl [standard library](https://github.com/gfngfn/sesterl_stdlib) is just a rebar3 package, that can be added as a git dependency to the configuration yaml file:
+
+{% capture c %}{% raw %}
+dependencies:
+  - name: "sesterl_stdlib"
+    source:
+      type: "git"
+      repository: "https://github.com/gfngfn/sesterl_stdlib"
+      spec:
+        type: "branch"
+        value: "master"
+{% endraw %}{% endcapture %}{% include code_block.html code=c lang="yaml" numbered=true %}
+
+Rebar3 config needs to be regenerated with `sesterl config .`, and on next compilation we'll be able to refer to modules from the stdlib (but only through what is defined in its main Stdlib module):
+
+{% capture c %}{% raw %}
+module Hello = struct
+  val my_hello() =
+    let list = Stdlib.Binary.to_list("Hello, world!") in
+    print_debug(list)
+end
+{% endraw %}{% endcapture %}{% include code_block.html code=c lang="sml" numbered=true %}
+
+{% capture c %}{% raw %}
+module Hello = struct
+  module Binary = Stdlib.Binary
+
+  val my_hello() =
+    let list = Binary.to_list("Hello, world!") in
+    print_debug(list)
+
+end
+{% endraw %}{% endcapture %}{% include code_block.html code=c lang="sml" numbered=true %}
+
+{% capture c %}{% raw %}
+module Hello = struct
+  open Stdlib.Binary
+
+  val my_hello() =
+    let list = to_list("Hello, world!") in
+    print_debug(list)
+
+end
+{% endraw %}{% endcapture %}{% include code_block.html code=c lang="sml" numbered=true %}
+
+## Bonus: "Hello World" without rebar3
+
+{% capture c %}{% raw %}
+module Hello = struct
+
+  val print_string : fun(binary) -> unit = external 1 ```
+    print_string(S) ->
+      io:format("~ts~n", [S]).
+  ```
+
+  val main(args) =
+    print_string("Hello, world!")
+
+end
+{% endraw %}{% endcapture %}{% include code_block.html code=c lang="sml" numbered=true figure=true figcaption="without_rebar.sest" %}
+
+When compiling the above example with `sesterl`, we get two Erlang source files as a result:
+
+{% capture c %}{% raw %}
+$ sesterl build without_rebar3.sest -o _generated
+  parsing '/home/michal/hello_sesterl/without_rebar3.sest' ...
+  type checking '/home/michal/hello_sesterl/without_rebar3.sest' ...
+  output written on '/home/michal/hello_sesterl/_generated/Hello.erl'.
+  output written on '/home/michal/hello_sesterl/_generated/sesterl_internal_prim.erl'.
+$ ls _generated
+Hello.erl  sesterl_internal_prim.erl
+{% endraw %}{% endcapture %}{% include code_block.html code=c class="terminal" %}
+
+The `Hello.erl` file contains the `'Hello'` erlang module, and `sesterl_internal_prim.erl` ("prim" as in "primitives") contains a module with a few functions to provide some of basic functionality of the language (e.g. Erlang's [send](http://erlang.org/doc/reference_manual/expressions.html#send) wrapped in a function). This module will not be available in our escript program unless we add code to load it.
+
+To make the escript executable we have to add one dummy line to the beginning of the erlang source file, and then we can run it with `escript -c` (the `-c` argument tells escript to compile the module first):
+
+{% capture c %}{% raw %}
+$ (echo "% additional line for escript to work" && cat _generated/Hello.erl) > tmpfile && mv tmpfile _generated/Hello.erl
+$ escript -c _generated/Hello.erl
+_generated/Hello.erl:7:8: Warning: variable 'S11Args' is unused
+%    7|   
+%     |   ^^^^^^
+
+Hello, world!
+{% endraw %}{% endcapture %}{% include code_block.html code=c class="terminal" %}
+
+Hurray!
+
 ## Separate types without tags
 
 Something similar to "newtypes" or phantom types (?) - separate, incompatible types that have the same run-time representation (without boxing or tagging) - can be achieved with the Sesterl's type system (just like [OCaml's](https://dev.realworldocaml.org/files-modules-and-programs.html#nested-modules)):
@@ -223,94 +314,3 @@ module Hello = struct
 end
 /*(* No error even though we'd like to see one here! *)*/
 {% endraw %}{% endcapture %}{% include code_block.html code=c lang="sml" numbered=true %}
-
-## Sesterl standard library
-
-Sesterl [standard library](https://github.com/gfngfn/sesterl_stdlib) is just a rebar3 package, that can be added as a git dependency to the configuration yaml file:
-
-{% capture c %}{% raw %}
-dependencies:
-  - name: "sesterl_stdlib"
-    source:
-      type: "git"
-      repository: "https://github.com/gfngfn/sesterl_stdlib"
-      spec:
-        type: "branch"
-        value: "master"
-{% endraw %}{% endcapture %}{% include code_block.html code=c lang="yaml" numbered=true %}
-
-Rebar3 config needs to be regenerated with `sesterl config .`, and on next compilation we'll be able to refer to modules from the stdlib (but only through what is defined in its main Stdlib module):
-
-{% capture c %}{% raw %}
-module Hello = struct
-  val my_hello() =
-    let list = Stdlib.Binary.to_list("Hello, world!") in
-    print_debug(list)
-end
-{% endraw %}{% endcapture %}{% include code_block.html code=c lang="sml" numbered=true %}
-
-{% capture c %}{% raw %}
-module Hello = struct
-  module Binary = Stdlib.Binary
-
-  val my_hello() =
-    let list = Binary.to_list("Hello, world!") in
-    print_debug(list)
-
-end
-{% endraw %}{% endcapture %}{% include code_block.html code=c lang="sml" numbered=true %}
-
-{% capture c %}{% raw %}
-module Hello = struct
-  open Stdlib.Binary
-
-  val my_hello() =
-    let list = to_list("Hello, world!") in
-    print_debug(list)
-
-end
-{% endraw %}{% endcapture %}{% include code_block.html code=c lang="sml" numbered=true %}
-
-## Bonus: "Hello World" without rebar3
-
-{% capture c %}{% raw %}
-module Hello = struct
-
-  val print_string : fun(binary) -> unit = external 1 ```
-    print_string(S) ->
-      io:format("~ts~n", [S]).
-  ```
-
-  val main(args) =
-    print_string("Hello, world!")
-
-end
-{% endraw %}{% endcapture %}{% include code_block.html code=c lang="sml" numbered=true figure=true figcaption="without_rebar.sest" %}
-
-When compiling the above example with `sesterl`, we get two Erlang source files as a result:
-
-{% capture c %}{% raw %}
-$ sesterl build without_rebar3.sest -o _generated
-  parsing '/home/michal/hello_sesterl/without_rebar3.sest' ...
-  type checking '/home/michal/hello_sesterl/without_rebar3.sest' ...
-  output written on '/home/michal/hello_sesterl/_generated/Hello.erl'.
-  output written on '/home/michal/hello_sesterl/_generated/sesterl_internal_prim.erl'.
-$ ls _generated
-Hello.erl  sesterl_internal_prim.erl
-{% endraw %}{% endcapture %}{% include code_block.html code=c class="terminal" %}
-
-The `Hello.erl` file contains the `'Hello'` erlang module, and `sesterl_internal_prim.erl` ("prim" as in "primitives") contains a module with a few functions to provide some of basic functionality of the language (e.g. Erlang's [send](http://erlang.org/doc/reference_manual/expressions.html#send) wrapped in a function). This module will not be available in our escript program unless we add code to load it.
-
-To make the escript executable we have to add one dummy line to the beginning of the erlang source file, and then we can run it with `escript -c` (the `-c` argument tells escript to compile the module first):
-
-{% capture c %}{% raw %}
-$ (echo "% additional line for escript to work" && cat _generated/Hello.erl) > tmpfile && mv tmpfile _generated/Hello.erl
-$ escript -c _generated/Hello.erl
-_generated/Hello.erl:7:8: Warning: variable 'S11Args' is unused
-%    7|   
-%     |   ^^^^^^
-
-Hello, world!
-{% endraw %}{% endcapture %}{% include code_block.html code=c class="terminal" %}
-
-Hurray!
