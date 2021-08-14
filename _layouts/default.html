@@ -64,7 +64,7 @@ layout: compress
         localStorage.setItem(storageName(item), JSON.stringify(value));
       } catch (_error) { }
     };
-    const colorSchemeProperties = ["--text-color", "--background-color", "--figure-background-color", "--terminal-background-color", "--terminal-text-color", "--base00", "--base01", "--base02", "--base03", "--base04", "--base05", "--base06", "--base07", "--base08", "--base09", "--base0A", "--base0B", "--base0C", "--base0D", "--base0E", "--base0F" ];
+    const colorSchemeProperties = ["--background-color", "--figure-background-color", "--terminal-background-color", "--terminal-text-color", "--base00", "--base01", "--base02", "--base03", "--base04", "--base05", "--base06", "--base07", "--base08", "--base09", "--base0A", "--base0B", "--base0C", "--base0D", "--base0E", "--base0F" ];
     const fontProperties = ["--heading-font", "--content-font"];
     const properties = ["--content-width", "--line-height", "--content-wght", "--content-wdth"];
     const getCssProperty = (property) => getComputedStyle(document.documentElement).getPropertyValue(property);

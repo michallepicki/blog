@@ -1,18 +1,10 @@
 :root {
-  --dark-0: #000;
   --dark-1: #111;
   --dark-2: #181818;
   --dark-3: #1B1B1B;
-  --dark-4: #222;
-  --dark-5: #282828;
-  --dark-6: #333;
-  --dark-7: #444;
 
   --light-0: #FFF;
-  --light-1: #FAFAFA;
   --light-2: #EEE;
-  --light-3: #CCC;
-  --light-4: #DDD;
 
   --base00--light: #F5F5F5;
   --base01--light: #E0E0E0;
@@ -90,23 +82,18 @@
   --content-wght: var(--content-wght--content-serif);
   --content-wdth: var(--content-wdth--content-serif);
 
-  --text-color--light: var(--dark-7);
   --background-color--light: var(--light-0);
   --figure-background-color--light: var(--light-2);
-  --terminal-background-color--light: var(--dark-7);
-  --terminal-text-color--light: var(--light-2);
+  --terminal-background-color--light: var(--base04--light);
+  --terminal-text-color--light: var(--base00--light);
 
-  --text-color--dark: var(--light-2);
   --background-color--dark: var(--dark-2);
   --figure-background-color--dark: var(--dark-3);
   --terminal-background-color--dark: var(--dark-1);
-  --terminal-text-color--dark: var(--light-4);
+  --terminal-text-color--dark: var(--base04--dark);
 
-  --text-color: var(--text-color--light);
   --background-color: var(--background-color--light);
   --figure-background-color: var(--figure-background-color--light);
-  --code-background-color: var(--base00);
-  --code-text-color-n: var(--base04);
   --terminal-background-color: var(--terminal-background-color--light);
   --terminal-text-color: var(--terminal-text-color--light);
 }
@@ -130,11 +117,8 @@
     --base0E: var(--base0E--dark);
     --base0F: var(--base0F--dark);
 
-    --text-color: var(--text-color--dark);
     --background-color: var(--background-color--dark);
     --figure-background-color: var(--figure-background-color--dark);
-    --code-background-color: var(--base00);
-    --code-text-color-n: var(--base05);
     --terminal-background-color: var(--terminal-background-color--dark);
     --terminal-text-color: var(--terminal-text-color--dark);
   }
@@ -172,7 +156,7 @@ body {
   font-family: var(--content-font);
   font-variation-settings: 'wght' var(--content-wght), 'wdth' var(--content-wdth), 'opsz' var(--content-wdth);
   font-size: 18px;
-  color: var(--text-color);
+  color: var(--base04);
   background-color: var(--background-color);
   text-size-adjust: none;
   -webkit-text-size-adjust: none;
@@ -191,14 +175,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-  color: var(--text-color);
+  color: var(--base04);
   text-decoration: underline;
   text-decoration-thickness: 1px;
 }
 
 a:visited {
-  color: var(--text-color);
-  text-decoration-color: var(--light-3);
+  color: var(--base04);
+  text-decoration-color: var(--base03);
 }
 
 /* general spacing */
@@ -278,7 +262,7 @@ header a:hover, header a:visited:hover {
 }
 
 header a:visited:hover {
-  text-decoration-color: var(--light-3);
+  text-decoration-color: var(--base03);
 }
 
 header a:not(:hover), header a:visited:not(:hover),
@@ -368,7 +352,7 @@ code {
   display: inline-block;
   padding: 0px 4px;
   border-radius: 2px;
-  border: 1px solid var(--light-3);
+  border: 1px solid var(--base03);
 }
 
 /* highlight class gets added when ``` or highlight is used */
@@ -376,8 +360,8 @@ code {
 .highlight code, code.terminal {
   line-height: 1.6;
   display: block;
-  background-color: var(--code-background-color);
-  color: var(--code-text-color-n);
+  background-color: var(--base00);
+  color: var(--base04);
   border-radius: unset;/*wip*/
   border: none;/*wip*/
   padding: 4px;/*wip*/
