@@ -1,7 +1,7 @@
 ---
 title: Notes on using Sesterl
 hidden: false
-edit_date: 2021-07-14
+edit_date: 2021-08-14
 ---
 [Sesterl](https://github.com/gfngfn/Sesterl) is a new statically typed programming language for the BEAM (the Erlang virtual machine).
 
@@ -93,10 +93,10 @@ To compile a project, we can run:
 </span><span style="color:lime;">===&gt; Compiling rebar_sesterl
 </span><span style="color:lime;">===&gt; Verifying dependencies...
 </span><span style="color:lime;">===&gt; Compiling Sesterl programs (command: &quot;sesterl build ./ -o _generated&quot;) ...
-</span>  parsing '/home/michal/projects/huh/src/some_file.sest' ...
-  type checking '/home/michal/projects/huh/src/some_file.sest' ...
-  output written on '/home/michal/projects/huh/./_generated/HelloSesterl.Hello.erl'.
-  output written on '/home/michal/projects/huh/./_generated/sesterl_internal_prim.erl'.
+</span>  parsing '/home/michal/projects/hello_sesterl/src/some_file.sest' ...
+  type checking '/home/michal/projects/hello_sesterl/src/some_file.sest' ...
+  output written on '/home/michal/projects/hello_sesterl/./_generated/HelloSesterl.Hello.erl'.
+  output written on '/home/michal/projects/hello_sesterl/./_generated/sesterl_internal_prim.erl'.
 <span style="color:lime;">===&gt; Analyzing applications...
 </span><span style="color:lime;">===&gt; Compiling hello_sesterl
 </span>_generated/sesterl_internal_prim.erl:8:14: Warning: variable 'Arity' is unused
