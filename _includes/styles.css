@@ -90,7 +90,7 @@
   --background-color--dark: var(--dark-2);
   --figure-background-color--dark: var(--dark-3);
   --terminal-background-color--dark: var(--dark-1);
-  --terminal-text-color--dark: var(--base04--dark);
+  --terminal-text-color--dark: var(--base05--dark);
 
   --background-color: var(--background-color--light);
   --figure-background-color: var(--figure-background-color--light);
@@ -156,7 +156,7 @@ body {
   font-family: var(--content-font);
   font-variation-settings: 'wght' var(--content-wght), 'wdth' var(--content-wdth), 'opsz' var(--content-wdth);
   font-size: 18px;
-  color: var(--base04);
+  color: var(--base05);
   background-color: var(--background-color);
   text-size-adjust: none;
   -webkit-text-size-adjust: none;
@@ -175,13 +175,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-  color: var(--base04);
+  color: var(--base05);
   text-decoration: underline;
   text-decoration-thickness: 1px;
 }
 
 a:visited {
-  color: var(--base04);
+  color: var(--base05);
   text-decoration-color: var(--base03);
 }
 
@@ -361,7 +361,7 @@ code {
   line-height: 1.6;
   display: block;
   background-color: var(--base00);
-  color: var(--base04);
+  color: var(--base05);
   border-radius: unset;/*wip*/
   border: none;/*wip*/
   padding: 4px;/*wip*/
