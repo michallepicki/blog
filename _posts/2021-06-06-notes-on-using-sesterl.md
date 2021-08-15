@@ -39,7 +39,7 @@ main_module: "Hello"
 source_directories:
   - "src"
 
-# OPTIONAL CONFIG (defaults commented out)
+# OPTIONAL CONFIG (default values shown)
 
 # test_directories: []
 
