@@ -4,41 +4,41 @@
   --dark-3: #1B1B1B;
 
   --light-0: #FFF;
-  --light-2: #EEE;
+  --light-2: #F8F8F8;
 
-  --base00--light: #F5F5F5;
-  --base01--light: #E0E0E0;
-  --base02--light: #D0D0D0;
-  --base03--light: #B0B0B0;
-  --base04--light: #505050;
-  --base05--light: #303030;
-  --base06--light: #202020;
-  --base07--light: #151515;
-  --base08--light: #AC4142;
-  --base09--light: #D28445;
-  --base0A--light: #F4BF75;
-  --base0B--light: #90A959;
-  --base0C--light: #75B5AA;
-  --base0D--light: #6A9FB5;
-  --base0E--light: #AA759F;
-  --base0F--light: #8F5536;
+  --base00--light: #f1efee;
+  --base01--light: #e6e2e0;
+  --base02--light: #a8a19f;
+  --base03--light: #9c9491;
+  --base04--light: #766e6b;
+  --base05--light: #68615e;
+  --base06--light: #2c2421;
+  --base07--light: #1b1918;
+  --base08--light: #f22c40;
+  --base09--light: #df5320;
+  --base0A--light: #c38418;
+  --base0B--light: #7b9726;
+  --base0C--light: #3d97b8;
+  --base0D--light: #407ee7;
+  --base0E--light: #6666ea;
+  --base0F--light: #c33ff3;
 
-  --base00--dark: #151515;
-  --base01--dark: #202020;
-  --base02--dark: #303030;
-  --base03--dark: #505050;
-  --base04--dark: #B0B0B0;
-  --base05--dark: #D0D0D0;
-  --base06--dark: #E0E0E0;
-  --base07--dark: #F5F5F5;
-  --base08--dark: #AC4142;
-  --base09--dark: #D28445;
-  --base0A--dark: #F4BF75;
-  --base0B--dark: #90A959;
-  --base0C--dark: #75B5AA;
-  --base0D--dark: #6A9FB5;
-  --base0E--dark: #AA759F;
-  --base0F--dark: #8F5536;
+  --base00--dark: #1b1918;
+  --base01--dark: #2c2421;
+  --base02--dark: #68615e;
+  --base03--dark: #766e6b;
+  --base04--dark: #9c9491;
+  --base05--dark: #a8a19f;
+  --base06--dark: #e6e2e0;
+  --base07--dark: #f1efee;
+  --base08--dark: #f22c40;
+  --base09--dark: #df5320;
+  --base0A--dark: #c38418;
+  --base0B--dark: #7b9726;
+  --base0C--dark: #3d97b8;
+  --base0D--dark: #407ee7;
+  --base0E--dark: #6666ea;
+  --base0F--dark: #c33ff3;
 
   --base00: var(--base00--light);
   --base01: var(--base01--light);
@@ -84,7 +84,7 @@
 
   --background-color--light: var(--light-0);
   --figure-background-color--light: var(--light-2);
-  --terminal-background-color--light: var(--base04--light);
+  --terminal-background-color--light: var(--base05--light);
   --terminal-text-color--light: var(--base00--light);
 
   --background-color--dark: var(--dark-2);
@@ -389,7 +389,7 @@ code .lineno {
 
 .highlight .c { color:var(--base03) }
 .highlight .err { color:var(--base08) }
-.highlight .k { color:var(--base0E) }
+.highlight .k { color:var(--base09) }
 .highlight .l { color:var(--base0B) }
 .highlight .o { color:var(--base0C) }
 .highlight .ch { color:var(--base03) }
@@ -398,31 +398,31 @@ code .lineno {
 .highlight .cpf { color:var(--base0B) }
 .highlight .c1 { color:var(--base03) }
 .highlight .cs { color:var(--base03) }
-.highlight .kc { color:var(--base0E) }
-.highlight .kd { color:var(--base0E) }
-.highlight .kn { color:var(--base0E) }
-.highlight .kp { color:var(--base0E) }
-.highlight .kr { color:var(--base0E) }
+.highlight .kc { color:var(--base09) }
+.highlight .kd { color:var(--base09) }
+.highlight .kn { color:var(--base09) }
+.highlight .kp { color:var(--base09) }
+.highlight .kr { color:var(--base09) }
 .highlight .kt { color:var(--base08) }
 .highlight .ld { color:var(--base0B) }
-.highlight .m { color:var(--base09) }
+.highlight .m { color:var(--base0E) }
 .highlight .s { color:var(--base0B) }
 .highlight .na { color:var(--base0D) }
 .highlight .nb { color:var(--base0D) }
 .highlight .nc { color:var(--base0A) }
-.highlight .no { color:var(--base09) }
-.highlight .nd { color:var(--base09) }
+.highlight .no { color:var(--base0E) }
+.highlight .nd { color:var(--base0E) }
 .highlight .nf { color:var(--base0D) }
 .highlight .nn { color:var(--base0D) }
-.highlight .nt { color:var(--base0E) }
+.highlight .nt { color:var(--base09) }
 .highlight .nv { color:var(--base0D) }
-.highlight .ow { color:var(--base0E) }
+.highlight .ow { color:var(--base09) }
 .highlight .w { color:var(--base05) }
-.highlight .mb { color:var(--base09) }
-.highlight .mf { color:var(--base09) }
-.highlight .mh { color:var(--base09) }
-.highlight .mi { color:var(--base09) }
-.highlight .mo { color:var(--base09) }
+.highlight .mb { color:var(--base0E) }
+.highlight .mf { color:var(--base0E) }
+.highlight .mh { color:var(--base0E) }
+.highlight .mi { color:var(--base0E) }
+.highlight .mo { color:var(--base0E) }
 .highlight .sa { color:var(--base0B) }
 .highlight .sb { color:var(--base0B) }
 .highlight .sc { color:var(--base0B) }
@@ -435,12 +435,12 @@ code .lineno {
 .highlight .sx { color:var(--base0B) }
 .highlight .sr { color:var(--base0C) }
 .highlight .s1 { color:var(--base0B) }
-.highlight .ss { color:var(--base09) }
+.highlight .ss { color:var(--base0E) }
 .highlight .bp { color:var(--base08) }
 .highlight .fm { color:var(--base0D) }
 .highlight .vc { color:var(--base0D) }
 .highlight .vg { color:var(--base0D) }
 .highlight .vi { color:var(--base08) }
 .highlight .vm {  color:var(--base0D) }
-.highlight .il {  color:var(--base09) }
+.highlight .il {  color:var(--base0E) }
  
