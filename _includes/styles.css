@@ -387,17 +387,17 @@ code .lineno {
   padding: 0 6px;/*wip*/
 }
 
-.highlight .c { color:var(--base03) }
+.highlight .c { color:var(--base04) }
 .highlight .err { color:var(--base08) }
 .highlight .k { color:var(--base09) }
 .highlight .l { color:var(--base0B) }
 .highlight .o { color:var(--base0C) }
-.highlight .ch { color:var(--base03) }
-.highlight .cm { color:var(--base03) }
+.highlight .ch { color:var(--base04) }
+.highlight .cm { color:var(--base04) }
 .highlight .cp { color:var(--base0F) }
 .highlight .cpf { color:var(--base0B) }
-.highlight .c1 { color:var(--base03) }
-.highlight .cs { color:var(--base03) }
+.highlight .c1 { color:var(--base04) }
+.highlight .cs { color:var(--base04) }
 .highlight .kc { color:var(--base09) }
 .highlight .kd { color:var(--base09) }
 .highlight .kn { color:var(--base09) }
