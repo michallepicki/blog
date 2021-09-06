@@ -228,6 +228,10 @@ main ul > li {
   margin-left: 25px;
 }
 
+footer {
+  height: 35px;
+}
+
 /* navigation and main elements */
 header {
   font-family: var(--sans-font);
