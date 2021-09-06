@@ -25,27 +25,30 @@ cat ./typescript | tail -n +2 | head -n -3 | aha --black --no-header > capture.h
 rm ./typescript
 {% endraw %}{% endcapture %}{% include code_block.html code=c lang="bash" numbered=true %}
 
-This is very limited and falls appart when using more interactive programs. But it allows to capture text without full terminal prompt and marks parts that are different color, so that I can easily add slightly better styling classes for them. Here's an example recording:
+This is very limited but it allows to capture text without full terminal prompt and marks parts that are different color, so that I can easily add slightly better styling classes for them. Here's an example recording:
 
 {% raw %}
-<div><pre><code class="terminal">$ ls -l
-total 4
-drwxrwxr-x 2 michal michal 4096 wrz  6 23:24 <span style="font-weight:bold;color:#3333FF;">directory</span>
--rwxrwxr-x 1 michal michal    0 wrz  6 23:24 <span style="font-weight:bold;color:lime;">executable</span>
--rw-rw-r-- 1 michal michal    0 wrz  6 23:24 file
--rw-rw-r-- 1 michal michal    0 wrz  6 23:35 typescript
-$ nano file
-<span style="color:white;background-color:white;"></span><span style="color:black;background-color:white;">[ Reading... ]</span><span style="color:black;background-color:white;">[ Read 0 lines ]</span><span style="color:black;background-color:white;">  GNU nano 4.8                                     file                                                </span>
-<span style="color:black;background-color:white;">^G</span> Get Help   <span style="color:black;background-color:white;">^O</span> Write Out  <span style="color:black;background-color:white;">^W</span> Where Is   <span style="color:black;background-color:white;">^K</span> Cut Text   <span style="color:black;background-color:white;">^J</span> Justify    <span style="color:black;background-color:white;">^C</span> Cur Pos    <span style="color:black;background-color:white;">M-U</span> Undo
-<span style="color:black;background-color:white;">^X</span> Exit<span style="color:black;background-color:white;">^R</span> Read File  <span style="color:black;background-color:white;">^\</span> Replace    <span style="color:black;background-color:white;">^U</span> Paste Text <span style="color:black;background-color:white;">^T</span> To Spell   <span style="color:black;background-color:white;">^_</span> Go To Line <span style="color:black;background-color:white;">M-E</span> Redo
-<span style="color:white;background-color:white;"></span><span style="color:black;background-color:white;">Modified</span>
-hey !           <span style="color:black;background-color:white;">M-D</span> DOS Format           <span style="color:black;background-color:white;">M-A</span> Append<span style="color:black;background-color:white;">M-B</span> Backup File<span style="color:black;background-color:white;">C</span> Cancel<span style="color:black;background-color:white;">M-M</span> Mac Format           <span style="color:black;background-color:white;">M-P</span> Prepend<span style="color:black;background-color:white;">^T</span> To Files
-<span style="color:black;background-color:white;">File Name to Write: file                                                                               </span> <span style="color:black;background-color:white;">[ Writing... ]</span><span style="color:black;background-color:white;">        </span><span style="color:black;background-color:white;">[ Wrote 1 line ]</span><span style="color:black;background-color:white;">^O</span> Write Out  <span style="color:black;background-color:white;">^W</span> Where Is   <span style="color:black;background-color:white;">^K</span> Cut Text   <span style="color:black;background-color:white;">^J</span> Justify    <span style="color:black;background-color:white;">^C</span> Cur Pos    <span style="color:black;background-color:white;">M-U</span> Undo<span style="color:black;background-color:white;">X</span> Exit       <span style="color:black;background-color:white;">^R</span> Read File  <span style="color:black;background-color:white;">^\</span> Replace    <span style="color:black;background-color:white;">^U</span> Paste Text <span style="color:black;background-color:white;">^T</span> To Spell   <span style="color:black;background-color:white;">^_</span> Go To Line <span style="color:black;background-color:white;">M-E</span> Redo
+<div><pre><code class="terminal">$ ls -al .
+total 12
+drwxrwxr-x  3 michal michal 4096 wrz  6 23:57 <span style="font-weight:bold;color:#3333FF;">.</span>
+drwxr-xr-x 31 michal michal 4096 wrz  6 23:24 <span style="font-weight:bold;color:#3333FF;">..</span>
+drwxrwxr-x  3 michal michal 4096 wrz  6 23:57 <span style="font-weight:bold;color:#3333FF;">directory</span>
+-rwxrwxr-x  1 michal michal    0 wrz  6 23:24 <span style="font-weight:bold;color:lime;">executable</span>
+-rw-rw-r--  1 michal michal    0 wrz  6 23:57 typescript
+$ tree .
+<span style="font-weight:bold;color:#3333FF;">.</span>
+├── <span style="font-weight:bold;color:#3333FF;">directory</span>
+│   ├── <span style="font-weight:bold;color:#3333FF;">nested</span>
+│   └── other_file
+├── <span style="font-weight:bold;color:lime;">executable</span>
+└── typescript
 
-
-$ cat file
-hey !
+2 directories, 3 files
+$ cd directory/nested/
+directory/nested$ cd ../../
 $ exit</code></pre></div>
 {% endraw %}
 
-The part with `nano` looks pretty messed up. Overall editing that HTML with search+replace semems better than copying text and then manually finding every single place to add style.
+More interactive programs like `nano` can look pretty messed up. But overall editing that HTML with search+replace semems better than copying text and then manually finding every single place to add style.
+
+I'd like to automate more of that editing away, and maybe add more features, like e.g. showing <kbd>Esc</kbd> etc and marking prompt command somehow to add click-to-copy through javascript for them.
