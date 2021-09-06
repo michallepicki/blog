@@ -49,6 +49,6 @@ directory/nested$ cd ../../
 $ exit</code></pre></div>
 {% endraw %}
 
-More interactive programs like `nano` can look pretty messed up. But overall editing that HTML with search+replace semems better than copying text and then manually finding every single place to add style.
+More interactive programs like `nano` can look pretty messed up. But overall editing that HTML with search+replace seems better than copying text and then manually finding every single place to add style.
 
 I'd like to automate more of that editing away, and maybe add more features, like e.g. showing <kbd>Esc</kbd> etc and marking prompt command somehow to add click-to-copy through javascript for them.
