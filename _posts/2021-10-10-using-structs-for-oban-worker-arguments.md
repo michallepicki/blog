@@ -38,7 +38,7 @@ What happens if you make a typo? The job fails at the start of executing with
 
 Yes, I know you could write tests to catch such mistakes. I am personally against writing tests just in order to catch "typos" when the compiler and static analysis tools can do that.
 
-I played a bit with the idea of using structs to prevent mistakes similar to this one, and got an initial proof of concept working. We could define a struct for worker's arguments and use Jason to make it automatically serializable. Oban also allows us to override the `new/2` function so that we can ensure at the time of scheduling (or with static analysis like Dialyzer) that the passed in arguments are a struct. We can also `@enforce_keys` so that the Elixir compiler will ensure all required arguments are passed in.
+I played a bit with the idea of using structs to prevent mistakes similar to this one, and got an initial proof of concept working. We could define a struct for worker's arguments and use Jason to make it automatically serializable. Oban also allows us to override the `new/2` function so that we can ensure at the time of scheduling (or with static analysis like Dialyzer) that the passed in arguments are a struct. We can also `@enforce_keys` so that the Elixir compiler will check that required arguments are passed in.
 
 {% capture c %}{% raw %}
 defmodule MyApp.Business do
@@ -72,7 +72,7 @@ iex(1)> %MyApp.Business{id: 1}
 Running Elixir.MyApp.Business with ID: 1
 {% endraw %}{% endcapture %}{% include code_block.html code=c class="terminal" %}
 
-But we can still mistype one of the arguments in the `perform/1` function head and have a run-time error. Let's try to generate that pattern match expression as well!
+But we still have the arguments listed in two places - the struct definition, and the `perform/1` function head. If they go out of sync and we mistype one of the arguments, we can have a run-time error. Let's try to generate that pattern match expression as well!
 
 {% capture c %}{% raw %}
 defmodule ObanArgsHelper do
