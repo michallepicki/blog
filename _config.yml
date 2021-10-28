@@ -4,6 +4,7 @@ title: Michał Łępicki
 description: a weblog
 url: https://blog.michallepicki.com
 author: Michał Łępicki
+exclude: ["Gemfile", "Gemfile.lock", "README.md", "run.sh"]
 defaults:
   -
     scope:
