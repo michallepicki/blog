@@ -263,7 +263,7 @@ For applications that use Phoenix Channels or LiveViews, we'd need to pass the m
 Now when executing the tests we see that they pass:
 
 {% raw %}
-<div><pre><code class="terminal">$ mix test helltest/hello_web/integration/
+<div><pre><code class="terminal">$ mix test test/hello_web/integration/
 <span style="color:lime;">.</span><span style="color:lime;">.</span>
 
 Finished in 9.2 seconds (9.2s async, 0.00s sync)
