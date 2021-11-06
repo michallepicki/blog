@@ -4,7 +4,13 @@ hidden: false
 # edit_date:
 ---
 
-[Playwright](https://github.com/microsoft/playwright) is a library for browser automation from Microsoft. There's an unofficial [playwright-elixir](https://github.com/geometerio/playwright-elixir) library for using it from Elixir. You can think of it as an alternative to [Wallaby](https://github.com/elixir-wallaby/wallaby) or [Hound](https://github.com/HashNuke/hound), but using different technology underneath. Let's make it work with [Phoenix Ecto sandbox](https://hexdocs.pm/phoenix_ecto/Phoenix.Ecto.SQL.Sandbox.html)!
+[Playwright](https://github.com/microsoft/playwright) is a library for browser automation from Microsoft. There's an unofficial [playwright-elixir](https://github.com/geometerio/playwright-elixir) library for using it from Elixir. You can think of it as an alternative to [Wallaby](https://github.com/elixir-wallaby/wallaby) or [Hound](https://github.com/HashNuke/hound), but using different technology underneath. The Elixir client library is not complete yet and is still under development, but let's make it work with the [Phoenix Ecto sandbox](https://hexdocs.pm/phoenix_ecto/Phoenix.Ecto.SQL.Sandbox.html)!
+
+## Why Playwright
+
+Playwright docs have a [page](https://playwright.dev/docs/why-playwright/) on that topic. I think Playwright makes a lot of sense from design perspective. It uses snappier websockets compared to WebDriver's HTTP based API. It started as a fork of [puppeteer](https://github.com/puppeteer/puppeteer/) but is tailored more for testing. And because the Playwright team treats it as a complete solution for testing, it's not limited by cross-company politics, so they have more opportunities to optimize both the technicalities and overall user experience.
+
+Playwright supports testing against Firefox and WebKit (closest thing to Safari we can run on CI) while unifying the behavior of testing commands. WebDriver protocol really is underspecified and/or the respective implementations from browser makers are not their priority. Playwright's solution is to bundle compatible and tested versions of browsers with the library. Thank you Microsoft for the effort to make this work!
 
 ## Setup
 
@@ -26,7 +32,7 @@ added 46 packages from 85 contributors and audited 46 packages in 34.17s
 </code></pre></div>
 {% endraw %}
 
-And add `playwright-elixir` to our dependencies:
+And let's add `playwright-elixir` to our dependencies:
 
 {% capture c %}{% raw %}
   def deps do
@@ -36,7 +42,7 @@ And add `playwright-elixir` to our dependencies:
   end
 {% endraw %}{% endcapture %}{% include code_block.html code=c lang="elixir" numbered=false figure=true figcaption="mix.exs"%}
 
-We can add a listing of all users to the index page:
+To confirm that the sandbox is working, let's add a listing of all users to the index page:
 
 {% capture c %}{% raw %}
 <section id="users" class="row">
@@ -53,7 +59,7 @@ We can add a listing of all users to the index page:
 </section>
 {% endraw %}{% endcapture %}{% include code_block.html code=c lang="html" numbered=true figure=true figcaption="lib/hello_web/templates/page/index.html.heex"%}
 
-We can add an example test:
+And let's add a very simple test first, to confirm that everything is correctly set up:
 
 {% capture c %}{% raw %}
 defmodule HelloWeb.Integration.ATest do
@@ -72,13 +78,13 @@ end
 
 {% endraw %}{% endcapture %}{% include code_block.html code=c lang="elixir" numbered=true figure=true figcaption="test/hello_web/integration/a_test.exs"%}
 
-To access the server in tests we need to change the Endpoint config in `config/test.exs` to say `server: true`. Then, the test should pass, and we'll see a browser quickly flashing (thanks to the `headless: false` option we passed in):
+To access the server in tests we need to change the Endpoint config in `config/test.exs` to say `server: true`. Then, the test should pass, and it will cause the browser to shortly show up (thanks to the `headless: false` option we passed in):
 
 {% capture c %}{% raw %}
 $ mix test test/hello_web/integration/
 .
 
-Finished in 1.7 seconds (1.7s async, 0.00s sync)
+Finished in 1.7 seconds (0.00s async, 1.7s sync)
 1 test, 0 failures
 {% endraw %}{% endcapture %}{% include code_block.html code=c class="terminal" %}
 
@@ -89,7 +95,7 @@ Let's write a test that registers a user, waits a few seconds, refreshes the pag
 {% capture c %}{% raw %}
 test "registering a user", %{page: page} do
   email = Hello.AccountsFixtures.unique_user_email()
-  password = Hello.AccountsFixtures.valid_user_password())
+  password = Hello.AccountsFixtures.valid_user_password()
 
   page
   |> Playwright.Page.goto("http://localhost:4002/users/register")
@@ -272,3 +278,7 @@ Finished in 9.2 seconds (9.2s async, 0.00s sync)
 {% endraw %}
 
 Both tests created a separate user, and listing all users did not show the user created in the other test.
+
+## Closing thoughts
+
+Overall, I am very excited to use Playwright-based browser automation for tests instead of WebDriver-based solutions. Playwright is snappier and more reliable - it's just overall better! I hope to find the time to contribute to the Elixir client a bit more.
