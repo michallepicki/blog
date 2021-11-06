@@ -205,6 +205,7 @@ defmodule Hello.PlaywrightCase do
   end
 
   # Copied and modified from Playwright.Browser.new_context
+  # to pass sandbox metadata in an extra header with each browser request
   def new_context(%Playwright.Browser{connection: connection} = subject, metadata) do
     sandbox_header = Phoenix.Ecto.SQL.Sandbox.encode_metadata(metadata)
 
@@ -227,6 +228,7 @@ defmodule Hello.PlaywrightCase do
   end
 
   # Copied and modified from Playwright.Browser.new_page
+  # so that we don't start a new context for each page
   def new_page(%{connection: connection} = context) do
     page = Playwright.BrowserContext.new_page(context)
 
