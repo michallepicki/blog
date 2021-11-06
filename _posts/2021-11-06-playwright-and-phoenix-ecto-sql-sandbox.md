@@ -4,7 +4,7 @@ hidden: false
 # edit_date:
 ---
 
-[Playwright](https://github.com/microsoft/playwright) is a library for browser automation from Microsoft. There's an unofficial [playwright-elixir](https://github.com/geometerio/playwright-elixir) library for using it from Elixir. You can think of it as an alternative to[Wallaby](https://github.com/elixir-wallaby/wallaby) or [Hound](https://github.com/HashNuke/hound), but using different technology underneath. Let's make it work with [Phoenix Ecto sandbox](https://hexdocs.pm/phoenix_ecto/Phoenix.Ecto.SQL.Sandbox.html)!
+[Playwright](https://github.com/microsoft/playwright) is a library for browser automation from Microsoft. There's an unofficial [playwright-elixir](https://github.com/geometerio/playwright-elixir) library for using it from Elixir. You can think of it as an alternative to [Wallaby](https://github.com/elixir-wallaby/wallaby) or [Hound](https://github.com/HashNuke/hound), but using different technology underneath. Let's make it work with [Phoenix Ecto sandbox](https://hexdocs.pm/phoenix_ecto/Phoenix.Ecto.SQL.Sandbox.html)!
 
 ## Setup
 
