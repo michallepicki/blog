@@ -1,5 +1,5 @@
 ---
-title: Playwright and Phoenix.Ecto.SQL.Sandbox
+title: Playwright and Phoenix Ecto SQL Sandbox
 hidden: false
 # edit_date:
 ---
