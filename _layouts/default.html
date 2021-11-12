@@ -17,6 +17,7 @@ layout: compress
   <link rel="preload" href="/assets/EncodeSans.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="/assets/FiraCode-VF.woff2" as="font" type="font/woff2" crossorigin>
   <style>{%- capture styles -%}{%- include styles.css -%}{%- endcapture -%}{{ styles | scssify }}</style>
+  <script defer data-domain="blog.michallepicki.com" src="https://ml-plausible.fly.dev/js/script.js"></script>
 </head>
 
 <body>{%- assign nav_pages = site.pages | where_exp:"p","p.nav_order != nil" | sort: 'nav_order' -%}
