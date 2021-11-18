@@ -1,6 +1,5 @@
 ---
 title: Issues with Dialyzer and Elixir
-hidden: true
 # edit_date:
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: Capturing terminal as HTML
-hidden: false
 # edit_date:
 ---
 Here's a little script to record terminal sessions. It uses `script` to neatly record the commands and their output, and then transforms that typescript with `aha` to HTML with some minimal styling.

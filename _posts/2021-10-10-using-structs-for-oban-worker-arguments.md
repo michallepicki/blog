@@ -1,6 +1,5 @@
 ---
 title: Using structs for Oban worker arguments
-hidden: false
 # edit_date:
 ---
 [Oban](https://hexdocs.pm/oban/) is a very good background job library for Elixir. It performs well, doesn't need Redis (uses PostgreSQL), has many nice features and is rather intuitive to use. I have one small issue with it - it's easy to make small mistakes (typos and similar) in job arguments. What if we could use Elixir structs to help with that?

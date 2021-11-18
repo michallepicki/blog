@@ -1,5 +1,7 @@
 plugins:
   - jekyll-feed
+feed:
+  excerpt_only: true
 title: Michał Łępicki
 description: a weblog
 url: https://blog.michallepicki.com
