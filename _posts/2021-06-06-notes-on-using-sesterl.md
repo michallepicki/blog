@@ -1,21 +1,21 @@
 ---
 title: Notes on using Sesterl
-edit_date: 2021-08-14
+edit_date: 2021-12-20
 ---
 [Sesterl](https://github.com/gfngfn/Sesterl) is a new statically typed programming language for the BEAM (the Erlang virtual machine).
 
 ## Installation
 
-To install Sesterl, we can download a release artifact for latest Ubuntu or MacOS from [Github Actions on the Sesterl Repository](https://github.com/gfngfn/Sesterl/actions?query=branch%3Amaster) (when logged in to GitHub, click the top entry on that list, and then on the artifact name, e.g. `sesterl-ubuntu-latest`).
+To install Sesterl, we can download a release build for Ubuntu or MacOS from the [Releases page](https://github.com/gfngfn/Sesterl/releases) on the Sesterl GitHub Repository.
 
 {% capture c %}{% raw %}
-$ unzip sesterl-ubuntu-latest.zip
-Archive:  sesterl-ubuntu-latest.zip
+$ unzip sesterl-0-2-1-ubuntu-latest.zip
+Archive:  sesterl-0-2-1-ubuntu-latest.zip
   inflating: sesterl
 $ chmod +x sesterl
 $ mv sesterl ~/.local/bin/
-$ which sesterl
-/home/michal/.local/bin/sesterl
+$ sesterl --version
+v0.2.1
 {% endraw %}{% endcapture %}{% include code_block.html code=c class="terminal" %}
 
 On other systems sesterl has to be [compiled from source](https://github.com/gfngfn/Sesterl#how-to-install).
