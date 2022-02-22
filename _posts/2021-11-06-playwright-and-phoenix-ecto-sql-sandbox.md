@@ -13,7 +13,7 @@ Playwright supports testing against Firefox and WebKit (closest thing to Safari 
 
 ## Setup
 
-We'll be using a new, freshly generated Phoenix `1.6.2` app, and Playwright `1.16`. After generating a new project with `mix phx.new hello` and using `mix phx.gen.auth` (to have some database data to show, in this case a listing of users), let's install Playwright (requires `node` and `npm`). This also downloads the browsers compatible with this version of Playwright, and `ffmpeg` (for video recording):
+We'll be using a new, freshly generated Phoenix `1.6.2` app, and Playwright `1.16`. After generating a new project with `mix phx.new hello` and using `mix phx.gen.auth` (to have some database data to show, in this case a listing of users), we can install Playwright using `npm` (this also downloads the browsers compatible with this version of Playwright and `ffmpeg` for video recording):
 
 {% raw %}
 <div><pre><code class="terminal">$ cd assets/ &amp;&amp; npm i --save-dev playwright@1.16 &amp;&amp; cd -
@@ -31,7 +31,7 @@ added 46 packages from 85 contributors and audited 46 packages in 34.17s
 </code></pre></div>
 {% endraw %}
 
-And let's add `playwright-elixir` to our dependencies:
+Next, let's add `playwright-elixir` to our dependencies:
 
 {% capture c %}{% raw %}
   def deps do
@@ -41,7 +41,7 @@ And let's add `playwright-elixir` to our dependencies:
   end
 {% endraw %}{% endcapture %}{% include code_block.html code=c lang="elixir" numbered=false figure=true figcaption="mix.exs"%}
 
-To confirm that the sandbox is working, let's add a listing of all users to the index page:
+To confirm that the sandbox is working, we can add a listing of all users to the index page:
 
 {% capture c %}{% raw %}
 <section id="users" class="row">
@@ -58,7 +58,7 @@ To confirm that the sandbox is working, let's add a listing of all users to the 
 </section>
 {% endraw %}{% endcapture %}{% include code_block.html code=c lang="html" numbered=true figure=true figcaption="lib/hello_web/templates/page/index.html.heex"%}
 
-And let's add a very simple test first, to confirm that everything is correctly set up:
+And to confirm that playwright-elixir is correctly set up, we can add a very simple test that accesses our app:
 
 {% capture c %}{% raw %}
 defmodule HelloWeb.Integration.ATest do
@@ -89,7 +89,7 @@ Finished in 1.7 seconds (0.00s async, 1.7s sync)
 
 ## Testing registration
 
-Let's write a test that registers a user, waits a few seconds, refreshes the page and confirms there is only one user registered. This is just to see that sandboxing works as intended.
+To see that sandboxing works as intended, we can write a test that registers a user, waits a few seconds, refreshes the page and confirms there is only one user registered.
 
 {% capture c %}{% raw %}
 test "registering a user", %{page: page} do
@@ -137,7 +137,7 @@ Finished in 9.2 seconds (9.2s async, 0.00s sync)
 </code></pre></div>
 {% endraw %}
 
-Let's fix that!
+We can fix that using the Ecto Sandbox!
 
 ## Phoenix Ecto Sandbox configuration
 
