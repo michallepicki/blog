@@ -1,8 +1,10 @@
 ---
 title: Using structs for Oban worker arguments
-# edit_date:
+edit_date: 2022-03-25
 ---
 [Oban](https://hexdocs.pm/oban/) is a very good background job library for Elixir. It performs well, doesn't need Redis (uses PostgreSQL), has many nice features and is rather intuitive to use. I have one small issue with it - it's easy to make small mistakes (typos and similar) in job arguments. What if we could use Elixir structs to help with that?
+
+*Edit: This blog post inspired a feature in Oban Pro Worker called [Structured Jobs](https://hexdocs.pm/oban/2.11.0/pro_worker.html#structured-jobs)*
 
 [Oban.Worker](https://hexdocs.pm/oban/Oban.Worker.html)'s arguments are based on maps. When defining a worker, you pattern match on that map to extract individual job arguments:
 
