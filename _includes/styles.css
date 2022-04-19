@@ -380,7 +380,7 @@ code.terminal  {
   background-color: var(--terminal-background-color);
   color: var(--terminal-text-color);
   white-space: pre-wrap;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 /* line numbers from highlight */
