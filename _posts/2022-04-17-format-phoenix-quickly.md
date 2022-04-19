@@ -43,6 +43,7 @@ Compiling 31 files (.ex)
 <font color="#CC0000"><b>could not compile dependency :phoenix_live_view, &quot;mix compile&quot; failed. Errors may have been logged above. You can recompile this dependency with &quot;mix deps.compile phoenix_live_view&quot;, update it with &quot;mix deps.update phoenix_live_view&quot; or clean it with &quot;mix deps.clean phoenix_live_view&quot;</b></font>
 </code></pre></div>{% endraw %}
 
+## Solution
 
 Through trial and error I found this minimal set of packages
 to compile that works for me:
