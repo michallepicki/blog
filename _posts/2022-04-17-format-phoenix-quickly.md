@@ -52,4 +52,4 @@ to compile that works for me:
 mix deps.compile phoenix_pubsub plug phoenix_html phoenix phoenix_live_view
 ```
 
-I can have my cake and eat it too!
+This takes only a few seconds, and allows `mix format` (or `mix format --check-compiled`) to run, including the HEEx formatter plugin. I can have my cake and eat it too!
