@@ -321,6 +321,7 @@ header a:not(:hover), header a:visited:not(:hover),
 blockquote > * {
   padding-left: 20px;
   border-left: 3px solid #4e2a8e55;
+  font-style: italic;
 }
 
 /* figure */
