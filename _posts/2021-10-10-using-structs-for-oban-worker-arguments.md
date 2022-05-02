@@ -144,6 +144,6 @@ end
 
 Ta-daa! While a bit "hacky", I think this should work well and can be used in real-world projects.
 
-The generated pattern match expression can't be used when arguments format changes (you can however have an additional function head befofore or after to translate "old arguments" format of already scheduled jobs to the new one). Maybe there is a way to have some kind of "versioned" structs here.
+The generated pattern match expression can't be used when arguments format changes (you can however have an additional function head before or after to translate "old arguments" format of already scheduled jobs to the new one). Maybe there is a way to have some kind of "versioned" structs here.
 
 And it would be good to have this in Oban itself - maybe a similar (or better) solution will come in the future!
