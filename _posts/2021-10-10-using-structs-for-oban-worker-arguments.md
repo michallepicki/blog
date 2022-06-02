@@ -1,6 +1,6 @@
 ---
 title: Using structs for Oban worker arguments
-edit_date: 2022-03-25
+edit_date: 2022-06-02
 ---
 [Oban](https://hexdocs.pm/oban/) is a very good background job library for Elixir. It performs well, doesn't need Redis (uses PostgreSQL), has many nice features and is rather intuitive to use. I have one small issue with it - it's easy to make small mistakes (typos and similar) in job arguments. What if we could use Elixir structs to help with that?
 
@@ -14,7 +14,7 @@ defmodule MyApp.Business do
 
   @impl Oban.Worker
   def perform(%Oban.Job{args: %{"id" => id} = _args}) do
-    IO.inspect(id, label: "Running #{__MODULE__} with ID")
+    IO.inspect(id, label: "Running #{__MODULE__} with ID: #{id}")
     :ok
   end
 end
@@ -30,7 +30,7 @@ iex(1)> %{id: 1}
  %Oban.Job{
    ...
  }}
-Running Elixir.MyApp.Business ID: 1
+Running Elixir.MyApp.Business with ID: 1
 {% endraw %}{% endcapture %}{% include code_block.html code=c class="terminal" %}
 
 What happens if you make a typo? The job fails at the start of executing with
@@ -51,7 +51,7 @@ defmodule MyApp.Business do
 
   @impl Oban.Worker
   def perform(%Oban.Job{args: %{"id" => id} = _args}) do
-    IO.inspect(id, label: "Running #{__MODULE__} with ID")
+    IO.inspect(id, label: "Running #{__MODULE__} with ID: #{id}")
     :ok
   end
 
@@ -90,7 +90,7 @@ defmodule MyApp.Business do
 
   @impl Oban.Worker
   def perform(%Oban.Job{args: unquote(ObanArgsHelper.convert(@args))}) do
-    IO.inspect(id, label: "Running #{__MODULE__} with ID")
+    IO.inspect(id, label: "Running #{__MODULE__} with ID: #{id}")
     :ok
   end
 
@@ -136,7 +136,7 @@ defmodule MyApp.Business do
 
   @impl Oban.Worker
   def perform(%Oban.Job{args: unquote(@args_matcher)}) do
-    IO.inspect(id, label: "Running #{__MODULE__} with ID")
+    IO.inspect(id, label: "Running #{__MODULE__} with ID: #{id}")
     :ok
   end
 end
