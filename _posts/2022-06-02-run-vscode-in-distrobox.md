@@ -16,7 +16,7 @@ To enter, run:
 
 distrobox-enter ubuntu-latest
 
-[michal@yoga ~]$ distrobox enter ubuntu-latest
+$ distrobox enter ubuntu-latest
 Container ubuntu-latest is not running.
 Starting container ubuntu-latest
 run this command to follow along:
