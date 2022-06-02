@@ -8,10 +8,26 @@ Because Distrobox transparently integrates with host's desktop environment, it c
 
 You can create a new Ubuntu container with:
 
-{% capture c %}{% raw %}
-$ mkdir ubuntu-latest
-$ distrobox create --image ubuntu:latest --name -ubuntu-latest --home "$HOME/ubuntu-latest"
-{% endraw %}{% endcapture %}{% include code_block.html code=c class="terminal" %}
+{% raw %}
+<div><pre><code class="terminal">$ distrobox create --image ubuntu:latest --name ubuntu-latest --home &quot;$HOME/ubuntu-latest&quot; 
+c6a17f85450195557fc1e39a3f37590a7eed00c4207b3746fb1b23a91fdd050d
+Distrobox &apos;ubuntu-latest&apos; successfully created.
+To enter, run:
+
+distrobox-enter ubuntu-latest
+
+[michal@yoga ~]$ distrobox enter ubuntu-latest
+Container ubuntu-latest is not running.
+Starting container ubuntu-latest
+run this command to follow along:
+
+ podman logs -f ubuntu-latest
+
+ Starting container...                  	<font color="#859900"> [ OK ]</font>
+ ...
+
+Container Setup Complete!
+{% endraw %}
 
 In theory, to install VSCode, _all you need to do_ is follow their [official instructions](https://code.visualstudio.com/docs/setup/linux#_debian-and-ubuntu-based-distributions):
 
