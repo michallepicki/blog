@@ -26,7 +26,7 @@ run this command to follow along:
  Starting container...                  	<font color="#859900"> [ OK ]</font>
  ...
 
-Container Setup Complete!
+Container Setup Complete!</code></pre></div>
 {% endraw %}
 
 In theory, to install VSCode, _all you need to do_ is follow their [official instructions](https://code.visualstudio.com/docs/setup/linux#_debian-and-ubuntu-based-distributions):
