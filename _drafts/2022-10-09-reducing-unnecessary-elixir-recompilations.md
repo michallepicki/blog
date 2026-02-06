@@ -286,7 +286,7 @@ dependencies themselves are not that bad, and usually don't cause unnecessary
 recompilations. Things can go bad when a `compile` dependency has its own, other
 dependencies from the same project.
 
-_Naive Thoughts & Silly Ideas №2:_
+_Naive Thoughts & Silly Ideas №3:_
 Maybe instead of assuming that all dependencies of `B` become `A`'s `compile`
 dependency, we could keep track of which modules actually took part in `A`'s
 compilation, and only consider those to be `compile` dependencies? Maybe!
@@ -308,9 +308,9 @@ TODO
   instead
 - how the compiler figures out what it needs to recompile based on a list of
   "stale" modules being compiled
-- silly idea: track hashes/digests of .beam files, and instead of recompiling
+- silly idea 4: track hashes/digests of .beam files, and instead of recompiling
   when a direct compile dependency is stale, check all compile dependencies
-  and recompile if any of them are stale AND changed on disk 
+  and recompile if any of them are stale AND the resulting beam hash changed on disk
 
 ## How to find transitive compile dependencies
 
